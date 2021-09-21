@@ -1,13 +1,12 @@
 const LOGIN = 'LOGIN';
 
-const Login = (email, password) => (
+const LoginAction = (email) => (
   ({
     type: LOGIN,
     payload: {
       email,
-      password,
     },
   })
 );
 
-export default Login;
+export default LoginAction;
