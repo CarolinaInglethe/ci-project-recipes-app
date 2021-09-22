@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 function Food() {
   const [foods, setFoods] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
@@ -9,11 +10,40 @@ function Food() {
       .then((resp) => setFoods(resp.meals));
   }, []);
 
+  useEffect(() => {
+    fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list')
+      .then((resp) => resp.json())
+      .then((resp) => {
+        setCategories(resp.meals);
+      });
+  }, []);
+
   const eleven = 11;
+  const five = 5;
 
   return (
     <div>
       <p>Tela principal de Receitas:</p>
+
+      <div>
+        <button type="button">All</button>
+        {
+          categories.map((catego, index) => (
+            index < five
+              ? (
+                <button
+                  data-testid={ `${catego.strCategory}-category-filter` }
+                  key={ index }
+                  type="button"
+                >
+
+                  {catego.strCategory}
+
+                </button>
+              ) : null
+          ))
+        }
+      </div>
 
       <div className="list-recipes">
         {
