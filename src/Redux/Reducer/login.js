@@ -11,8 +11,7 @@ const loginReducer = (state = INITIAL_STATE, action) => {
   case LOGIN:
     return {
       ...state,
-      email: payload.email,
-      password: payload.password,
+      payload,
     };
   default:
     return state;
