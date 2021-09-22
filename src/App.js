@@ -4,16 +4,16 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Login from './pages/Login';
 import Food from './pages/Food';
 import Drink from './pages/Drink';
-// import FoodDetails from './pages/FoodDetails';
-// import DrinkDetails from './pages/DrinkDetails';
+import FoodDetails from './pages/FoodDetails';
+import DrinkDetails from './pages/DrinkDetails';
 // import FoodInProgress from './pages/FoodInProgress';
 // import DrinkInProgress from './pages/DrinkInProgress';
-// import Explore from './pages/Explore';
-// import ExploreFood from './pages/ExploreFood';
-// import ExploreDrink from './pages/ExploreDrink';
-// import ExploreFoodByIngredient from './pages/ExploreFoodByIngredient';
-// import ExploreDrinkByIngredient from './pages/ExploreDrinkByIngredient';
-// import ExploreFoodByOrigin from './pages/ExploreFoodByOrigin';
+import Explore from './pages/Explore';
+import ExploreFood from './pages/ExploreFood';
+import ExploreDrink from './pages/ExploreDrink';
+import ExploreFoodByIngredient from './pages/ExploreFoodByIngredient';
+import ExploreDrinkByIngredient from './pages/ExploreDrinkByIngredient';
+import ExploreFoodByOrigin from './pages/ExploreFoodByOrigin';
 // import Profile from './pages/Profile';
 // import DoneRecipes from './pages/DoneRecipes';
 // import FavoriteRecipes from './pages/FavoriteRecipes';
@@ -61,6 +61,16 @@ function App() {
           component={ ExploreDrinkByIngredient }
         />
         <Route exact path="/explorar/comidas/area" component={ ExploreFoodByOrigin } />
+        <Route exact path="/comidas/:id" component={ FoodDetails } />
+        <Route exact path="/bebidas/:id" component={ DrinkDetails } />
+        {/* <Route exact path="/comidas" component={ Food } />
+        <Route exact path="/bebidas" component={ Drink } />
+        <Route exact path="/comidas/:id/in-progress" component={ FoodInProgress } />
+        <Route
+          exact
+          path="/bebidas/:id/in-progress"
+          component={ DrinkInProgress }
+        />
         <Route exact path="/perfil" component={ Profile } />
         <Route exact path="/receitas-feitas" component={ DoneRecipes } />
         <Route exact path="/receitas-favoritas" component={ FavoriteRecipes } /> */}
