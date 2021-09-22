@@ -1,23 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 
 function Explore() {
+  const history = useHistory();
+
   return (
     <div>
       <p>Explore</p>
-      <Link to="/explorar/comidas">
-        <button
-          type="button"
-          data-testid="explore-food"
-        >
-          Explorar Comidas
-        </button>
-      </Link>
-      <Link to="/explorar/bebidas">
-        <button type="button" data-testid="explore-drinks">
-          Explorar Bebidas
-        </button>
-      </Link>
+      <button
+        type="button"
+        data-testid="explore-food"
+        onClick={ () => history.push('/explorar/comidas') }
+      >
+        Explorar Comidas
+      </button>
+      <button
+        type="button"
+        data-testid="explore-drinks"
+        onClick={ () => history.push('/explorar/bebidas') }
+      >
+        Explorar Bebidas
+      </button>
     </div>
   );
 }
