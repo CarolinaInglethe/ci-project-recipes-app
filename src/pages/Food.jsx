@@ -66,26 +66,29 @@ function Food() {
       <div className="list-recipes">
         {
           // Filtro se caso categoria tiver sido selecionada:
+          // atraves do resultado do filter(array novo) faço map e renderizo alimentos da categoria selecionada
           selectedCategory !== undefined ? (
-            foods.filter((food) => (
-              // atraves do resultado do filter(array novo) faço map e renderizo alimentos da categoria selecionada
-              food.strCategory === selectedCategory)).map((food2, index) => (
-              index <= eleven
-                ? (
-                  <div key={ index } data-testid={ `${index}-recipe-card` }>
-                    <img
-                      src={ food2.strMealThumb }
-                      alt="receita  "
-                      width="100px"
-                      data-testid={ `${index}-card-img` }
-                    />
-                    <p data-testid={ `${index}-card-name` }>{ food2.strMeal }</p>
-                    <p data-testid={ `${selectedCategory}-category-filter` }>
-                      {selectedCategory}
-                    </p>
-                  </div>
-                ) : null
-            ))
+            foods
+              .filter((food) => (food.strCategory === selectedCategory))
+              .map((currentFood, index) => (
+                index <= eleven
+                  ? (
+                    <div
+                      key={ currentFood.strMeal }
+                      data-testid={ `${index}-recipe-card` }
+                    >
+                      { console.log(index) }
+                      <img
+                        src={ currentFood.strMealThumb }
+                        alt="receita  "
+                        width="100px"
+                        data-testid={ `${index}-card-img` }
+                      />
+                      <p data-testid={ `${index}-card-name` }>{ currentFood.strMeal }</p>
+                      <p data-testid={ `${selectedCategory}-category-filter` } />
+                    </div>
+                  ) : null
+              ))
           ) // se Categoria tiver undefined (nao selecionada) retorno map de receitas totais (12 da api)
             : foods.map((food, index) => (
               index <= eleven
