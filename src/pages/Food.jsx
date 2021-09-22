@@ -15,7 +15,7 @@ function Food() {
     <div>
       <p>Tela principal de Receitas:</p>
 
-      <div>
+      <div className="list-recipes">
         {
           foods.length !== 0
             ? foods.map((food, index) => (

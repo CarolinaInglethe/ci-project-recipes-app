@@ -25,7 +25,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <BrowserRouter>
-      <Food />
       {/* <div className="meals">
         <span className="logo">Recipe App</span>
         <object
