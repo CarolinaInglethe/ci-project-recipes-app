@@ -13,7 +13,8 @@ function Food() {
         ...recipes,
         foods: resp.meals,
       }));
-  });
+    console.log(recipes);
+  }, []);
 
   const eleven = 11;
 

@@ -13,7 +13,7 @@ function Drink() {
         ...recipes,
         drinks: resp.drinks,
       }));
-  });
+  }, []);
 
   const eleven = 11;
 
