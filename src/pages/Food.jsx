@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 function Food() {
-  const [recipes, setRecipes] = useState({
-    foods: [],
-    drinks: [],
-  });
+  const [foods, setFoods] = useState([]);
 
   useEffect(() => {
     fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
       .then((resp) => resp.json())
-      .then((resp) => setRecipes({
-        ...recipes,
-        foods: resp.meals,
-      }));
-    console.log(recipes);
+      .then((resp) => setFoods(resp.meals));
   }, []);
 
   const eleven = 11;
@@ -24,8 +17,8 @@ function Food() {
 
       <div>
         {
-          recipes.foods.length !== 0
-            ? recipes.foods.map((food, index) => (
+          foods.length !== 0
+            ? foods.map((food, index) => (
               index <= eleven
                 ? (
                   <div data-testid={ `${index}-recipe-card` }>
