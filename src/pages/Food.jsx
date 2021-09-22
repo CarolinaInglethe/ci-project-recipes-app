@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 function Food() {
   const [foods, setFoods] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(undefined);
 
   useEffect(() => {
     fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
@@ -18,6 +19,16 @@ function Food() {
       });
   }, []);
 
+  const handleClickCategorie = (category) => {
+    setSelectedCategory(category);
+  };
+
+  if (foods.length === 0) {
+    return <h4>Carregando...</h4>;
+  }
+
+  console.log(foods);
+
   const eleven = 11;
   const five = 5;
 
@@ -26,7 +37,13 @@ function Food() {
       <p>Tela principal de Receitas:</p>
 
       <div>
-        <button type="button">All</button>
+        {/* // Botoes para escolher categoria : */}
+        <button
+          type="button"
+          onClick={ () => handleClickCategorie(undefined) }
+        >
+          All
+        </button>
         {
           categories.map((catego, index) => (
             index < five
@@ -35,6 +52,7 @@ function Food() {
                   data-testid={ `${catego.strCategory}-category-filter` }
                   key={ index }
                   type="button"
+                  onClick={ () => handleClickCategorie(catego.strCategory) }
                 >
 
                   {catego.strCategory}
@@ -47,11 +65,32 @@ function Food() {
 
       <div className="list-recipes">
         {
-          foods.length !== 0
-            ? foods.map((food, index) => (
+          // Filtro se caso categoria tiver sido selecionada:
+          selectedCategory !== undefined ? (
+            foods.filter((food) => (
+              // atraves do resultado do filter(array novo) faço map e renderizo alimentos da categoria selecionada
+              food.strCategory === selectedCategory)).map((food2, index) => (
               index <= eleven
                 ? (
-                  <div data-testid={ `${index}-recipe-card` }>
+                  <div key={ index } data-testid={ `${index}-recipe-card` }>
+                    <img
+                      src={ food2.strMealThumb }
+                      alt="receita  "
+                      width="100px"
+                      data-testid={ `${index}-card-img` }
+                    />
+                    <p data-testid={ `${index}-card-name` }>{ food2.strMeal }</p>
+                    <p data-testid={ `${selectedCategory}-category-filter` }>
+                      {selectedCategory}
+                    </p>
+                  </div>
+                ) : null
+            ))
+          ) // se Categoria tiver undefined (nao selecionada) retorno map de receitas totais (12 da api)
+            : foods.map((food, index) => (
+              index <= eleven
+                ? (
+                  <div key={ index } data-testid={ `${index}-recipe-card` }>
                     <img
                       src={ food.strMealThumb }
                       alt="receita  "
@@ -63,8 +102,6 @@ function Food() {
                   </div>
                 ) : null
             ))
-            : <h4>Carregando...</h4>
-        // console.log(recipes.foods)
         }
       </div>
     </div>
