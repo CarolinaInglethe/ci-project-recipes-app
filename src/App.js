@@ -4,13 +4,13 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Login from './pages/Login';
 import Food from './pages/Food';
 import Drink from './pages/Drink';
+import Explore from './pages/Explore';
+import ExploreFood from './pages/ExploreFood';
+import ExploreDrink from './pages/ExploreDrink';
 // import FoodDetails from './pages/FoodDetails';
 // import DrinkDetails from './pages/DrinkDetails';
 // import FoodInProgress from './pages/FoodInProgress';
 // import DrinkInProgress from './pages/DrinkInProgress';
-// import Explore from './pages/Explore';
-// import ExploreFood from './pages/ExploreFood';
-// import ExploreDrink from './pages/ExploreDrink';
 // import ExploreFoodByIngredient from './pages/ExploreFoodByIngredient';
 // import ExploreDrinkByIngredient from './pages/ExploreDrinkByIngredient';
 // import ExploreFoodByOrigin from './pages/ExploreFoodByOrigin';
@@ -39,17 +39,15 @@ function App() {
         <Route exact path="/" component={ Login } />
         <Route exact path="/comidas" component={ Food } />
         <Route exact path="/bebidas" component={ Drink } />
-        {/* <Route exact path="/comidas/:id" component={ FoodDetails } />
-        <Route exact path="/bebidas/:id" component={ DrinkDetails } />
-        <Route exact path="/comidas/:id/in-progress" component={ FoodInProgress } />
-        <Route
+        <Route exact path="/explorar" component={ Explore } />
+        <Route exact path="/explorar/comidas" component={ ExploreFood } />
+        <Route exact path="/explorar/bebidas" component={ ExploreDrink } />
+        {/* <Route
           exact
           path="/bebidas/:id/in-progress"
           component={ DrinkInProgress }
         />
-        <Route exact path="/explorar" component={ Explore } />
-        <Route exact path="/explorar/comidas" component={ ExploreFood } />
-        <Route exact path="/explorar/bebidas" component={ ExploreDrink } />
+
         <Route
           exact
           path="/explorar/comidas/ingredientes"
@@ -63,8 +61,6 @@ function App() {
         <Route exact path="/explorar/comidas/area" component={ ExploreFoodByOrigin } />
         <Route exact path="/comidas/:id" component={ FoodDetails } />
         <Route exact path="/bebidas/:id" component={ DrinkDetails } />
-        {/* <Route exact path="/comidas" component={ Food } />
-        <Route exact path="/bebidas" component={ Drink } />
         <Route exact path="/comidas/:id/in-progress" component={ FoodInProgress } />
         <Route
           exact
