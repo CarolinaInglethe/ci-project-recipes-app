@@ -4,6 +4,7 @@ function Drink() {
   const [drinks, setDrinks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(undefined);
+  const [filteredCategories, setFilteredCategories] = useState([]);
 
   useEffect(() => {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
@@ -18,6 +19,14 @@ function Drink() {
         setCategories(resp.drinks);
       });
   }, []);
+
+  useEffect(() => {
+    if (selectedCategory !== undefined) {
+      fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${selectedCategory}`)
+        .then((response) => response.json())
+        .then((result) => setFilteredCategories(result.drinks));
+    }
+  });
 
   const handleClickCategorie = (category) => {
     setSelectedCategory(category);
@@ -66,8 +75,7 @@ function Drink() {
           // Filtro se caso categoria tiver sido selecionada:
           // atraves do resultado do filter(array novo) faço map e renderizo alimentos da categoria selecionada:
           selectedCategory !== undefined ? (
-            drinks
-              .filter((drink) => (drink.strCategory === selectedCategory))
+            filteredCategories
               .map(({ idDrink, strDrink, strDrinkThumb, strCategory }, index) => (
                 index <= eleven
                   ? (
@@ -75,7 +83,6 @@ function Drink() {
                       key={ idDrink }
                       data-testid={ `${index}-recipe-card` }
                     >
-                      {console.log(drinks)}
                       <img
                         src={ strDrinkThumb }
                         alt="receita  "

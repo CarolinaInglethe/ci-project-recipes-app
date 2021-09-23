@@ -4,6 +4,7 @@ function Food() {
   const [foods, setFoods] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(undefined);
+  const [filteredCategories, setFilteredCategories] = useState([]);
 
   useEffect(() => {
     fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
@@ -19,15 +20,21 @@ function Food() {
       });
   }, []);
 
-  const handleClickCategorie = (category) => {
+  useEffect(() => {
+    if (selectedCategory !== undefined) {
+      fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${selectedCategory}`)
+        .then((response) => response.json())
+        .then((result) => setFilteredCategories(result.meals));
+    }
+  });
+
+  const handleClickCategories = (category) => {
     setSelectedCategory(category);
   };
 
   if (foods.length === 0) {
     return <h4>Carregando...</h4>;
   }
-
-  console.log(foods);
 
   const eleven = 11;
   const five = 5;
@@ -40,7 +47,7 @@ function Food() {
         {/* // Botoes para escolher categoria : */}
         <button
           type="button"
-          onClick={ () => handleClickCategorie(undefined) }
+          onClick={ () => handleClickCategories(undefined) }
         >
           All
         </button>
@@ -52,7 +59,7 @@ function Food() {
                   data-testid={ `${catego.strCategory}-category-filter` }
                   key={ index }
                   type="button"
-                  onClick={ () => handleClickCategorie(catego.strCategory) }
+                  onClick={ () => handleClickCategories(catego.strCategory) }
                 >
 
                   {catego.strCategory}
@@ -68,8 +75,7 @@ function Food() {
           // Filtro se caso categoria tiver sido selecionada:
           // atraves do resultado do filter(array novo) faço map e renderizo alimentos da categoria selecionada
           selectedCategory !== undefined ? (
-            foods
-              .filter((food) => (food.strCategory === selectedCategory))
+            filteredCategories
               .map(({ idMeal, strMeal, strMealThumb, strCategory }, index) => (
                 index <= eleven
                   ? (
@@ -77,7 +83,6 @@ function Food() {
                       key={ idMeal }
                       data-testid={ `${index}-recipe-card` }
                     >
-                      { console.log(foods) }
                       <img
                         src={ strMealThumb }
                         alt="receita  "
