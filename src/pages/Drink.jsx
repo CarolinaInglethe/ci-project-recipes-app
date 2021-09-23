@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import Header from '../components/Header';
+import SearchBar from '../components/SearchBar';
 
 function Drink() {
   const [drinks, setDrinks] = useState([]);
@@ -32,33 +34,37 @@ function Drink() {
 
   return (
     <div>
-      <p>Tela principal de Receitas:</p>
-
+      <Header />
+      <SearchBar />
       <div>
-        {/* // Botoes para escolher categoria : */}
-        <button
-          type="button"
-          onClick={ () => handleClickCategorie(undefined) }
-        >
-          All
-        </button>
-        {
-          categories.map((catego, index) => (
-            index < five
-              ? (
-                <button
-                  data-testid={ `${catego.strCategory}-category-filter` }
-                  key={ index }
-                  type="button"
-                  onClick={ () => handleClickCategorie(catego.strCategory) }
-                >
+        <p>Tela principal de Receitas:</p>
 
-                  {catego.strCategory}
+        <div>
+          {/* // Botoes para escolher categoria : */}
+          <button
+            type="button"
+            onClick={ () => handleClickCategorie(undefined) }
+          >
+            All
+          </button>
+          {
+            categories.map((catego, index) => (
+              index < five
+                ? (
+                  <button
+                    data-testid={ `${catego.strCategory}-category-filter` }
+                    key={ index }
+                    type="button"
+                    onClick={ () => handleClickCategorie(catego.strCategory) }
+                  >
 
-                </button>
-              ) : null
-          ))
-        }
+                    {catego.strCategory}
+
+                  </button>
+                ) : null
+            ))
+          }
+        </div>
       </div>
 
       <div className="list-recipes">
