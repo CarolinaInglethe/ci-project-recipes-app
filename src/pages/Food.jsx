@@ -70,37 +70,37 @@ function Food() {
           selectedCategory !== undefined ? (
             foods
               .filter((food) => (food.strCategory === selectedCategory))
-              .map((currentFood, index) => (
+              .map(({ idMeal, strMeal, strMealThumb, strCategory }, index) => (
                 index <= eleven
                   ? (
                     <div
-                      key={ currentFood.strMeal }
+                      key={ idMeal }
                       data-testid={ `${index}-recipe-card` }
                     >
-                      { console.log(index) }
+                      { console.log(foods) }
                       <img
-                        src={ currentFood.strMealThumb }
+                        src={ strMealThumb }
                         alt="receita  "
                         width="100px"
                         data-testid={ `${index}-card-img` }
                       />
-                      <p data-testid={ `${index}-card-name` }>{ currentFood.strMeal }</p>
-                      <p data-testid={ `${selectedCategory}-category-filter` } />
+                      <p data-testid={ `${index}-card-name` }>{ strMeal }</p>
+                      <p data-testid={ `${strCategory}-category-filter` } />
                     </div>
                   ) : null
               ))
           ) // se Categoria tiver undefined (nao selecionada) retorno map de receitas totais (12 da api)
-            : foods.map((food, index) => (
+            : foods.map(({ idMeal, strMeal, strMealThumb }, index) => (
               index <= eleven
                 ? (
-                  <div key={ index } data-testid={ `${index}-recipe-card` }>
+                  <div key={ idMeal } data-testid={ `${index}-recipe-card` }>
                     <img
-                      src={ food.strMealThumb }
+                      src={ strMealThumb }
                       alt="receita  "
                       width="100px"
                       data-testid={ `${index}-card-img` }
                     />
-                    <p data-testid={ `${index}-card-name` }>{ food.strMeal }</p>
+                    <p data-testid={ `${index}-card-name` }>{ strMeal }</p>
 
                   </div>
                 ) : null

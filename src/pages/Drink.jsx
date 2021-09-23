@@ -64,38 +64,55 @@ function Drink() {
       <div className="list-recipes">
         {
           // Filtro se caso categoria tiver sido selecionada:
+          // atraves do resultado do filter(array novo) faço map e renderizo alimentos da categoria selecionada:
           selectedCategory !== undefined ? (
-            drinks.filter((drink) => (
-              // atraves do resultado do filter(array novo) faço map e renderizo alimentos da categoria selecionada:
-              drink.strCategory === selectedCategory)).map((drink2, index) => (
-              index <= eleven
-                ? (
-                  <div key={ index } data-testid={ `${index}-recipe-card` }>
-                    <img
-                      src={ drink2.strDrinkThumb }
-                      alt="receita  "
-                      width="100px"
-                      data-testid={ `${index}-card-img` }
-                    />
-                    <p data-testid={ `${index}-card-name` }>{ drink2.strDrink }</p>
-                    <p data-testid={ `${selectedCategory}-category-filter` }>
-                      {selectedCategory}
-                    </p>
-                  </div>
-                ) : null
-            ))
+            drinks
+              .filter((drink) => (drink.strCategory === selectedCategory))
+              .map(({ idDrink, strDrink, strDrinkThumb, strCategory }, index) => (
+                index <= eleven
+                  ? (
+                    <div
+                      key={ idDrink }
+                      data-testid={ `${index}-recipe-card` }
+                    >
+                      {console.log(drinks)}
+                      <img
+                        src={ strDrinkThumb }
+                        alt="receita  "
+                        width="100px"
+                        data-testid={ `${index}-card-img` }
+                      />
+                      <p
+                        data-testid={ `${index}-card-name` }
+                      >
+                        { strDrink }
+                      </p>
+                      <p
+                        data-testid={ `${strCategory}-category-filter` }
+                      />
+                    </div>
+                  ) : null
+              ))
           ) // se Categoria tiver undefined (nao selecionada) retorno map de receitas totais (12 da api)
-            : drinks.map((drink, index) => (
+            : drinks.map(({ idDrink, strDrink, strDrinkThumb }, index) => (
               index <= eleven
                 ? (
-                  <div key={ index } data-testid={ `${index}-recipe-card` }>
+                  <div
+                    key={ idDrink }
+                    data-testid={ `${index}-recipe-card` }
+                  >
                     <img
-                      src={ drink.strDrinkThumb }
+                      src={ strDrinkThumb }
                       alt="receita  "
                       width="100px"
                       data-testid={ `${index}-card-img` }
                     />
-                    <p data-testid={ `${index}-card-name` }>{ drink.strDrink }</p>
+                    <p
+                      data-testid={ `${index}-card-name` }
+                    >
+                      { strDrink }
+
+                    </p>
                   </div>
                 ) : null
             ))
