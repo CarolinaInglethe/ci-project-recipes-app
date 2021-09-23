@@ -29,6 +29,9 @@ function Food() {
   });
 
   const handleClickCategories = (category) => {
+    if (selectedCategory !== undefined) {
+      setSelectedCategory(undefined);
+    }
     setSelectedCategory(category);
   };
 
@@ -48,6 +51,7 @@ function Food() {
         <button
           type="button"
           onClick={ () => handleClickCategories(undefined) }
+          data-testid="All-category-filter"
         >
           All
         </button>

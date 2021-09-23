@@ -48,6 +48,7 @@ function Drink() {
         <button
           type="button"
           onClick={ () => handleClickCategorie(undefined) }
+          data-testid="All-category-filter"
         >
           All
         </button>
