@@ -1,3 +1,5 @@
+import React from 'react';
+import Footer from '../components/Footer';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
@@ -47,6 +49,8 @@ function Login({ loginEmail }) {
 
   return (
     <div>
+      <p>Login</p>
+      <Footer />
       <h2>Login</h2>
 
       <form>
