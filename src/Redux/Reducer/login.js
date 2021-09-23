@@ -2,7 +2,6 @@ const LOGIN = 'LOGIN';
 
 export const INITIAL_STATE = {
   email: '',
-  password: '',
 };
 
 const loginReducer = (state = INITIAL_STATE, action) => {
@@ -11,8 +10,8 @@ const loginReducer = (state = INITIAL_STATE, action) => {
   case LOGIN:
     return {
       ...state,
+      payload,
       email: payload.email,
-      password: payload.password,
     };
   default:
     return state;
