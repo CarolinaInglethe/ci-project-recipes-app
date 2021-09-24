@@ -81,41 +81,41 @@ function Food() {
           // atraves do resultado do filter(array novo) faço map e renderizo alimentos da categoria selecionada
           selectedCategory !== undefined ? (
             filteredCategories
-              .map(({ idMeal, strMeal, strMealThumb, strCategory }, index) => (
+              .map((food, index) => (
                 index <= eleven
                   ? (
-                    <Link to={ `/comidas/${idMeal}` }>
+                    <Link to={ `/comidas/${food.idMeal}` }>
                       <div
-                        key={ idMeal }
+                        key={ food.idMeal }
                         data-testid={ `${index}-recipe-card` }
                       >
                         <img
-                          src={ strMealThumb }
+                          src={ food.strMealThumb }
                           alt="receita  "
                           width="100px"
                           data-testid={ `${index}-card-img` }
                         />
-                        <p data-testid={ `${index}-card-name` }>{ strMeal }</p>
-                        <p data-testid={ `${strCategory}-category-filter` } />
+                        <p data-testid={ `${index}-card-name` }>{ food.strMeal }</p>
+                        <p data-testid={ `${food.strCategory}-category-filter` } />
                       </div>
                     </Link>
                   ) : null
               ))
           ) // se Categoria tiver undefined (nao selecionada) retorno map de receitas totais (12 da api)
-            : foods.map(({ idMeal, strMeal, strMealThumb }, index) => (
+            : foods.map((food, index) => (
               index <= eleven
                 ? (
-                  <Link to={ `/comidas/${idMeal}` }>
+                  <Link to={ `/comidas/${food.idMeal}` }>
                     <div
                       data-testid={ `${index}-recipe-card` }
                     >
                       <img
-                        src={ strMealThumb }
+                        src={ food.strMealThumb }
                         alt="receita  "
                         width="100px"
                         data-testid={ `${index}-card-img` }
                       />
-                      <p data-testid={ `${index}-card-name` }>{ strMeal }</p>
+                      <p data-testid={ `${index}-card-name` }>{ food.strMeal }</p>
                     </div>
                   </Link>
                 ) : null

@@ -78,17 +78,17 @@ function Drink() {
           // atraves do resultado do filter(array novo) faço map e renderizo alimentos da categoria selecionada:
           selectedCategory !== undefined ? (
             filteredCategories
-              .map(({ idDrink, strDrink, strDrinkThumb, strCategory }, index) => (
+              .map((drink, index) => (
                 index <= eleven
                   ? (
-                    <Link to={ `/bebidas/${idDrink}` }>
+                    <Link to={ `/bebidas/${drink.idDrink}` }>
                       <div
-                        key={ idDrink }
+                        key={ drink.idDrink }
                         data-testid={ `${index}-recipe-card` }
                       >
 
                         <img
-                          src={ strDrinkThumb }
+                          src={ drink.strDrinkThumb }
                           alt="receita  "
                           width="100px"
                           data-testid={ `${index}-card-img` }
@@ -96,26 +96,26 @@ function Drink() {
                         <p
                           data-testid={ `${index}-card-name` }
                         >
-                          { strDrink }
+                          { drink.strDrink }
                         </p>
                         <p
-                          data-testid={ `${strCategory}-category-filter` }
+                          data-testid={ `${drink.strCategory}-category-filter` }
                         />
                       </div>
                     </Link>
                   ) : null
               ))
           ) // se Categoria tiver undefined (nao selecionada) retorno map de receitas totais (12 da api)
-            : drinks.map(({ idDrink, strDrink, strDrinkThumb }, index) => (
+            : drinks.map((drink, index) => (
               index <= eleven
                 ? (
-                  <Link to={ `/bebidas/${idDrink}` }>
+                  <Link to={ `/bebidas/${drink.idDrink}` }>
                     <div
-                      key={ idDrink }
+                      key={ drink.idDrink }
                       data-testid={ `${index}-recipe-card` }
                     >
                       <img
-                        src={ strDrinkThumb }
+                        src={ drink.strDrinkThumb }
                         alt="receita  "
                         width="100px"
                         data-testid={ `${index}-card-img` }
@@ -123,7 +123,7 @@ function Drink() {
                       <p
                         data-testid={ `${index}-card-name` }
                       >
-                        { strDrink }
+                        { drink.strDrink }
 
                       </p>
                     </div>
