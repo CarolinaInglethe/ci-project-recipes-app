@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Food() {
   const [foods, setFoods] = useState([]);
@@ -83,8 +84,29 @@ function Food() {
               .map(({ idMeal, strMeal, strMealThumb, strCategory }, index) => (
                 index <= eleven
                   ? (
+                    <Link to={ `/comidas/${idMeal}` }>
+                      <div
+                        key={ idMeal }
+                        data-testid={ `${index}-recipe-card` }
+                      >
+                        <img
+                          src={ strMealThumb }
+                          alt="receita  "
+                          width="100px"
+                          data-testid={ `${index}-card-img` }
+                        />
+                        <p data-testid={ `${index}-card-name` }>{ strMeal }</p>
+                        <p data-testid={ `${strCategory}-category-filter` } />
+                      </div>
+                    </Link>
+                  ) : null
+              ))
+          ) // se Categoria tiver undefined (nao selecionada) retorno map de receitas totais (12 da api)
+            : foods.map(({ idMeal, strMeal, strMealThumb }, index) => (
+              index <= eleven
+                ? (
+                  <Link to={ `/comidas/${idMeal}` }>
                     <div
-                      key={ idMeal }
                       data-testid={ `${index}-recipe-card` }
                     >
                       <img
@@ -94,24 +116,8 @@ function Food() {
                         data-testid={ `${index}-card-img` }
                       />
                       <p data-testid={ `${index}-card-name` }>{ strMeal }</p>
-                      <p data-testid={ `${strCategory}-category-filter` } />
                     </div>
-                  ) : null
-              ))
-          ) // se Categoria tiver undefined (nao selecionada) retorno map de receitas totais (12 da api)
-            : foods.map(({ idMeal, strMeal, strMealThumb }, index) => (
-              index <= eleven
-                ? (
-                  <div key={ idMeal } data-testid={ `${index}-recipe-card` }>
-                    <img
-                      src={ strMealThumb }
-                      alt="receita  "
-                      width="100px"
-                      data-testid={ `${index}-card-img` }
-                    />
-                    <p data-testid={ `${index}-card-name` }>{ strMeal }</p>
-
-                  </div>
+                  </Link>
                 ) : null
             ))
         }

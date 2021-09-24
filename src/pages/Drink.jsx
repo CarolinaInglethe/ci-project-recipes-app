@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Drink() {
   const [drinks, setDrinks] = useState([]);
@@ -80,6 +81,35 @@ function Drink() {
               .map(({ idDrink, strDrink, strDrinkThumb, strCategory }, index) => (
                 index <= eleven
                   ? (
+                    <Link to={ `/bebidas/${idDrink}` }>
+                      <div
+                        key={ idDrink }
+                        data-testid={ `${index}-recipe-card` }
+                      >
+
+                        <img
+                          src={ strDrinkThumb }
+                          alt="receita  "
+                          width="100px"
+                          data-testid={ `${index}-card-img` }
+                        />
+                        <p
+                          data-testid={ `${index}-card-name` }
+                        >
+                          { strDrink }
+                        </p>
+                        <p
+                          data-testid={ `${strCategory}-category-filter` }
+                        />
+                      </div>
+                    </Link>
+                  ) : null
+              ))
+          ) // se Categoria tiver undefined (nao selecionada) retorno map de receitas totais (12 da api)
+            : drinks.map(({ idDrink, strDrink, strDrinkThumb }, index) => (
+              index <= eleven
+                ? (
+                  <Link to={ `/bebidas/${idDrink}` }>
                     <div
                       key={ idDrink }
                       data-testid={ `${index}-recipe-card` }
@@ -94,34 +124,10 @@ function Drink() {
                         data-testid={ `${index}-card-name` }
                       >
                         { strDrink }
-                      </p>
-                      <p
-                        data-testid={ `${strCategory}-category-filter` }
-                      />
-                    </div>
-                  ) : null
-              ))
-          ) // se Categoria tiver undefined (nao selecionada) retorno map de receitas totais (12 da api)
-            : drinks.map(({ idDrink, strDrink, strDrinkThumb }, index) => (
-              index <= eleven
-                ? (
-                  <div
-                    key={ idDrink }
-                    data-testid={ `${index}-recipe-card` }
-                  >
-                    <img
-                      src={ strDrinkThumb }
-                      alt="receita  "
-                      width="100px"
-                      data-testid={ `${index}-card-img` }
-                    />
-                    <p
-                      data-testid={ `${index}-card-name` }
-                    >
-                      { strDrink }
 
-                    </p>
-                  </div>
+                      </p>
+                    </div>
+                  </Link>
                 ) : null
             ))
 
