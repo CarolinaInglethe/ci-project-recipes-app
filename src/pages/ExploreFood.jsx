@@ -1,6 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 
+import Footer from '../components/Footer';
+
 function ExploreFood() {
   const history = useHistory();
 
@@ -35,6 +37,7 @@ function ExploreFood() {
       >
         Me Surpreenda!
       </button>
+      <Footer />
     </div>
   );
 }
