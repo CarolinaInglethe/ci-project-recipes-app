@@ -55,8 +55,8 @@ function App() {
         <Route exact path="/explorar/comidas/area" component={ ExploreFoodByOrigin } />
         <Route exact path="/perfil" component={ Profile } />
         <Route exact path="/receitas-feitas" component={ DoneRecipes } />
-        <Route exact path="/receitas-favoritas" component={ FavoriteRecipes } /> */}
-        {/* <Route
+        <Route exact path="/receitas-favoritas" component={ FavoriteRecipes } />
+        <Route
           exact
           path="/bebidas/:id/in-progress"
           component={ DrinkInProgress }
@@ -68,7 +68,7 @@ function App() {
           exact
           path="/bebidas/:id/in-progress"
           component={ DrinkInProgress }
-        /> */}
+        />
       </Switch>
     </BrowserRouter>
   );

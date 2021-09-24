@@ -1,78 +1,94 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { useHistory } from 'react-router';
+import React, { useState, useEffect } from 'react';
 import './SearchBar.css';
 
 // estado da barra de pesquisa
-function SearchBar(props) {
-  const [inputSearch, setInputSearch] = useState({
-    search: '',
-    radioSelect: '',
-  });
-  const history = useHistory();
+function SearchBar() {
+  const [inputValue, setInputValue] = useState('');
+  const [radioValue, setRadioValue] = useState('');
+  const [filteredIngredients, setFilteredIngredients] = useState([]);
 
-  function handleSearchInput({ target }) {
-    const { name, value } = target;
-    setInputSearch({ ...inputSearch, [name]: value });
-  }
-  async function handleClick() {
-    const { pathname } = history.location;
-    const { search, radioSelect } = inputSearch;
-    if (search.length > 1 && radioSelect === 'f') {
-      return global.alert('Sua busca deve conter somente 1 (um) caracter');
+  const handleSearchInput = ({ target }) => {
+    setInputValue(target.value);
+  };
+
+  const handleRadioInput = ({ target }) => {
+    setRadioValue(target.value);
+  };
+
+  useEffect(() => {
+    if (inputValue.length > 1 && radioValue === 'firstLetter') {
+      global.alert('Sua busca deve conter somente 1 (um) caracter');
     }
-    const request = await props.fetchFood(radioSelect, search);
-    const typeRecipe = request.meals || request.drinks;
-    if (typeRecipe.length === 1) {
-      history.push(`${pathname}/${typeRecipe[0].idMeal || typeRecipe[0].idDrink}`);
+  }, [inputValue, radioValue]);
+
+  function handleClick() {
+    if (radioValue === 'ingredient') {
+      fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${inputValue}`)
+        .then((response) => response.json())
+        .then((result) => setFilteredIngredients(result.meals));
     }
+
+    if (radioValue === 'name') {
+      fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`)
+        .then((response) => response.json())
+        .then((result) => setFilteredIngredients(result.meals));
+    }
+
+    if (radioValue === 'firstLetter') {
+      fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${inputValue}`)
+        .then((response) => response.json())
+        .then((result) => setFilteredIngredients(result.meals));
+    }
+    console.log(filteredIngredients);
   }
+
   return (
     <div>
-      <div className="search-bar-inputs">
+      <div className="search-input">
         <input
           data-testid="search-input"
+          type="text"
           name="search"
           placeholder="Buscar Receita"
-          type="text"
-          value={ inputSearch.search }
+          value={ inputValue }
           onChange={ handleSearchInput }
         />
         <label htmlFor="ingredient-search">
           <input
+            data-testid="ingredient-search-radio"
             type="radio"
-            id="ingredient-search-radio"
             name="radioSelect"
             value="ingredient"
-            data-testid="ingredient-search-radio"
-            onChange={ handleSearchInput }
+            onChange={ handleRadioInput }
           />
           Ingredientes
         </label>
         <label htmlFor="name-search">
           <input
+            data-testid="name-search-radio"
             type="radio"
-            id="name-search-radio"
             name="radioSelect"
             value="name"
-            data-testid="name-search-radio"
-            onChange={ handleSearchInput }
+            onChange={ handleRadioInput }
           />
           Nome
         </label>
         <label htmlFor="first-letter-search">
           <input
-            type="radio"
-            id="first-letter-search-radio"
-            name="radioSelect"
-            value="first-letter"
             data-testid="first-letter-search-radio"
-            onChange={ handleSearchInput }
+            type="radio"
+            name="radioSelect"
+            value="firstLetter"
+            onChange={ handleRadioInput }
           />
           Primeira letra
         </label>
         <div className="search-button">
-          <button type="button" data-test-id="exec-search-btn" onClick={ handleClick }>
+          <button
+            data-testid="exec-search-btn"
+            type="button"
+            onClick={ handleClick }
+          >
             Buscar
           </button>
         </div>
@@ -81,8 +97,8 @@ function SearchBar(props) {
   );
 }
 
-SearchBar.propTypes = {
-  fetchFood: PropTypes.func.isRequired };
+// SearchBar.propTypes = {
+//   fetchFood: PropTypes.func.isRequired };
 
 export default SearchBar;
 
