@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import SearchBar from '../components/SearchBar';
+import HeaderWithSearch from '../components/HeaderWithSearch';
 
 function Drink() {
   const [drinks, setDrinks] = useState([]);
@@ -34,8 +33,7 @@ function Drink() {
 
   return (
     <div>
-      <Header />
-      <SearchBar />
+      <HeaderWithSearch titlePage="Bebidas" />
       <div>
         <p>Tela principal de Receitas:</p>
 

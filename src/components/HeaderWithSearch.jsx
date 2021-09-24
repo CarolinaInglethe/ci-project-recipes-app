@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import profileIcon from '../images/profileIcon.svg';
+import searchIcon from '../images/searchIcon.svg';
+import SearchBar from './SearchBar';
 import './Header.css';
 
-function Header({ titlePage }) {
+function HeaderWithSearch({ titlePage }) {
+  const [toggleInput, setToggleInput] = useState(false);
+
   return (
     <header>
       <Link to="/perfil">
@@ -18,14 +22,25 @@ function Header({ titlePage }) {
       <div className="header">
         <h2 data-testid="page-title">{ titlePage }</h2>
       </div>
+      <div>
+        {toggleInput && (
+          <SearchBar />
+        )}
+        <button
+          type="button"
+          onClick={ () => setToggleInput(!toggleInput) }
+        >
+          <img src={ searchIcon } alt="Ícone pesquisa" data-testid="search-top-btn" />
+        </button>
+      </div>
     </header>
   );
 }
-Header.propTypes = {
+HeaderWithSearch.propTypes = {
   titlePage: PropTypes.string.isRequired,
 };
 
-export default Header;
+export default HeaderWithSearch;
 
 // Pesquisas:
 // https://developer.mozilla.org/pt-BR/docs/Learn/HTML/Multimedia_and_embedding/Images_in_HTML

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import SearchBar from '../components/SearchBar';
+import HeaderWithSearch from '../components/HeaderWithSearch';
 
 function Food() {
   const [foods, setFoods] = useState([]);
@@ -36,11 +35,9 @@ function Food() {
 
   return (
     <div>
-      <Header />
-      <SearchBar />
+      <HeaderWithSearch titlePage="Comidas" />
       <div>
         <p>Tela principal de Receitas:</p>
-
         <div>
           {/* // Botoes para escolher categoria : */}
           <button
@@ -89,7 +86,11 @@ function Food() {
                           width="100px"
                           data-testid={ `${index}-card-img` }
                         />
-                        <p data-testid={ `${index}-card-name` }>{ currentFood.strMeal }</p>
+                        <p // Lint reclamou da quantidade caractereres, por isso mudei de linha
+                          data-testid={ `${index}-card-name` }
+                        >
+                          { currentFood.strMeal }
+                        </p>
                         <p data-testid={ `${selectedCategory}-category-filter` } />
                       </div>
                     ) : null
