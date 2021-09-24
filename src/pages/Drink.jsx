@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Footer from '../components/Footer';
 
 function Drink() {
   const [drinks, setDrinks] = useState([]);
@@ -102,7 +103,7 @@ function Drink() {
 
         }
       </div>
-
+      <Footer />
     </div>
   );
 }

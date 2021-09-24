@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import Footer from '../components/Footer';
+
 function Food() {
   const [foods, setFoods] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -107,6 +109,7 @@ function Food() {
             ))
         }
       </div>
+      <Footer />
     </div>
   );
 }
