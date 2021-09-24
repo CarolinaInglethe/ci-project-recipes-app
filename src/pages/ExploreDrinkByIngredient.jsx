@@ -29,7 +29,7 @@ function ExploreDrinkByIngredient() {
             >
               <img
                 data-testid={ `${index}-card-img` }
-                src={ `https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}.png` }
+                src={ `https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Small.png` }
                 height="100px"
                 alt={ `Imagem de ${ingredient.strIngredient1}` }
               />

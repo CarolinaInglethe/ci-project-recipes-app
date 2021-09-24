@@ -29,7 +29,7 @@ function ExploreFoodByIngredient() {
             >
               <img
                 data-testid={ `${index}-card-img` }
-                src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}.png` }
+                src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
                 height="100px"
                 alt={ `Imagem de ${ingredient.strIngredient}` }
 
