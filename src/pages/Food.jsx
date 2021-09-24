@@ -101,7 +101,7 @@ function Food() {
                     </Link>
                   ) : null
               ))
-          ) // se Categoria tiver undefined (nao selecionada) retorno map de receitas totais (12 da api)
+          ) // Categoria tiver undefined (nao selecionada) retorno map de receitas totais (12 da api)
             : foods.map((food, index) => (
               index <= eleven
                 ? (
