@@ -2,6 +2,8 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import Header from '../components/Header';
 
+import Footer from '../components/Footer';
+
 function ExploreDrink() {
   const history = useHistory();
 
@@ -32,6 +34,22 @@ function ExploreDrink() {
           Me Surpreenda!
         </button>
       </div>
+      <p>ExploreDrink</p>
+      <button
+        type="button"
+        data-testid="explore-by-ingredient"
+        onClick={ () => history.push('/explorar/bebidas/ingredientes') }
+      >
+        Por Ingredientes
+      </button>
+      <button
+        type="button"
+        data-testid="explore-surprise"
+        onClick={ () => fetchRandomDrink() }
+      >
+        Me Surpreenda!
+      </button>
+      <Footer />
     </div>
   );
 }
