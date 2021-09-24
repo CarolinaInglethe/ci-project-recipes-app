@@ -14,7 +14,7 @@ import DrinkDetails from './pages/DrinkDetails';
 // import ExploreFoodByIngredient from './pages/ExploreFoodByIngredient';
 // import ExploreDrinkByIngredient from './pages/ExploreDrinkByIngredient';
 // import ExploreFoodByOrigin from './pages/ExploreFoodByOrigin';
-// import Profile from './pages/Profile';
+import Profile from './pages/Profile';
 // import DoneRecipes from './pages/DoneRecipes';
 // import FavoriteRecipes from './pages/FavoriteRecipes';
 
@@ -66,9 +66,9 @@ function App() {
           path="/bebidas/:id/in-progress"
           component={ DrinkInProgress }
         />
-        <Route exact path="/perfil" component={ Profile } />
         <Route exact path="/receitas-feitas" component={ DoneRecipes } />
-        <Route exact path="/receitas-favoritas" component={ FavoriteRecipes } /> */}
+      <Route exact path="/receitas-favoritas" component={ FavoriteRecipes } /> */}
+        <Route exact path="/perfil" component={ Profile } />
       </Switch>
     </BrowserRouter>
   );
