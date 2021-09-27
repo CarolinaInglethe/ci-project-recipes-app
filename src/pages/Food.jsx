@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import HeaderWithSearch from '../components/HeaderWithSearch';
 import { Link } from 'react-router-dom';
+import HeaderWithSearch from '../components/HeaderWithSearch';
 
 import Footer from '../components/Footer';
 
@@ -55,7 +55,8 @@ function Food() {
           {/* // Botoes para escolher categoria : */}
           <button
             type="button"
-            onClick={ () => handleClickCategorie(undefined) }
+            onClick={ () => handleClickCategories(undefined) }
+            data-testid="All-category-filter"
           >
             All
           </button>
@@ -67,26 +68,8 @@ function Food() {
                     data-testid={ `${catego.strCategory}-category-filter` }
                     key={ index }
                     type="button"
-                    onClick={ () => handleClickCategorie(catego.strCategory) }
+                    onClick={ () => handleClickCategories(catego.strCategory) }
                   >
-        {/* // Botoes para escolher categoria : */}
-        <button
-          type="button"
-          onClick={ () => handleClickCategories(undefined) }
-          data-testid="All-category-filter"
-        >
-          All
-        </button>
-        {
-          categories.map((catego, index) => (
-            index < five
-              ? (
-                <button
-                  data-testid={ `${catego.strCategory}-category-filter` }
-                  key={ index }
-                  type="button"
-                  onClick={ () => handleClickCategories(catego.strCategory) }
-                >
 
                     {catego.strCategory}
 
@@ -101,50 +84,37 @@ function Food() {
             // Filtro se caso categoria tiver sido selecionada:
             // atraves do resultado do filter(array novo) faço map e renderizo alimentos da categoria selecionada
             selectedCategory !== undefined ? (
-              foods
-                .filter((food) => (food.strCategory === selectedCategory))
+              filteredCategories
                 .map((currentFood, index) => (
                   index <= eleven
                     ? (
-                      <div
-                        key={ currentFood.strMeal }
-                        data-testid={ `${index}-recipe-card` }
-                      >
-                        { console.log(index) }
-                        <img
-                          src={ currentFood.strMealThumb }
-                          alt="receita  "
-                          width="100px"
-                          data-testid={ `${index}-card-img` }
-                        />
-                        <p // Lint reclamou da quantidade caractereres, por isso mudei de linha
-                          data-testid={ `${index}-card-name` }
+                      <Link to={ `/comidas/${currentFood.idMeal}` }>
+                        <div
+                          key={ currentFood.strMeal }
+                          data-testid={ `${index}-recipe-card` }
                         >
-                          { currentFood.strMeal }
-                        </p>
-                        <p data-testid={ `${selectedCategory}-category-filter` } />
-                      </div>
+                          <img
+                            src={ currentFood.strMealThumb }
+                            alt="receita  "
+                            width="100px"
+                            data-testid={ `${index}-card-img` }
+                          />
+                          <p // Lint reclamou da quantidade caractereres, por isso mudei de linha
+                            data-testid={ `${index}-card-name` }
+                          >
+                            { currentFood.strMeal }
+                          </p>
+                          <p data-testid={ `${selectedCategory}-category-filter` } />
+                        </div>
+                      </Link>
                     ) : null
                 ))
             ) // se Categoria tiver undefined (nao selecionada) retorno map de receitas totais (12 da api)
               : foods.map((food, index) => (
                 index <= eleven
                   ? (
-                    <div key={ index } data-testid={ `${index}-recipe-card` }>
-      <div className="list-recipes">
-        {
-          // Filtro se caso categoria tiver sido selecionada:
-          // atraves do resultado do filter(array novo) faço map e renderizo alimentos da categoria selecionada
-          selectedCategory !== undefined ? (
-            filteredCategories
-              .map((food, index) => (
-                index <= eleven
-                  ? (
                     <Link to={ `/comidas/${food.idMeal}` }>
-                      <div
-                        key={ food.idMeal }
-                        data-testid={ `${index}-recipe-card` }
-                      >
+                      <div key={ index } data-testid={ `${index}-recipe-card` }>
                         <img
                           src={ food.strMealThumb }
                           alt="receita  "
@@ -152,39 +122,15 @@ function Food() {
                           data-testid={ `${index}-card-img` }
                         />
                         <p data-testid={ `${index}-card-name` }>{ food.strMeal }</p>
-                        <p data-testid={ `${food.strCategory}-category-filter` } />
                       </div>
-                    </Link>
-                  ) : null
-              ))
-          ) // Categoria tiver undefined (nao selecionada) retorno map de receitas totais (12 da api)
-            : foods.map((food, index) => (
-              index <= eleven
-                ? (
-                  <Link to={ `/comidas/${food.idMeal}` }>
-                    <div
-                      data-testid={ `${index}-recipe-card` }
-                    >
-                      <img
-                        src={ food.strMealThumb }
-                        alt="receita  "
-                        width="100px"
-                        data-testid={ `${index}-card-img` }
-                      />
-                      <p data-testid={ `${index}-card-name` }>{ food.strMeal }</p>
 
-                    </div>
+                    </Link>
                   ) : null
               ))
           }
         </div>
-                    </div>
-                  </Link>
-                ) : null
-            ))
-        }
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 }

@@ -41,28 +41,6 @@ function ExploreFood() {
           Me Surpreenda!
         </button>
       </div>
-      <p>ExploreFood</p>
-      <button
-        type="button"
-        data-testid="explore-by-ingredient"
-        onClick={ () => history.push('/explorar/comidas/ingredientes') }
-      >
-        Por Ingredientes
-      </button>
-      <button
-        type="button"
-        data-testid="explore-by-area"
-        onClick={ () => history.push('/explorar/comidas/area') }
-      >
-        Por Local de Origem
-      </button>
-      <button
-        type="button"
-        data-testid="explore-surprise"
-        onClick={ () => fetchRandomMeal() }
-      >
-        Me Surpreenda!
-      </button>
       <Footer />
     </div>
   );

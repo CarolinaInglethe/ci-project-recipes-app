@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
-<<<<<<< HEAD
-import HeaderWithSearch from '../components/HeaderWithSearch';
-=======
 import { Link } from 'react-router-dom';
+import HeaderWithSearch from '../components/HeaderWithSearch';
 import Footer from '../components/Footer';
->>>>>>> d97c414c47d53ecf20764864d852cb8f73b2faea
 
 function Drink() {
   const [drinks, setDrinks] = useState([]);
@@ -49,34 +46,13 @@ function Drink() {
     <div>
       <HeaderWithSearch titlePage="Bebidas" />
       <div>
-<<<<<<< HEAD
         <p>Tela principal de Receitas:</p>
-=======
-        {/* // Botoes para escolher categoria : */}
-        <button
-          type="button"
-          onClick={ () => handleClickCategorie(undefined) }
-          data-testid="All-category-filter"
-        >
-          All
-        </button>
-        {
-          categories.map((catego, index) => (
-            index < five
-              ? (
-                <button
-                  data-testid={ `${catego.strCategory}-category-filter` }
-                  key={ index }
-                  type="button"
-                  onClick={ () => handleClickCategorie(catego.strCategory) }
-                >
->>>>>>> d97c414c47d53ecf20764864d852cb8f73b2faea
-
         <div>
           {/* // Botoes para escolher categoria : */}
           <button
             type="button"
             onClick={ () => handleClickCategorie(undefined) }
+            data-testid="All-category-filter"
           >
             All
           </button>
