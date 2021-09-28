@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './SearchBar.css';
 
 // estado da barra de pesquisa
-function SearchBar() {
+function SearchBarFood() {
   const [inputValue, setInputValue] = useState('');
   const [radioValue, setRadioValue] = useState('');
-  const [filteredIngredients, setFilteredIngredients] = useState([]);
+  const [filteredFoods, setFilteredFoods] = useState([]);
 
   const handleSearchInput = ({ target }) => {
     setInputValue(target.value);
@@ -25,21 +25,21 @@ function SearchBar() {
     if (radioValue === 'ingredient') {
       fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${inputValue}`)
         .then((response) => response.json())
-        .then((result) => setFilteredIngredients(result.meals));
+        .then((result) => setFilteredFoods(result.meals));
     }
 
     if (radioValue === 'name') {
       fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`)
         .then((response) => response.json())
-        .then((result) => setFilteredIngredients(result.meals));
+        .then((result) => setFilteredFoods(result.meals));
     }
 
     if (radioValue === 'firstLetter') {
       fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${inputValue}`)
         .then((response) => response.json())
-        .then((result) => setFilteredIngredients(result.meals));
+        .then((result) => setFilteredFoods(result.meals));
     }
-    console.log(filteredIngredients);
+    console.log(filteredFoods);
   }
 
   return (
@@ -100,7 +100,7 @@ function SearchBar() {
 // SearchBar.propTypes = {
 //   fetchFood: PropTypes.func.isRequired };
 
-export default SearchBar;
+export default SearchBarFood;
 
 // Pesquisas:
 // https://github.com/tryber/sd-013-b-project-recipes-app/blob/main-group-9-searchHeader/src/components/SearchInput.js

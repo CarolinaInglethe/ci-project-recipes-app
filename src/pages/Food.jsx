@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import HeaderWithSearch from '../components/HeaderWithSearch';
+import HeaderWithSearchFood from '../components/HeaderWithSearchFood';
 
 import Footer from '../components/Footer';
 
@@ -48,7 +48,7 @@ function Food() {
 
   return (
     <div>
-      <HeaderWithSearch titlePage="Comidas" />
+      <HeaderWithSearchFood titlePage="Comidas" />
       <div>
         <p>Tela principal de Receitas:</p>
         <div>

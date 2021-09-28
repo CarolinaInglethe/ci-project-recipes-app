@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
-import SearchBar from './SearchBar';
+import SearchBarFood from './SearchBarFood';
 import './Header.css';
 
 function HeaderWithSearch({ titlePage }) {
@@ -24,7 +24,7 @@ function HeaderWithSearch({ titlePage }) {
       </div>
       <div>
         {toggleInput && (
-          <SearchBar />
+          <SearchBarFood />
         )}
         <button
           type="button"

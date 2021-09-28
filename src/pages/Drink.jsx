@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import HeaderWithSearch from '../components/HeaderWithSearch';
+import HeaderWithSearchDrink from '../components/HeaderWithSearchDrink';
 import Footer from '../components/Footer';
 
 function Drink() {
@@ -44,7 +44,7 @@ function Drink() {
 
   return (
     <div>
-      <HeaderWithSearch titlePage="Bebidas" />
+      <HeaderWithSearchDrink titlePage="Bebidas" />
       <div>
         <p>Tela principal de Receitas:</p>
         <div>
