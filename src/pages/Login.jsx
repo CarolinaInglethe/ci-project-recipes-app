@@ -47,7 +47,6 @@ function Login({ loginEmail }) {
 
   return (
     <div>
-      <p>Login</p>
       <h2>Login</h2>
 
       <form>
