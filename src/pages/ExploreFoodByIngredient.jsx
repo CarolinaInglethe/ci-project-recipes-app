@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Footer from '../components/Footer';
 
 function ExploreFoodByIngredient() {
   const [ingredients, setIngredients] = useState([]);
@@ -38,6 +39,7 @@ function ExploreFoodByIngredient() {
             </div>
           ))
       }
+      <Footer />
     </div>
   );
 }
