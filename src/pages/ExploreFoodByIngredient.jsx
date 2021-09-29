@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 
 function ExploreFoodByIngredient() {
@@ -24,19 +25,20 @@ function ExploreFoodByIngredient() {
         ingredients
           .slice(0, doze)
           .map((ingredient, index) => (
-            <div
-              data-testid={ `${index}-ingredient-card` }
-              key={ ingredient.strIngredient }
-            >
-              <img
-                data-testid={ `${index}-card-img` }
-                src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
-                height="100px"
-                alt={ `Imagem de ${ingredient.strIngredient}` }
-
-              />
-              <p data-testid={ `${index}-card-name` }>{ingredient.strIngredient}</p>
-            </div>
+            <Link to="/comidas" key={ index }>
+              <div
+                data-testid={ `${index}-ingredient-card` }
+                key={ ingredient.strIngredient }
+              >
+                <img
+                  data-testid={ `${index}-card-img` }
+                  src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
+                  height="100px"
+                  alt={ `Imagem de ${ingredient.strIngredient}` }
+                />
+                <p data-testid={ `${index}-card-name` }>{ingredient.strIngredient}</p>
+              </div>
+            </Link>
           ))
       }
       <Footer />

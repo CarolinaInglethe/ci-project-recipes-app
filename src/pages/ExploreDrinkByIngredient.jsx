@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 
-
 function ExploreDrinkByIngredient() {
   const [ingredients, setIngredients] = useState([]);
   const doze = 12;
