@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router';
 import './SearchBar.css';
 
 // estado da barra de pesquisa
@@ -39,9 +40,20 @@ function SearchBarDrink() {
         .then((response) => response.json())
         .then((result) => setFilteredDrinks(result.drinks));
     }
-    console.log(filteredDrinks);
+  }
+  console.log(filteredDrinks);
+
+  if (filteredDrinks === null || filteredDrinks === undefined) {
+    return global.alert(
+      'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+    );
   }
 
+  if (filteredDrinks.length === 1) {
+    return (
+      <Redirect to={ `/bebidas/${filteredDrinks.idDrink}` } />
+    );
+  }
   return (
     <div>
       <div className="search-input">

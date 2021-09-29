@@ -4,22 +4,23 @@
 
 // function FoodCards() {
 //   const maxCardsLenght = 12;
-//   const { filtredFoods } = useState([]);
+//   const [filteredFoods] = useState([]);
+//   const { idMeal, strMealThumb, strMeal } = filteredFoods;
 
-//   if (filtredFoods === null || filtredFoods === undefined) {
+//   if (filteredFoods === null || filteredFoods === undefined) {
 //     return global.alert(
 //       'Sinto muito, não encontramos nenhuma receita para esses filtros.',
 //     );
 //   }
-//   if (filtredFoods === 1) {
+//   if (filteredFoods.lenght === 1) {
 //     return (
-//       <Redirect to={ `/comidas/${filtredFoods.idMeal}` } />
+//       <Redirect to={ `/comidas/${filteredFoods.idMeal}` } />
 //     );
 //   }
 
 //   return (
 //     <div>
-//       {filtredFoods.map(({ idMeal, strMealThumb, strMeal }, index) => (
+//       {filteredFoods.map((meal, index) => (
 //         <div data-testid={ `${index}-recipe-card` } key={ idMeal }>
 //           <img
 //             src={ strMealThumb }
