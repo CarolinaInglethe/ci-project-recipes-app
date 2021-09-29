@@ -42,8 +42,8 @@ function App() {
         <Route exact path="/explorar" component={ Explore } />
         <Route exact path="/explorar/comidas" component={ ExploreFood } />
         <Route exact path="/explorar/bebidas" component={ ExploreDrink } />
-//         <Route exact path="/comidas/:id" component={ FoodDetails } />
-//         <Route exact path="/bebidas/:id" component={ DrinkDetails } />
+        <Route exact path="/comidas/:id" component={ FoodDetails } />
+        <Route exact path="/bebidas/:id" component={ DrinkDetails } />
         <Route
           exact
           path="/explorar/comidas/ingredientes"
@@ -54,16 +54,36 @@ function App() {
           path="/explorar/bebidas/ingredientes"
           component={ ExploreDrinkByIngredient }
         />
-        <Route exact path="/perfil" component={ Profile } />
-//         <Route
-//           exact
-//           path="/bebidas/:id/in-progress"
-//           component={ DrinkInProgress }
-//         />
-//         <Route exact path="/comidas/:id/in-progress" component={ FoodInProgress } />
-        <Route exact path="/explorar/comidas/area" component={ ExploreFoodByOrigin } />
-//         <Route exact path="/receitas-feitas" component={ DoneRecipes } />
-//         <Route exact path="/receitas-favoritas" component={ FavoriteRecipes } />
+        <Route
+          exact
+          path="/bebidas/:id/in-progress"
+          component={ DrinkInProgress }
+        />
+        <Route
+          exact
+          path="/comidas/:id/in-progress"
+          component={ FoodInProgress }
+        />
+        <Route
+          exact
+          path="/explorar/comidas/area"
+          component={ ExploreFoodByOrigin }
+        />
+        <Route
+          exact
+          path="/receitas-feitas"
+          component={ DoneRecipes }
+        />
+        <Route
+          exact
+          path="/receitas-favoritas"
+          component={ FavoriteRecipes }
+        />
+        <Route
+          exact
+          path="/perfil"
+          component={ Profile }
+        />
       </Switch>
     </BrowserRouter>
   );

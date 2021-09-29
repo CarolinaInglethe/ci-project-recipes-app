@@ -20,27 +20,28 @@ function ExploreDrinkByIngredient() {
 
   return (
     <div>
-    <Header titlePage="Explorar Ingredientes" />
-    <div data-testid="explore-by-ingredient">
-      <p>ExploreDrinkByIngredient</p>
-      {
-        ingredients
-          .slice(0, doze)
-          .map((ingredient, index) => (
-            <div
-              data-testid={ `${index}-ingredient-card` }
-              key={ ingredient.strIngredient1 }
-            >
-              <img
-                data-testid={ `${index}-card-img` }
-                src={ `https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Small.png` }
-                height="100px"
-                alt={ `Imagem de ${ingredient.strIngredient1}` }
-              />
-              <p data-testid={ `${index}-card-name` }>{ingredient.strIngredient1}</p>
-            </div>
-          ))
-      }
+      <Header titlePage="Explorar Ingredientes" />
+      <div data-testid="explore-by-ingredient">
+        <p>ExploreDrinkByIngredient</p>
+        {
+          ingredients
+            .slice(0, doze)
+            .map((ingredient, index) => (
+              <div
+                data-testid={ `${index}-ingredient-card` }
+                key={ ingredient.strIngredient1 }
+              >
+                <img
+                  data-testid={ `${index}-card-img` }
+                  src={ `https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Small.png` }
+                  height="100px"
+                  alt={ `Imagem de ${ingredient.strIngredient1}` }
+                />
+                <p data-testid={ `${index}-card-name` }>{ingredient.strIngredient1}</p>
+              </div>
+            ))
+        }
+      </div>
       <Footer />
     </div>
   );
