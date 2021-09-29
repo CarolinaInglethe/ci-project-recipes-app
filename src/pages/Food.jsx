@@ -68,9 +68,7 @@ function Food() {
                   type="button"
                   onClick={ () => handleClickCategories(catego.strCategory) }
                 >
-
                   {catego.strCategory}
-
                 </button>
               ) : null
           ))
