@@ -1,0 +1,9 @@
+.search-bar-inputs {
+  background-color: white;
+  flex-direction: column;
+  padding: 0.5em;
+}
+
+.text-input {
+  align-self: stretch;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
+import Header from '../components/Header';
 
 import Footer from '../components/Footer';
 
@@ -15,28 +16,31 @@ function ExploreFood() {
 
   return (
     <div>
-      <p>ExploreFood</p>
-      <button
-        type="button"
-        data-testid="explore-by-ingredient"
-        onClick={ () => history.push('/explorar/comidas/ingredientes') }
-      >
-        Por Ingredientes
-      </button>
-      <button
-        type="button"
-        data-testid="explore-by-area"
-        onClick={ () => history.push('/explorar/comidas/area') }
-      >
-        Por Local de Origem
-      </button>
-      <button
-        type="button"
-        data-testid="explore-surprise"
-        onClick={ () => fetchRandomMeal() }
-      >
-        Me Surpreenda!
-      </button>
+      <Header titlePage="Explorar Comidas" />
+      <div>
+        <p>ExploreFood</p>
+        <button
+          type="button"
+          data-testid="explore-by-ingredient"
+          onClick={ () => history.push('/explorar/comidas/ingredientes') }
+        >
+          Por Ingredientes
+        </button>
+        <button
+          type="button"
+          data-testid="explore-by-area"
+          onClick={ () => history.push('/explorar/comidas/area') }
+        >
+          Por Local de Origem
+        </button>
+        <button
+          type="button"
+          data-testid="explore-surprise"
+          onClick={ () => fetchRandomMeal() }
+        >
+          Me Surpreenda!
+        </button>
+      </div>
       <Footer />
     </div>
   );

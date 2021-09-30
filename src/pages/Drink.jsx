@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import HeaderWithSearchDrink from '../components/HeaderWithSearchDrink';
 import Footer from '../components/Footer';
 
 function Drink() {
@@ -43,34 +44,36 @@ function Drink() {
 
   return (
     <div>
-      <p>Tela principal de Receitas:</p>
-
+      <HeaderWithSearchDrink titlePage="Bebidas" />
       <div>
-        {/* // Botoes para escolher categoria : */}
-        <button
-          type="button"
-          onClick={ () => handleClickCategorie(undefined) }
-          data-testid="All-category-filter"
-        >
-          All
-        </button>
-        {
-          categories.map((catego, index) => (
-            index < five
-              ? (
-                <button
-                  data-testid={ `${catego.strCategory}-category-filter` }
-                  key={ index }
-                  type="button"
-                  onClick={ () => handleClickCategorie(catego.strCategory) }
-                >
+        <p>Tela principal de Receitas:</p>
+        <div>
+          {/* // Botoes para escolher categoria : */}
+          <button
+            type="button"
+            onClick={ () => handleClickCategorie(undefined) }
+            data-testid="All-category-filter"
+          >
+            All
+          </button>
+          {
+            categories.map((catego, index) => (
+              index < five
+                ? (
+                  <button
+                    data-testid={ `${catego.strCategory}-category-filter` }
+                    key={ index }
+                    type="button"
+                    onClick={ () => handleClickCategorie(catego.strCategory) }
+                  >
 
-                  {catego.strCategory}
+                    {catego.strCategory}
 
-                </button>
-              ) : null
-          ))
-        }
+                  </button>
+                ) : null
+            ))
+          }
+        </div>
       </div>
 
       <div className="list-recipes">
