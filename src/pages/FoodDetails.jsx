@@ -14,10 +14,6 @@ function FoodDetails() {
   // No magic Numbers
   const startOfTheIdInPathName = 9;
   const endOfTheIdInPathName = 14;
-  // const startOfTheStrIngredientsIndex = 9;
-  // const endOfTheStrIngredientsIndex = 28;
-  // const startOfTheStrMeasuresIndex = 31;
-  // const endOfTheStrMeasuresIndex = 48;
   const firstSixRecommendedCards = 6;
 
   const values = []; // usar na renderização de ingredientes

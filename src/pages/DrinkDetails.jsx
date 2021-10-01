@@ -14,10 +14,6 @@ function DrinkDetails() {
   // No magic Numbers
   const startOfTheIdInPathName = 9;
   const endOfTheIdInPathName = 15;
-  // const startOfTheStrIngredientsIndex = 17;
-  // const endOfTheStrIngredientsIndex = 31;
-  // const startOfTheStrMeasuresIndex = 32;
-  // const endOfTheStrMeasuresIndex = 48;
   const firstSixRecommendedCards = 6;
 
   const values = []; // usar na renderização de ingredientes
