@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
+import { useParams } from 'react-router';
 
 import shareIcon from '../images/shareIcon.svg';
 import isNotFavoriteIcon from '../images/whiteHeartIcon.svg';
@@ -12,7 +12,7 @@ function DrinkDetails() {
   const [recommendedFoods, setRecommendedFoods] = useState();
 
   // No magic Numbers
-  const startOfTheIdInPathName = 9;
+  // const startOfTheIdInPathName = 9;
   // const endOfTheIdInPathName = 15;
   const firstSixRecommendedCards = 6;
 
@@ -20,10 +20,12 @@ function DrinkDetails() {
   const measures = []; // usar na renderização de medidas dos ingredientes
   const mealsRecommendations = [];
 
-  const history = useHistory();
-  const pathName = history.location.pathname;
-  // Exemplo de pathname: /bebidas/17203
-  const id = pathName.substring(startOfTheIdInPathName); // Mudando de slice para substring
+  // const history = useHistory();
+  // const pathName = history.location.pathname;
+  // // Exemplo de pathname: /bebidas/17203
+  // const id = pathName.substring(startOfTheIdInPathName); // Mudando de slice para substring
+
+  const { id } = useParams();
 
   // Fetch para detalhes de uma receita
   useEffect(() => {
