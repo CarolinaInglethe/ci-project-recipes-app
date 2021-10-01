@@ -5,6 +5,8 @@ import shareIcon from '../images/shareIcon.svg';
 import isNotFavoriteIcon from '../images/whiteHeartIcon.svg';
 // import isFavoriteIcon from '../images/blackHeartIcon.svg';
 
+import './RecipeDetails.css';
+
 function FoodDetails() {
   const [foodDetails, setFoodDetails] = useState();
   const [recommendedDrinks, setRecommendedDrinks] = useState();
@@ -12,14 +14,15 @@ function FoodDetails() {
   // No magic Numbers
   const startOfTheIdInPathName = 9;
   const endOfTheIdInPathName = 14;
-  const startOfTheStrIngredientsIndex = 9;
-  const endOfTheStrIngredientsIndex = 28;
-  const startOfTheStrMeasuresIndex = 31;
-  const endOfTheStrMeasuresIndex = 48;
+  // const startOfTheStrIngredientsIndex = 9;
+  // const endOfTheStrIngredientsIndex = 28;
+  // const startOfTheStrMeasuresIndex = 31;
+  // const endOfTheStrMeasuresIndex = 48;
   const firstSixRecommendedCards = 6;
 
   const values = []; // usar na renderização de ingredientes
   const measures = []; // usar na renderização de medidas dos ingredientes
+  const drinkRecommendations = [];
 
   const history = useHistory();
   const pathName = history.location.pathname;
@@ -46,18 +49,42 @@ function FoodDetails() {
 
   if (foodDetails === undefined) return <h2>Loading Recipe Details...</h2>;
 
+  // Teste com o método includes
   if (foodDetails) {
-    Object.values(foodDetails[0]).map((value, index) => {
-      if (index >= startOfTheStrIngredientsIndex
-        && index <= endOfTheStrIngredientsIndex) {
-        values.push(value);
-      } else if (
-        index >= startOfTheStrMeasuresIndex && index <= endOfTheStrMeasuresIndex
-      ) {
-        measures.push(value);
-      }
-      return values && measures;
-    });
+    Object.keys(foodDetails[0])
+      .forEach((key) => {
+        if (key.includes('strIngredient') && foodDetails[0][key]) {
+          const ingredientNumber = key.split('strIngredient')[1];
+          const measure = foodDetails[0][`strMeasure${ingredientNumber}`];
+          console.log(foodDetails[0][key], measure);
+          values.push(foodDetails[0][key]);
+          measures.push(measure);
+        }
+      });
+  }
+
+  // Jeito antigo de renderizar ingredients que tive que corrigir :(
+
+  // if (foodDetails) {
+  //   Object.values(foodDetails[0]).map((value, index) => {
+  //     if (index >= startOfTheStrIngredientsIndex
+  //       && index <= endOfTheStrIngredientsIndex) {
+  //       values.push(value);
+  //     } else if (
+  //       index >= startOfTheStrMeasuresIndex && index <= endOfTheStrMeasuresIndex
+  //     ) {
+  //       measures.push(value);
+  //     }
+  //     return values && measures;
+  //   });
+  // }
+
+  if (recommendedDrinks !== undefined && recommendedDrinks !== null) {
+    recommendedDrinks
+      .slice(0, firstSixRecommendedCards)
+      .forEach((recommendations) => {
+        drinkRecommendations.push(recommendations);
+      });
   }
 
   const youtubeUrl = foodDetails[0].strYoutube.replace('watch?v=', 'embed/');
@@ -79,7 +106,12 @@ function FoodDetails() {
           <img src={ isNotFavoriteIcon } alt="Like button" />
         </button>
       </div>
-      <h4 data-testid="recipe-category">{ foodDetails[0].strCategory }</h4>
+      <h4
+        data-testid="recipe-category"
+        className="category-text"
+      >
+        { foodDetails[0].strCategory }
+      </h4>
       <div>
         <h3>Ingredients</h3>
         <ul>
@@ -116,11 +148,40 @@ function FoodDetails() {
           ng-show="showvideo"
         />
       </div>
-      <div>
-        <h3>Recomendadas</h3>
+      <h3>Recomendations</h3>
+      <div className="flex carousel">
+        {
+          drinkRecommendations.map((recommendations, index) => (
+            <div
+              key={ recommendations.idDrink }
+              data-testid={ `${index}-recomendation-card` }
+              className="recipe-card"
+            >
+              <img
+                src={ recommendations.strDrinkThumb }
+                alt={ recommendations.strDrink }
+                height="150px"
+              />
+              <p className="category-text">{ recommendations.strCategory }</p>
+              <p
+                data-testid={ `${index}-recomendation-title` }
+              >
+                { recommendations.strDrink }
+              </p>
+            </div>
+          ))
+        }
         {/* <img src="" alt="" data-testid={ `${index}-recomendation-card` } /> */}
       </div>
-      <button type="button" data-testid="start-recipe-btn">Iniciar Receita</button>
+      <div className="align-center">
+        <button
+          type="button"
+          data-testid="start-recipe-btn"
+          className="button"
+        >
+          Iniciar Receita
+        </button>
+      </div>
     </div>
   );
 }
