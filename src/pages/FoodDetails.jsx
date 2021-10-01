@@ -45,8 +45,6 @@ function FoodDetails() {
       }));
   }, []);
 
-  console.log(recommendedDrinks);
-
   if (foodDetails === undefined) return <h2>Loading Recipe Details...</h2>;
 
   // Teste com o método includes
@@ -56,28 +54,11 @@ function FoodDetails() {
         if (key.includes('strIngredient') && foodDetails[0][key]) {
           const ingredientNumber = key.split('strIngredient')[1];
           const measure = foodDetails[0][`strMeasure${ingredientNumber}`];
-          console.log(foodDetails[0][key], measure);
           values.push(foodDetails[0][key]);
           measures.push(measure);
         }
       });
   }
-
-  // Jeito antigo de renderizar ingredients que tive que corrigir :(
-
-  // if (foodDetails) {
-  //   Object.values(foodDetails[0]).map((value, index) => {
-  //     if (index >= startOfTheStrIngredientsIndex
-  //       && index <= endOfTheStrIngredientsIndex) {
-  //       values.push(value);
-  //     } else if (
-  //       index >= startOfTheStrMeasuresIndex && index <= endOfTheStrMeasuresIndex
-  //     ) {
-  //       measures.push(value);
-  //     }
-  //     return values && measures;
-  //   });
-  // }
 
   if (recommendedDrinks !== undefined && recommendedDrinks !== null) {
     recommendedDrinks

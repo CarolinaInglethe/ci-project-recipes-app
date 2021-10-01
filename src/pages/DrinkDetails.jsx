@@ -53,28 +53,11 @@ function DrinkDetails() {
         if (key.includes('strIngredient') && drinkDetails[0][key]) {
           const ingredientNumber = key.split('strIngredient')[1];
           const measure = drinkDetails[0][`strMeasure${ingredientNumber}`];
-          // console.log(drinkDetails[0][key], measure);
           values.push(drinkDetails[0][key]);
           measures.push(measure);
         }
       });
   }
-
-  // Jeito antigo de renderizar ingredients que tive que corrigir :(
-
-  // if (drinkDetails) {
-  //   Object.values(drinkDetails[0]).map((value, index) => {
-  //     if (index >= startOfTheStrIngredientsIndex // usar o método includes("strIngredients")
-  //       && index <= endOfTheStrIngredientsIndex) {
-  //       values.push(value);
-  //     } else if (
-  //       index >= startOfTheStrMeasuresIndex && index <= endOfTheStrMeasuresIndex
-  //     ) {
-  //       measures.push(value);
-  //     }
-  //     return values && measures;
-  //   });
-  // }
 
   if (recommendedFoods !== undefined && recommendedFoods !== null) {
     recommendedFoods
