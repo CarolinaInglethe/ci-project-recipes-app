@@ -13,7 +13,7 @@ function DrinkDetails() {
 
   // No magic Numbers
   const startOfTheIdInPathName = 9;
-  const endOfTheIdInPathName = 15;
+  // const endOfTheIdInPathName = 15;
   const firstSixRecommendedCards = 6;
 
   const values = []; // usar na renderização de ingredientes
@@ -23,8 +23,7 @@ function DrinkDetails() {
   const history = useHistory();
   const pathName = history.location.pathname;
   // Exemplo de pathname: /bebidas/17203
-  const id = pathName.slice(startOfTheIdInPathName, endOfTheIdInPathName);
-  console.log(id);
+  const id = pathName.substring(startOfTheIdInPathName); // Mudando de slice para substring
 
   // Fetch para detalhes de uma receita
   useEffect(() => {
