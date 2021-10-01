@@ -30,7 +30,7 @@ function FoodDetails() {
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
       .then((data) => data.json())
       .then((response) => setFoodDetails(Object.values(response.meals)));
-  }, [id]);
+  }, []);
 
   // Fetch para drinks recomendados
   useEffect(() => {

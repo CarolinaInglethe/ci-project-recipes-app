@@ -24,13 +24,14 @@ function DrinkDetails() {
   const pathName = history.location.pathname;
   // Exemplo de pathname: /bebidas/17203
   const id = pathName.slice(startOfTheIdInPathName, endOfTheIdInPathName);
+  console.log(id);
 
   // Fetch para detalhes de uma receita
   useEffect(() => {
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
       .then((data) => data.json())
       .then((response) => setDrinkDetails(Object.values(response.drinks)));
-  }, [id]);
+  }, []);
 
   // Fetch para drinks recomendados
   useEffect(() => {
