@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import DrinkLogo from '../images/drinkIcon.svg';
 import ExploreLogo from '../images/exploreIcon.svg';
 import FoodLogo from '../images/mealIcon.svg';
