@@ -8,8 +8,8 @@ import isNotFavoriteIcon from '../images/whiteHeartIcon.svg';
 import './RecipeDetails.css';
 
 function DrinkDetails() {
-  const [drinkDetails, setDrinkDetails] = useState();
-  const [recommendedFoods, setRecommendedFoods] = useState();
+  const [drinkDetails, setDrinkDetails] = useState([]);
+  const [recommendedFoods, setRecommendedFoods] = useState([]);
 
   // No magic Numbers
   // const startOfTheIdInPathName = 9;
@@ -18,31 +18,45 @@ function DrinkDetails() {
 
   const values = []; // usar na renderização de ingredientes
   const measures = []; // usar na renderização de medidas dos ingredientes
-  const mealsRecommendations = [];
-
-  // const history = useHistory();
-  // const pathName = history.location.pathname;
-  // // Exemplo de pathname: /bebidas/17203
-  // const id = pathName.substring(startOfTheIdInPathName); // Mudando de slice para substring
+  // const mealsRecommendations = [];
 
   const { id } = useParams();
+  console.log(id);
 
   // Fetch para detalhes de uma receita
   useEffect(() => {
-    fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
-      .then((data) => data.json())
-      .then((response) => setDrinkDetails(Object.values(response.drinks)));
+    const fetchDrinks = async () => {
+      const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
+      const { drinks } = await response.json();
+
+      setDrinkDetails(drinks);
+    };
+    fetchDrinks();
+
+    // fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+    //   .then((data) => data.json())
+    //   .then((response) => setDrinkDetails(Object.values(response.drinks)));
   }, [id]);
 
   // Fetch para drinks recomendados
   useEffect(() => {
-    fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
-      .then((data) => data.json())
-      .then((response) => Object.values(response))
-      .then((result) => setRecommendedFoods(result[0]));
+    const fetchRecommended = async () => {
+      const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+      const { meals } = await response.json();
+
+      setRecommendedFoods(meals.slice(0, firstSixRecommendedCards));
+    };
+    fetchRecommended();
+
+    // fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+    //   .then((data) => data.json())
+    //   .then((response) => Object.values(response))
+    //   .then((result) => setRecommendedFoods(result[0]));
   }, []);
 
-  if (drinkDetails === undefined) return <h2>Loading Recipe Details...</h2>;
+  if (!drinkDetails.length || !recommendedFoods.length) {
+    return <h2>Loading Recipe Details...</h2>;
+  }
 
   // Teste com o método includes
   if (drinkDetails) {
@@ -57,13 +71,12 @@ function DrinkDetails() {
       });
   }
 
-  if (recommendedFoods !== undefined && recommendedFoods !== null) {
-    recommendedFoods
-      .slice(0, firstSixRecommendedCards)
-      .forEach((recommendations) => {
-        mealsRecommendations.push(recommendations);
-      });
-  }
+  // if (recommendedFoods !== undefined && recommendedFoods !== null) {
+  //   recommendedFoods
+  //     .forEach((recommendations) => {
+  //       mealsRecommendations.push(recommendations);
+  //     });
+  // }
 
   return (
     <div>
@@ -117,7 +130,7 @@ function DrinkDetails() {
         <h3>Recomendations</h3>
         <div className="flex carousel">
           {
-            mealsRecommendations.map((recommendations, index) => (
+            recommendedFoods.map((recommendations, index) => (
               <div
                 key={ recommendations.idMeal }
                 data-testid={ `${index}-recomendation-card` }
