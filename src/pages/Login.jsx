@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
@@ -47,7 +47,6 @@ function Login({ loginEmail }) {
 
   return (
     <div>
-      <p>Login</p>
       <h2>Login</h2>
 
       <form>

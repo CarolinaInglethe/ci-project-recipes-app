@@ -1,0 +1,46 @@
+.recipe-card {
+  background-color: beige;
+  height: 200px;
+  margin: 5px;
+  max-width: 200px;
+  text-align: center;
+}
+
+.recipe-card p {
+  margin: 1px;
+}
+
+.recipe-card img {
+  border-radius: 20px;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: nowrap row;
+}
+
+.category-text {
+  opacity: 0.5;
+}
+
+.carousel {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 70px;
+  max-width: 320px;
+  overflow-x: scroll;
+  width: 100%;
+}
+
+.button {
+  background-color: darkorange;
+  border-radius: 10px;
+  bottom: 0;
+  margin: auto;
+  position: fixed;
+  z-index: 100;
+}
+
+.align-center {
+  margin: auto;
+}
