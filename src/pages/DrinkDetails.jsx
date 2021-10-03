@@ -10,9 +10,13 @@ import './RecipeDetails.css';
 function DrinkDetails() {
   const [drinkDetails, setDrinkDetails] = useState([]);
   const [recommendedFoods, setRecommendedFoods] = useState([]);
+  const [copiedUrl, setCopiedUrl] = useState(false);
 
   // No magic Numbers
   const firstSixRecommendedCards = 6;
+  const oneSecondDisplayCopiedLink = 1000;
+
+  const copiedUrlMessage = <p>Link copiado!</p>;
 
   const values = []; // usar na renderização de ingredientes
   const measures = []; // usar na renderização de medidas dos ingredientes
@@ -58,6 +62,12 @@ function DrinkDetails() {
       });
   }
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setCopiedUrl(true);
+    setTimeout(() => setCopiedUrl(false), oneSecondDisplayCopiedLink);
+  };
+
   return (
     <div>
       <img
@@ -68,12 +78,17 @@ function DrinkDetails() {
       />
       <div>
         <h3 data-testid="recipe-title">{ drinkDetails[0].strDrink }</h3>
-        <button type="button" data-testid="share-btn">
+        <button
+          type="button"
+          data-testid="share-btn"
+          onClick={ handleCopy }
+        >
           <img src={ shareIcon } alt="share button" />
         </button>
         <button type="button" data-testid="favorite-btn">
           <img src={ isNotFavoriteIcon } alt="Like button" />
         </button>
+        {copiedUrl && copiedUrlMessage}
       </div>
       <h4
         data-testid="recipe-category"

@@ -10,9 +10,13 @@ import './RecipeDetails.css';
 function FoodDetails() {
   const [foodDetails, setFoodDetails] = useState([]);
   const [recommendedDrinks, setRecommendedDrinks] = useState([]);
+  const [copiedUrl, setCopiedUrl] = useState(false);
 
   // No magic Numbers
   const firstSixRecommendedCards = 6;
+  const oneSecondDisplayCopiedLink = 1000;
+
+  const copiedUrlMessage = <p>Link copiado!</p>;
 
   const values = []; // usar na renderização de ingredientes
   const measures = []; // usar na renderização de medidas dos ingredientes
@@ -60,6 +64,12 @@ function FoodDetails() {
 
   const youtubeUrl = foodDetails[0].strYoutube.replace('watch?v=', 'embed/');
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setCopiedUrl(true);
+    setTimeout(() => setCopiedUrl(false), oneSecondDisplayCopiedLink);
+  };
+
   return (
     <div>
       <img
@@ -70,12 +80,17 @@ function FoodDetails() {
       />
       <div>
         <h3 data-testid="recipe-title">{ foodDetails[0].strMeal }</h3>
-        <button type="button" data-testid="share-btn">
+        <button
+          type="button"
+          data-testid="share-btn"
+          onClick={ handleCopy }
+        >
           <img src={ shareIcon } alt="share button" />
         </button>
         <button type="button" data-testid="favorite-btn">
           <img src={ isNotFavoriteIcon } alt="Like button" />
         </button>
+        {copiedUrl && copiedUrlMessage}
       </div>
       <h4
         data-testid="recipe-category"
