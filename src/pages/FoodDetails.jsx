@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import shareIcon from '../images/shareIcon.svg';
 import isNotFavoriteIcon from '../images/whiteHeartIcon.svg';
@@ -12,13 +12,10 @@ function FoodDetails() {
   const [recommendedDrinks, setRecommendedDrinks] = useState([]);
 
   // No magic Numbers
-  // const startOfTheIdInPathName = 9;
-  // const endOfTheIdInPathName = 14;
   const firstSixRecommendedCards = 6;
 
   const values = []; // usar na renderização de ingredientes
   const measures = []; // usar na renderização de medidas dos ingredientes
-  // const drinkRecommendations = [];
 
   const { id } = useParams();
 
@@ -31,10 +28,6 @@ function FoodDetails() {
       setFoodDetails(meals);
     };
     fetchMeal();
-
-    // fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
-    //   .then((data) => data.json())
-    //   .then((response) => setFoodDetails(Object.values(response.meals)));
   }, [id]);
 
   // Fetch para drinks recomendados
@@ -46,19 +39,13 @@ function FoodDetails() {
       setRecommendedDrinks(drinks.slice(0, firstSixRecommendedCards));
     };
     fetchRecommended();
-
-    // fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
-    //   .then((data) => data.json())
-    //   .then((response) => Object.values(response).forEach((value) => {
-    //     setRecommendedDrinks(value.slice(0, firstSixRecommendedCards));
-    //   }));
   }, []);
 
   if (!foodDetails.length || !recommendedDrinks.length) {
     return <h2>Loading Recipe Details...</h2>;
   }
 
-  // Teste com o método includes
+  // Renderizando os ingredientes com o método includes
   if (foodDetails) {
     Object.keys(foodDetails[0])
       .forEach((key) => {
@@ -70,13 +57,6 @@ function FoodDetails() {
         }
       });
   }
-
-  // if (recommendedDrinks !== undefined && recommendedDrinks !== null) {
-  //   recommendedDrinks
-  //     .forEach((recommendations) => {
-  //       drinkRecommendations.push(recommendations);
-  //     });
-  // }
 
   const youtubeUrl = foodDetails[0].strYoutube.replace('watch?v=', 'embed/');
 
@@ -165,13 +145,13 @@ function FoodDetails() {
         {/* <img src="" alt="" data-testid={ `${index}-recomendation-card` } /> */}
       </div>
       <div className="align-center">
-        <button
-          type="button"
+        <Link
+          to={ `/comidas/${id}/in-progress` }
           data-testid="start-recipe-btn"
           className="button"
         >
           Iniciar Receita
-        </button>
+        </Link>
       </div>
     </div>
   );
