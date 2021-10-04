@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import shareIcon from '../images/shareIcon.svg';
 import isNotFavoriteIcon from '../images/whiteHeartIcon.svg';
@@ -10,18 +10,18 @@ import './RecipeDetails.css';
 function DrinkDetails() {
   const [drinkDetails, setDrinkDetails] = useState([]);
   const [recommendedFoods, setRecommendedFoods] = useState([]);
+  const [copiedUrl, setCopiedUrl] = useState(false);
 
   // No magic Numbers
-  // const startOfTheIdInPathName = 9;
-  // const endOfTheIdInPathName = 15;
   const firstSixRecommendedCards = 6;
+  const oneSecondDisplayCopiedLink = 1000;
+
+  const copiedUrlMessage = <p>Link copiado!</p>;
 
   const values = []; // usar na renderização de ingredientes
   const measures = []; // usar na renderização de medidas dos ingredientes
-  // const mealsRecommendations = [];
 
   const { id } = useParams();
-  console.log(id);
 
   // Fetch para detalhes de uma receita
   useEffect(() => {
@@ -32,13 +32,9 @@ function DrinkDetails() {
       setDrinkDetails(drinks);
     };
     fetchDrinks();
-
-    // fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
-    //   .then((data) => data.json())
-    //   .then((response) => setDrinkDetails(Object.values(response.drinks)));
   }, [id]);
 
-  // Fetch para drinks recomendados
+  // Fetch para comidas recomendadas
   useEffect(() => {
     const fetchRecommended = async () => {
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
@@ -47,18 +43,13 @@ function DrinkDetails() {
       setRecommendedFoods(meals.slice(0, firstSixRecommendedCards));
     };
     fetchRecommended();
-
-    // fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
-    //   .then((data) => data.json())
-    //   .then((response) => Object.values(response))
-    //   .then((result) => setRecommendedFoods(result[0]));
   }, []);
 
-  if (!drinkDetails.length || !recommendedFoods.length) {
+  if ((!drinkDetails.length || !recommendedFoods.length)) {
     return <h2>Loading Recipe Details...</h2>;
   }
 
-  // Teste com o método includes
+  // Renderizando os ingredientes com o método includes
   if (drinkDetails) {
     Object.keys(drinkDetails[0])
       .forEach((key) => {
@@ -71,12 +62,11 @@ function DrinkDetails() {
       });
   }
 
-  // if (recommendedFoods !== undefined && recommendedFoods !== null) {
-  //   recommendedFoods
-  //     .forEach((recommendations) => {
-  //       mealsRecommendations.push(recommendations);
-  //     });
-  // }
+  const handleCopy = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setCopiedUrl(true);
+    setTimeout(() => setCopiedUrl(false), oneSecondDisplayCopiedLink);
+  };
 
   return (
     <div>
@@ -88,12 +78,17 @@ function DrinkDetails() {
       />
       <div>
         <h3 data-testid="recipe-title">{ drinkDetails[0].strDrink }</h3>
-        <button type="button" data-testid="share-btn">
+        <button
+          type="button"
+          data-testid="share-btn"
+          onClick={ handleCopy }
+        >
           <img src={ shareIcon } alt="share button" />
         </button>
         <button type="button" data-testid="favorite-btn">
           <img src={ isNotFavoriteIcon } alt="Like button" />
         </button>
+        {copiedUrl && copiedUrlMessage}
       </div>
       <h4
         data-testid="recipe-category"
@@ -153,13 +148,13 @@ function DrinkDetails() {
         </div>
         {/* <img src="" alt="" data-testid={ `${index}-recomendation-card` } /> */}
       </div>
-      <button
-        type="button"
+      <Link
+        to={ `/bebidas/${id}/in-progress` }
         data-testid="start-recipe-btn"
         className="button"
       >
         Iniciar Receita
-      </button>
+      </Link>
     </div>
   );
 }
