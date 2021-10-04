@@ -9,8 +9,8 @@ import ExploreFood from './pages/ExploreFood';
 import ExploreDrink from './pages/ExploreDrink';
 import FoodDetails from './pages/FoodDetails';
 import DrinkDetails from './pages/DrinkDetails';
-// import FoodInProgress from './pages/FoodInProgress';
-// import DrinkInProgress from './pages/DrinkInProgress';
+import FoodInProgress from './pages/FoodInProgress';
+import DrinkInProgress from './pages/DrinkInProgress';
 import ExploreFoodByIngredient from './pages/ExploreFoodByIngredient';
 import ExploreDrinkByIngredient from './pages/ExploreDrinkByIngredient';
 import ExploreFoodByOrigin from './pages/ExploreFoodByOrigin';
@@ -59,7 +59,7 @@ function App() {
         />
         <Route exact path="/comidas/:id" component={ FoodDetails } />
         <Route exact path="/bebidas/:id" component={ DrinkDetails } />
-        {/* <Route
+        <Route
           exact
           path="/bebidas/:id/in-progress"
           component={ DrinkInProgress }
@@ -70,7 +70,7 @@ function App() {
           component={ FoodInProgress }
         />
 
-        <Route
+        {/* <Route
           exact
           path="/receitas-feitas"
           component={ DoneRecipes }
