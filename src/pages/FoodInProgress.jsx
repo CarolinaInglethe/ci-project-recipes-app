@@ -6,9 +6,16 @@ import FavoriteIcon from '../images/whiteHeartIcon.svg';
 
 function FoodInProgress() {
   const [FoodProgress, setFoodProgress] = useState([]);
+  // const [buttonDisable, setButtonDisable] = useState(true);
   // const [values] = useState([]);
   // const [measures] = useState([]);
   const { id } = useParams();
+
+  // const checkboxsRef = useRef();
+
+  // useLayoutEffect(() => {
+  //   console.log(checkboxsRef.current);
+  // });
 
   const values = []; // usar na renderização de ingredientes
   const measures = []; // usar na renderização de medidas dos ingredientes
@@ -86,7 +93,13 @@ function FoodInProgress() {
                     data-testid={ `${index}-ingredient-step` }
                   >
                     <label htmlFor={ ingredient }>
-                      <input type="checkbox" name={ ingredient } id={ ingredient } />
+                      <input
+                        type="checkbox"
+                        name={ ingredient }
+                        id={ ingredient }
+                        // ref={ checkboxsRef }
+                        // className="checkbox-ingredients"
+                      />
                       { ingredient }
                       { ' - ' }
                       { measures[index] }
@@ -106,7 +119,13 @@ function FoodInProgress() {
       </div>
 
       <Link to="/receitas-feitas">
-        <button type="button" data-testid="finish-recipe-btn">Finalizar Tarefa</button>
+        <button
+          type="button"
+          disabled={ buttonDisable }
+          data-testid="finish-recipe-btn"
+        >
+          Finalizar Tarefa
+        </button>
       </Link>
 
     </div>

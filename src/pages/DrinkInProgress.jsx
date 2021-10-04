@@ -6,6 +6,7 @@ import FavoriteIcon from '../images/whiteHeartIcon.svg';
 
 function DrinkInProgress() {
   const [drinkProgress, setDrinkProgress] = useState([]);
+  // const [buttonDisable, setButtonDisable] = useState(true);
   const { id } = useParams();
 
   // Fetch para detalhes de uma receita
@@ -72,7 +73,11 @@ function DrinkInProgress() {
                     data-testid={ `${index}-ingredient-step` }
                   >
                     <label htmlFor={ ingredient }>
-                      <input type="checkbox" name={ ingredient } id={ ingredient } />
+                      <input
+                        type="checkbox"
+                        name={ ingredient }
+                        id={ ingredient }
+                      />
                       { ingredient }
                       { ' - ' }
                       { measures[index] }
@@ -92,7 +97,13 @@ function DrinkInProgress() {
       </div>
 
       <Link to="/receitas-feitas">
-        <button type="button" data-testid="finish-recipe-btn">Finalizar Tarefa</button>
+        <button
+          type="button"
+          disabled={ buttonDisable }
+          data-testid="finish-recipe-btn"
+        >
+          Finalizar Tarefa
+        </button>
       </Link>
 
     </div>
