@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import shareIcon from '../images/shareIcon.svg';
 import FavoriteIcon from '../images/whiteHeartIcon.svg';
@@ -91,7 +91,9 @@ function DrinkInProgress() {
         <p data-testid="instructions">{ drinkProgress[0].strInstructions }</p>
       </div>
 
-      <button type="button" data-testid="finish-recipe-btn">Finalizar Tarefa</button>
+      <Link to="/receitas-feitas">
+        <button type="button" data-testid="finish-recipe-btn">Finalizar Tarefa</button>
+      </Link>
 
     </div>
   );

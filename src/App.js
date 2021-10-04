@@ -15,7 +15,7 @@ import ExploreFoodByIngredient from './pages/ExploreFoodByIngredient';
 import ExploreDrinkByIngredient from './pages/ExploreDrinkByIngredient';
 import ExploreFoodByOrigin from './pages/ExploreFoodByOrigin';
 import Profile from './pages/Profile';
-// import DoneRecipes from './pages/DoneRecipes';
+import DoneRecipes from './pages/DoneRecipes';
 // import FavoriteRecipes from './pages/FavoriteRecipes';
 
 import './App.css';
@@ -69,13 +69,12 @@ function App() {
           path="/comidas/:id/in-progress"
           component={ FoodInProgress }
         />
-
-        {/* <Route
+        <Route
           exact
           path="/receitas-feitas"
           component={ DoneRecipes }
         />
-        <Route
+        {/* <Route
           exact
           path="/receitas-favoritas"
           component={ FavoriteRecipes }

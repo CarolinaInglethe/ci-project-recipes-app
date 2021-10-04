@@ -1,20 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import shareIcon from '../images/shareIcon.svg';
 import FavoriteIcon from '../images/whiteHeartIcon.svg';
 
 function FoodInProgress() {
   const [FoodProgress, setFoodProgress] = useState([]);
+  // const [values] = useState([]);
+  // const [measures] = useState([]);
   const { id } = useParams();
+
+  const values = []; // usar na renderização de ingredientes
+  const measures = []; // usar na renderização de medidas dos ingredientes
+
+  // const saveLocalStorage = () => {
+  //   localStorage.setItem('inProgressRecipes', JSON.stringify({
+  //     meals: {
+  //       [id]: [Object.keys(values).map((ingredient, index) => (
+  //         index
+  //       ))],
+  //     },
+  //   }));
+  // };
 
   // Fetch para determinada receita
   useEffect(() => {
     const fetchMeal = async () => {
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
       const { meals } = await response.json();
-
       setFoodProgress(meals);
+      // saveLocalStorage();
     };
     fetchMeal();
   }, [id]);
@@ -23,9 +38,6 @@ function FoodInProgress() {
     return <h2>Loading Recipe Progress...</h2>;
   }
 
-  const values = []; // usar na renderização de ingredientes
-  const measures = []; // usar na renderização de medidas dos ingredientes
-
   // Renderizando os ingredientes com o método includes
   if (FoodProgress) {
     Object.keys(FoodProgress[0])
@@ -33,6 +45,8 @@ function FoodInProgress() {
         if (key.includes('strIngredient') && FoodProgress[0][key]) {
           const ingredientNumber = key.split('strIngredient')[1];
           const measure = FoodProgress[0][`strMeasure${ingredientNumber}`];
+          // setValues(FoodProgress[0][key]);
+          // setMeasures(measure);
           values.push(FoodProgress[0][key]);
           measures.push(measure);
         }
@@ -91,7 +105,9 @@ function FoodInProgress() {
         <p data-testid="instructions">{ FoodProgress[0].strInstructions }</p>
       </div>
 
-      <button type="button" data-testid="finish-recipe-btn">Finalizar Tarefa</button>
+      <Link to="/receitas-feitas">
+        <button type="button" data-testid="finish-recipe-btn">Finalizar Tarefa</button>
+      </Link>
 
     </div>
   );
