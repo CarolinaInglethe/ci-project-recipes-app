@@ -7,28 +7,10 @@ import FavoriteIcon from '../images/whiteHeartIcon.svg';
 function FoodInProgress() {
   const [FoodProgress, setFoodProgress] = useState([]);
   // const [buttonDisable, setButtonDisable] = useState(true);
-  // const [values] = useState([]);
-  // const [measures] = useState([]);
   const { id } = useParams();
-
-  // const checkboxsRef = useRef();
-
-  // useLayoutEffect(() => {
-  //   console.log(checkboxsRef.current);
-  // });
 
   const values = []; // usar na renderização de ingredientes
   const measures = []; // usar na renderização de medidas dos ingredientes
-
-  // const saveLocalStorage = () => {
-  //   localStorage.setItem('inProgressRecipes', JSON.stringify({
-  //     meals: {
-  //       [id]: [Object.keys(values).map((ingredient, index) => (
-  //         index
-  //       ))],
-  //     },
-  //   }));
-  // };
 
   // Fetch para determinada receita
   useEffect(() => {
@@ -52,13 +34,20 @@ function FoodInProgress() {
         if (key.includes('strIngredient') && FoodProgress[0][key]) {
           const ingredientNumber = key.split('strIngredient')[1];
           const measure = FoodProgress[0][`strMeasure${ingredientNumber}`];
-          // setValues(FoodProgress[0][key]);
-          // setMeasures(measure);
           values.push(FoodProgress[0][key]);
           measures.push(measure);
         }
       });
   }
+
+  // const handleClickCheckbox = ({ target }) => {
+  //   const atualLocalStorage = localStorage.getItem('inProgressRecipes').meals.[id];
+  //   localStorage.setItem('inProgressRecipes', {
+  //     meals: {
+  //       [id]: [...atualLocalStorage, target.id],
+  //     },
+  //   });
+  // };
 
   return (
     <div>
@@ -96,9 +85,8 @@ function FoodInProgress() {
                       <input
                         type="checkbox"
                         name={ ingredient }
-                        id={ ingredient }
-                        // ref={ checkboxsRef }
-                        // className="checkbox-ingredients"
+                        id={ index }
+                        // onClick={ handleClickCheckbox }
                       />
                       { ingredient }
                       { ' - ' }
