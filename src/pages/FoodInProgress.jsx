@@ -40,14 +40,32 @@ function FoodInProgress() {
       });
   }
 
-  // const handleClickCheckbox = ({ target }) => {
-  //   const atualLocalStorage = localStorage.getItem('inProgressRecipes').meals.[id];
-  //   localStorage.setItem('inProgressRecipes', {
-  //     meals: {
-  //       [id]: [...atualLocalStorage, target.id],
-  //     },
-  //   });
-  // };
+  const handleClickCheckbox = ({ target }) => {
+    const objectOfLocalStorage = localStorage.getItem('inProgressRecipes');
+    const objStorage = JSON.parse(objectOfLocalStorage);
+    if (objStorage === null || objStorage.meals.[id].length === 0) {
+      localStorage.setItem('inProgressRecipes', JSON.stringify({
+        meals: {
+          [id]: [target.id],
+        },
+      }));
+    }
+    if (objStorage !== null) {
+      objStorage.meals.[id].forEach((ingre, index) => {
+        if (ingre === target.id) {
+          objStorage.meals.[id].splice(index,1)
+          localStorage.setItem('inProgressRecipes', JSON.stringify(objStorage))
+          console.log(objStorage)
+        }
+        localStorage.setItem('inProgressRecipes', JSON.stringify({
+          meals: {
+            [id]: [...objStorage.meals.[id], target.id]
+          }
+        }))
+      })
+    }
+  }
+
 
   return (
     <div>
@@ -81,12 +99,12 @@ function FoodInProgress() {
                     key={ index }
                     data-testid={ `${index}-ingredient-step` }
                   >
-                    <label htmlFor={ ingredient }>
+                    <label htmlFor={ index }>
                       <input
                         type="checkbox"
                         name={ ingredient }
                         id={ index }
-                        // onClick={ handleClickCheckbox }
+                        onClick={ handleClickCheckbox }
                       />
                       { ingredient }
                       { ' - ' }
@@ -109,6 +127,7 @@ function FoodInProgress() {
       <Link to="/receitas-feitas">
         <button
           type="button"
+          className="button"
           // disabled={ buttonDisable }
           data-testid="finish-recipe-btn"
         >
@@ -119,4 +138,5 @@ function FoodInProgress() {
     </div>
   );
 }
+
 export default FoodInProgress;

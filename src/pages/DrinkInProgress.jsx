@@ -99,6 +99,7 @@ function DrinkInProgress() {
       <Link to="/receitas-feitas">
         <button
           type="button"
+          className="button"
           // disabled={ buttonDisable }
           data-testid="finish-recipe-btn"
         >
