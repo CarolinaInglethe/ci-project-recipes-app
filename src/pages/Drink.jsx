@@ -50,6 +50,7 @@ function Drink() {
         <div>
           {/* // Botoes para escolher categoria : */}
           <button
+            className="button-categories"
             type="button"
             onClick={ () => handleClickCategorie(undefined) }
             data-testid="All-category-filter"
@@ -61,14 +62,13 @@ function Drink() {
               index < five
                 ? (
                   <button
+                    className="button-categories"
                     data-testid={ `${catego.strCategory}-category-filter` }
                     key={ index }
                     type="button"
                     onClick={ () => handleClickCategorie(catego.strCategory) }
                   >
-
                     {catego.strCategory}
-
                   </button>
                 ) : null
             ))
