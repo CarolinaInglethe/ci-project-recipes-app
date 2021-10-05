@@ -51,9 +51,14 @@ function SearchBarDrink() {
 
   if (filteredDrinks.length === 1) {
     return (
-      <Redirect to={ `/bebidas/${filteredDrinks.idDrink}` } />
+      <Redirect to={ `/bebidas/${filteredDrinks.map((drink) => drink.idDrink)}` } />
     );
   }
+
+  // if (filteredDrinks.lenght > 1) {
+  //   return (setFilteredDrinks(filteredDrinks));
+  // }
+
   return (
     <div>
       <div className="search-input">
