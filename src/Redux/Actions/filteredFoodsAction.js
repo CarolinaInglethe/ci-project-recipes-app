@@ -1,12 +1,12 @@
-const FILTEREDFOODS = 'FILTEREDFOODS';
+// const FILTEREDFOODS = 'FILTEREDFOODS';
 
-const FilteredFoodsAction = ({ foodCards }) => (
-  ({
-    type: FILTEREDFOODS,
-    payload: {
-      foodCards,
-    },
-  })
-);
+// const FilteredFoodsAction = (foodCards) => (
+//   ({
+//     type: FILTEREDFOODS,
+//     payload: {
+//       foodCards,
+//     },
+//   })
+// );
 
-export default FilteredFoodsAction;
+// export default FilteredFoodsAction;

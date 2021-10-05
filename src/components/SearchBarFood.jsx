@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import FilteredFoodsAction from '../Redux/Actions/filteredFoodsAction';
-
 import './SearchBar.css';
 
 // estado da barra de pesquisa
-function SearchBarFood({ filteredFoodsRedux }) {
+function SearchBarFood() {
   const [inputValue, setInputValue] = useState('');
   const [radioValue, setRadioValue] = useState('');
   const [filteredFoods, setFilteredFoods] = useState([]);
@@ -55,12 +51,12 @@ function SearchBarFood({ filteredFoodsRedux }) {
 
   if (filteredFoods.length === 1) {
     return (
-      <Redirect to={ `/comidas/${filteredFoods.idMeal}` } />
+      <Redirect to={ `/comidas/${filteredFoods.map((meal) => meal.idMeal)}` } />
     );
   }
 
   if (filteredFoods.lenght > 1) {
-    filteredFoodsRedux(filteredFoods);
+    return (setFilteredFoods(filteredFoods));
   }
 
   return (
@@ -118,14 +114,7 @@ function SearchBarFood({ filteredFoodsRedux }) {
   );
 }
 
-SearchBarFood.propTypes = {
-  filteredFoodsRedux: PropTypes.func.isRequired };
-
-const mapDispatchToProps = (dispatch) => ({
-  filteredFoodsRedux: ({ foodCards }) => dispatch(FilteredFoodsAction({ foodCards })),
-});
-
-export default connect(null, mapDispatchToProps)(SearchBarFood);
+export default SearchBarFood;
 
 // // Pesquisas:
 // // https://github.com/tryber/sd-013-b-project-recipes-app/blob/main-group-9-searchHeader/src/components/SearchInput.js

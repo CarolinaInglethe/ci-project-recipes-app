@@ -1,35 +1,32 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
-// import Drink from '../pages/Drink';
+import React, { useContext } from 'react';
+import RecipesAppContext from '../context/RecipesAppContext';
 
 function DrinkCards() {
   const maxCardsLenght = 12;
-  const [filteredDrinks] = useState([]);
-  const { idDrink, strDrinkThumb, strDrink } = filteredDrinks;
+  const [filteredDrinks, setFilteredDrinks] = useContext(RecipesAppContext);
 
-  if (filteredDrinks === null || filteredDrinks === undefined) {
-    return global.alert(
-      'Sinto muito, não encontramos nenhuma receita para esses filtros.',
-    );
-  }
-  if (filteredDrinks === 1) {
-    return (
-      <Redirect to={ `/bebidas/${filteredDrinks.idDrink}` } />
-    );
+  if (filteredDrinks.lenght > 1) {
+    return (setFilteredDrinks(filteredDrinks));
   }
 
   return (
     <div>
       {filteredDrinks.map((drink, index) => (
-        <div data-testid={ `${index}-recipe-card` } key={ idDrink }>
-          <img
-            src={ strDrinkThumb }
-            alt={ strDrink }
-            data-testid={ `${index}-card-img` }
-          />
-          <h3 data-testid={ `${index}-card-name` }>{ strDrink }</h3>
-        </div>
-      )).slice(0, maxCardsLenght)}
+        (index < maxCardsLenght) && (
+          <div key={ index }>
+            <div>
+              <span data-testid={ `${index}-card-name` }>{ drink.strDrink }</span>
+            </div>
+            <div data-testid={ `${index}-recipe-card` }>
+              <img
+                src={ drink.strMealThumb }
+                alt={ drink.strMeal }
+                data-testid={ `${index}-card-img` }
+              />
+            </div>
+          </div>
+        )
+      ))}
     </div>
   );
 }

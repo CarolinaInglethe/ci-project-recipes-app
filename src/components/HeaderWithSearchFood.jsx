@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBarFood from './SearchBarFood';
 import './Header.css';
 
-function HeaderWithSearch({ titlePage }) {
+function HeaderWithSearchFood({ titlePage }) {
   const [toggleInput, setToggleInput] = useState(false);
+  const history = useHistory();
 
   return (
     <header>
-      <Link to="/perfil">
-        <img
-          src={ profileIcon }
-          alt="Icone de Perfil"
-          data-testid="profile-top-btn"
-        />
-      </Link>
+      <button
+        type="button"
+        onClick={ () => history.push('/perfil') }
+      >
+        <img src={ profileIcon } alt="Icone de Perfil" data-testid="profile-top-btn" />
+      </button>
       <div className="header">
         <h2 data-testid="page-title">{ titlePage }</h2>
       </div>
@@ -36,11 +36,11 @@ function HeaderWithSearch({ titlePage }) {
     </header>
   );
 }
-HeaderWithSearch.propTypes = {
+HeaderWithSearchFood.propTypes = {
   titlePage: PropTypes.string.isRequired,
 };
 
-export default HeaderWithSearch;
+export default HeaderWithSearchFood;
 
 // Pesquisas:
 // https://developer.mozilla.org/pt-BR/docs/Learn/HTML/Multimedia_and_embedding/Images_in_HTML
