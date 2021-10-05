@@ -6,7 +6,8 @@ import FavoriteIcon from '../images/whiteHeartIcon.svg';
 
 function FoodInProgress() {
   const [FoodProgress, setFoodProgress] = useState([]);
-  // const [buttonDisable, setButtonDisable] = useState(true);
+  const [buttonDisable, setButtonDisable] = useState(true);
+  // const [ingredientsCheckedsStage, setingredientsCheckedsStage] = useState([])
   const { id } = useParams();
 
   const values = []; // usar na renderização de ingredientes
@@ -43,27 +44,39 @@ function FoodInProgress() {
   const handleClickCheckbox = ({ target }) => {
     const objectOfLocalStorage = localStorage.getItem('inProgressRecipes');
     const objStorage = JSON.parse(objectOfLocalStorage);
-    if (objStorage === null || objStorage.meals.[id].length === 0) {
-      localStorage.setItem('inProgressRecipes', JSON.stringify({
-        meals: {
-          [id]: [target.id],
-        },
-      }));
+
+    // estiver checked:
+    if (target.checked === true) {
+      // localStorage Ainda não existir e for null:
+      if (objStorage === null) {
+        localStorage.setItem('inProgressRecipes', JSON.stringify({
+          meals: {
+            [id]: [target.id],
+          },
+        }));
+      }
+      // localStorage existir e não for null:
+      if (objStorage !== null) {
+        localStorage.setItem('inProgressRecipes', JSON.stringify({
+          meals: {
+            [id]: [...objStorage.meals.[id],target.id],
+          },
+        }));
+      }
     }
-    if (objStorage !== null) {
+    // Não estiver checked:
+    if (target.checked === false) {
       objStorage.meals.[id].forEach((ingre, index) => {
         if (ingre === target.id) {
           objStorage.meals.[id].splice(index,1)
           localStorage.setItem('inProgressRecipes', JSON.stringify(objStorage))
-          console.log(objStorage)
         }
-        localStorage.setItem('inProgressRecipes', JSON.stringify({
-          meals: {
-            [id]: [...objStorage.meals.[id], target.id]
-          }
-        }))
       })
     }
+
+    // // Habilitar e desabilitar botao finalizar:
+    // values.length === objStorage.meals.[id].length ? setButtonDisable(false) :
+    // setButtonDisable(true)
   }
 
 
@@ -110,7 +123,6 @@ function FoodInProgress() {
                       { ' - ' }
                       { measures[index] }
                     </label>
-
                   </div>);
               }
               return null; // Pro lint não reclamar :(
