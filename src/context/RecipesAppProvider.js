@@ -6,6 +6,8 @@ function RecipesAppProvider({ children }) {
   const [inputValue, setInputValue] = useState('');
   const [radioValue, setRadioValue] = useState('');
   const [filteredFoods, setFilteredFoods] = useState([]);
+  const [filteredDrinks, setFilteredDrinks] = useState([]);
+
   const contextValue = {
     inputValue,
     setInputValue,
@@ -13,6 +15,8 @@ function RecipesAppProvider({ children }) {
     setRadioValue,
     filteredFoods,
     setFilteredFoods,
+    filteredDrinks,
+    setFilteredDrinks,
   };
 
   return (

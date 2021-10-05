@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import HeaderWithSearchFood from '../components/HeaderWithSearchFood';
 
+import RecipesAppContext from '../context/RecipesAppContext';
+
+import HeaderWithSearchFood from '../components/HeaderWithSearchFood';
 import Footer from '../components/Footer';
+import FoodCards from '../components/FoodCards';
 
 function Food() {
   const [foods, setFoods] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(undefined);
   const [filteredCategories, setFilteredCategories] = useState([]);
+  const { filteredFoods } = useContext(RecipesAppContext);
 
   useEffect(() => {
     fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
@@ -41,6 +45,16 @@ function Food() {
 
   if (foods.length === 0) {
     return <h4>Carregando...</h4>;
+  }
+
+  if (filteredFoods === null || filteredFoods === undefined) {
+    return global.alert(
+      'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+    );
+  }
+
+  if (filteredFoods.length > 1) {
+    return (<FoodCards />);
   }
 
   const eleven = 11;

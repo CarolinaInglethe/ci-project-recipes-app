@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+
+import RecipesAppContext from '../context/RecipesAppContext';
+
 import HeaderWithSearchDrink from '../components/HeaderWithSearchDrink';
 import Footer from '../components/Footer';
+import DrinkCards from '../components/DrinkCards';
 
 function Drink() {
   const [drinks, setDrinks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(undefined);
   const [filteredCategories, setFilteredCategories] = useState([]);
+  const { filteredDrinks } = useContext(RecipesAppContext);
 
   useEffect(() => {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
@@ -37,6 +42,16 @@ function Drink() {
 
   if (drinks.length === 0) {
     return <h4>Carregando...</h4>;
+  }
+
+  if (filteredDrinks === null || filteredDrinks === undefined) {
+    return global.alert(
+      'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+    );
+  }
+
+  if (filteredDrinks.length > 1) {
+    return (<DrinkCards />);
   }
 
   const eleven = 11;
