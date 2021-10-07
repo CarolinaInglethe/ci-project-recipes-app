@@ -2,17 +2,13 @@ import React, { useContext } from 'react';
 import RecipesAppContext from '../context/RecipesAppContext';
 
 function FoodCards() {
-  const maxCardsLenght = 12;
-  const { filteredFoods, setFilteredFoods } = useContext(RecipesAppContext);
-
-  if (filteredFoods.lenght > 1) {
-    return (setFilteredFoods(state));
-  }
+  const maxCardsLength = 12;
+  const { filteredFoods } = useContext(RecipesAppContext);
 
   return (
     <div>
       {filteredFoods.map((meal, index) => (
-        (index < maxCardsLenght) && (
+        (index < maxCardsLength) && (
           <div key={ index }>
             <div>
               <span data-testid={ `${index}-card-name` }>{ meal.strMeal }</span>
@@ -22,6 +18,7 @@ function FoodCards() {
                 src={ meal.strMealThumb }
                 alt={ meal.strMeal }
                 data-testid={ `${index}-card-img` }
+                width="100px"
               />
             </div>
           </div>
