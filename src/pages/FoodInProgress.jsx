@@ -6,8 +6,6 @@ import FavoriteIcon from '../images/whiteHeartIcon.svg';
 
 function FoodInProgress() {
   const [FoodProgress, setFoodProgress] = useState([]);
-  const [buttonDisable, setButtonDisable] = useState(true);
-  // const [ingredientsCheckedsStage, setingredientsCheckedsStage] = useState([])
   const { id } = useParams();
 
   const values = []; // usar na renderização de ingredientes
@@ -41,45 +39,6 @@ function FoodInProgress() {
       });
   }
 
-  const handleClickCheckbox = ({ target }) => {
-    const objectOfLocalStorage = localStorage.getItem('inProgressRecipes');
-    const objStorage = JSON.parse(objectOfLocalStorage);
-
-    // estiver checked:
-    if (target.checked === true) {
-      // localStorage Ainda não existir e for null:
-      if (objStorage === null) {
-        localStorage.setItem('inProgressRecipes', JSON.stringify({
-          meals: {
-            [id]: [target.id],
-          },
-        }));
-      }
-      // localStorage existir e não for null:
-      if (objStorage !== null) {
-        localStorage.setItem('inProgressRecipes', JSON.stringify({
-          meals: {
-            [id]: [...objStorage.meals.[id],target.id],
-          },
-        }));
-      }
-    }
-    // Não estiver checked:
-    if (target.checked === false) {
-      objStorage.meals.[id].forEach((ingre, index) => {
-        if (ingre === target.id) {
-          objStorage.meals.[id].splice(index,1)
-          localStorage.setItem('inProgressRecipes', JSON.stringify(objStorage))
-        }
-      })
-    }
-
-    // // Habilitar e desabilitar botao finalizar:
-    // values.length === objStorage.meals.[id].length ? setButtonDisable(false) :
-    // setButtonDisable(true)
-  }
-
-
   return (
     <div>
       <p>Food In Progress</p>
@@ -91,7 +50,6 @@ function FoodInProgress() {
       />
       <div>
         <h3 data-testid="recipe-title">{ FoodProgress[0].strMeal }</h3>
-
         <button type="button" data-testid="share-btn">
           <img src={ shareIcon } alt="botao compartilhar" />
         </button>
@@ -117,7 +75,8 @@ function FoodInProgress() {
                         type="checkbox"
                         name={ ingredient }
                         id={ index }
-                        onClick={ handleClickCheckbox }
+                        defaultChecked
+                        onClick={ ({ target }) => !target.checked }
                       />
                       { ingredient }
                       { ' - ' }
@@ -140,7 +99,6 @@ function FoodInProgress() {
         <button
           type="button"
           className="button"
-          // disabled={ buttonDisable }
           data-testid="finish-recipe-btn"
         >
           Finalizar Tarefa
