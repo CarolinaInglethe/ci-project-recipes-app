@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
+import RecipesAppContext from '../context/RecipesAppContext';
+
 import './SearchBar.css';
 
 // estado da barra de pesquisa
 function SearchBarFood() {
   const [inputValue, setInputValue] = useState('');
   const [radioValue, setRadioValue] = useState('');
-  const [filteredFoods, setFilteredFoods] = useState([]);
+  const { filteredFoods, setFilteredFoods } = useContext(RecipesAppContext);
 
   const handleSearchInput = ({ target }) => {
     setInputValue(target.value);
@@ -41,22 +43,17 @@ function SearchBarFood() {
         .then((result) => setFilteredFoods(result.meals));
     }
   }
-  console.log(filteredFoods);
 
-  if (filteredFoods === null || filteredFoods === undefined) {
-    return global.alert(
-      'Sinto muito, não encontramos nenhuma receita para esses filtros.',
-    );
-  }
+  // if (filteredFoods === null || filteredFoods === undefined) {
+  //   return global.alert(
+  //     'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+  //   );
+  // }
 
   if (filteredFoods.length === 1) {
     return (
       <Redirect to={ `/comidas/${filteredFoods.map((meal) => meal.idMeal)}` } />
     );
-  }
-
-  if (filteredFoods.lenght > 1) {
-    return (setFilteredFoods(filteredFoods));
   }
 
   return (
