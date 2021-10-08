@@ -14,7 +14,7 @@ function DrinkFilteredByIngredient() {
 
   useEffect(() => {
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${selectedDrinkIngredient}`).then((response) => response.json()).then((result) => setDrinkIngredients(result.drinks));
-  }, []);
+  }, [selectedDrinkIngredient, setDrinkIngredients]);
 
   return (
     drinkIngredients.slice(0, doze).map((drink, index) => (

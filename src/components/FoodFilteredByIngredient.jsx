@@ -12,7 +12,7 @@ function FoodFilteredByIngredient() {
 
   useEffect(() => {
     fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${selectedFoodIngredient}`).then((response) => response.json()).then((result) => setFoodIngredients(result.meals));
-  }, []);
+  }, [selectedFoodIngredient, setFoodIngredients]);
 
   return (
     foodIngredients.map((food, index) => (
