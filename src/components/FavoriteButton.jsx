@@ -57,7 +57,7 @@ function FavoriteButton() {
       getFavoritesList(drinkInfo);
     } else {
       setIsFavorite(false);
-      localStorage.setItem('isFavorite', !isFavorite);
+      localStorage.setItem('isFavorite', !isFavorite); // teste de commit
       localStorage.removeItem('favoriteRecipes'); // vai ter que usar uma lógica pra remover apenas o item do array no local storage
     }
   };
