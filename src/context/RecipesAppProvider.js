@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import RecipesAppContext from './RecipesAppContext';
 
@@ -15,6 +15,40 @@ function RecipesAppProvider({ children }) {
   const [selectedDrinkCategory, setSelectedDrinkCategory] = useState(undefined);
   const [drinks, setDrinks] = useState([]);
   const [filteredDrinkCategories, setFilteredDrinkCategories] = useState([]);
+  const [foodIngredients, setFoodIngredients] = useState([]);
+  const [drinkIngredients, setDrinkIngredients] = useState([]);
+  const [selectedFoodIngredient, setSelectedFoodIngredient] = useState('');
+  const [selectedDrinkIngredient, setSelectedDrinkIngredient] = useState('');
+
+  function handleFetchFoodIngredients() {
+    fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list')
+      .then((response) => response.json())
+      .then((result) => {
+        setFoodIngredients(result.meals);
+      });
+  }
+
+  function handleFetchDrinkIngredients() {
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list')
+      .then((response) => response.json())
+      .then((result) => {
+        setDrinkIngredients(result.drinks);
+      });
+  }
+
+  const memoizedHandleFetchFoodIngredients = useCallback(
+    () => {
+      handleFetchFoodIngredients();
+    },
+    [],
+  );
+
+  const memoizedHandleFetchDrinkIngredients = useCallback(
+    () => {
+      handleFetchDrinkIngredients();
+    },
+    [],
+  );
 
   const contextValue = {
     inputValue,
@@ -41,6 +75,17 @@ function RecipesAppProvider({ children }) {
     setDrinks,
     filteredDrinkCategories,
     setFilteredDrinkCategories,
+    foodIngredients,
+    setFoodIngredients,
+    selectedFoodIngredient,
+    setSelectedFoodIngredient,
+    drinkIngredients,
+    setDrinkIngredients,
+    selectedDrinkIngredient,
+    setSelectedDrinkIngredient,
+    memoizedHandleFetchFoodIngredients,
+    memoizedHandleFetchDrinkIngredients,
+
   };
 
   return (
