@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import RecipesAppProvider from './context/RecipesAppProvider';
 
 import Login from './pages/Login';
 import Food from './pages/Food';
@@ -24,8 +25,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <BrowserRouter>
-      {/* <div className="meals">
+    <RecipesAppProvider>
+      <BrowserRouter>
+        {/* <div className="meals">
         <span className="logo">Recipe App</span>
         <object
           className="rocksGlass"
@@ -87,6 +89,7 @@ function App() {
         />
       </Switch>
     </BrowserRouter>
+    </RecipesAppProvider>
   );
 }
 

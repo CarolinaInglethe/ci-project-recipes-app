@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
+import RecipesAppContext from '../context/RecipesAppContext';
+
 import './SearchBar.css';
 
 // estado da barra de pesquisa
 function SearchBarDrink() {
   const [inputValue, setInputValue] = useState('');
   const [radioValue, setRadioValue] = useState('');
-  const [filteredDrinks, setFilteredDrinks] = useState([]);
+  const { filteredDrinks, setFilteredDrinks } = useContext(RecipesAppContext);
 
   const handleSearchInput = ({ target }) => {
     setInputValue(target.value);
@@ -41,7 +43,6 @@ function SearchBarDrink() {
         .then((result) => setFilteredDrinks(result.drinks));
     }
   }
-  console.log(filteredDrinks);
 
   if (filteredDrinks === null || filteredDrinks === undefined) {
     return global.alert(
@@ -51,9 +52,10 @@ function SearchBarDrink() {
 
   if (filteredDrinks.length === 1) {
     return (
-      <Redirect to={ `/bebidas/${filteredDrinks.idDrink}` } />
+      <Redirect to={ `/bebidas/${filteredDrinks.map((drink) => drink.idDrink)}` } />
     );
   }
+
   return (
     <div>
       <div className="search-input">
