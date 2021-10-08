@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import loading from '../images/loading.gif';
+
 function FetchDrinkDetails() {
   const [drinkDetails, setDrinkDetails] = useState([]);
   const [recommendedFoods, setRecommendedFoods] = useState([]);
@@ -33,7 +35,7 @@ function FetchDrinkDetails() {
   }, [id]);
 
   if ((!drinkDetails.length || !recommendedFoods.length)) {
-    return <h2>Loading ingredients</h2>;
+    return <img src={ loading } alt="loading" />;
   }
 
   // Renderizando os ingredientes com o método includes

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import shareIcon from '../images/shareIcon.svg';
+import loading from '../images/loading.gif';
 
 function CopyButton() {
   const [drinkDetails, setDrinkDetails] = useState([]);
@@ -26,7 +27,7 @@ function CopyButton() {
   }, [id]);
 
   if ((!drinkDetails.length)) {
-    return <h2>Loading share button</h2>;
+    return <img src={ loading } alt="loading" />;
   }
 
   const handleCopy = () => {

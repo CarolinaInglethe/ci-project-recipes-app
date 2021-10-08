@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import loading from '../images/loading.gif';
+
 function DrinkDetailsImage() {
   const [drinkDetails, setDrinkDetails] = useState([]);
 
@@ -18,7 +20,7 @@ function DrinkDetailsImage() {
   }, [id]);
 
   if ((!drinkDetails.length)) {
-    return <h2>Loading image</h2>;
+    return <img src={ loading } alt="loading" />;
   }
 
   return (

@@ -6,6 +6,7 @@ import isLocalFavorite, {
 
 import isNotFavoriteIcon from '../images/whiteHeartIcon.svg';
 import isFavoriteIcon from '../images/blackHeartIcon.svg';
+import loading from '../images/loading.gif';
 
 function FavoriteButton() {
   const [drinkDetails, setDrinkDetails] = useState([]);
@@ -36,7 +37,7 @@ function FavoriteButton() {
   }, [localIsFavorite, id]);
 
   if ((!drinkDetails.length)) {
-    return <h2>Loading favorite button</h2>;
+    return <img src={ loading } alt="loading" />;
   }
 
   const drinkInfo = {
