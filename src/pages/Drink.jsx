@@ -7,9 +7,13 @@ import Footer from '../components/Footer';
 import DrinkCards from '../components/DrinkCards';
 import DrinkCategoryButtons from '../components/DrinkCategoryButtons';
 import MainDrinkCards from '../components/MainDrinkCards';
+import DrinkFilteredByIngredient from '../components/DrinkFilteredByIngredient';
 
 function Drink() {
-  const { filteredDrinks } = useContext(RecipesAppContext);
+  const {
+    filteredDrinks,
+    selectedDrinkIngredient,
+  } = useContext(RecipesAppContext);
 
   if (filteredDrinks === null || filteredDrinks === undefined) {
     return global.alert(
@@ -21,12 +25,23 @@ function Drink() {
     return (<DrinkCards />);
   }
 
+  if (selectedDrinkIngredient === '' || filteredDrinks.length > 1) {
+    return (
+      <div>
+        <HeaderWithSearchDrink titlePage="Bebidas" />
+        <p>Tela principal de Receitas:</p>
+        <DrinkCategoryButtons />
+        <MainDrinkCards />
+        <Footer />
+      </div>
+    );
+  }
   return (
     <div>
       <HeaderWithSearchDrink titlePage="Bebidas" />
       <p>Tela principal de Receitas:</p>
       <DrinkCategoryButtons />
-      <MainDrinkCards />
+      <DrinkFilteredByIngredient />
       <Footer />
     </div>
   );
