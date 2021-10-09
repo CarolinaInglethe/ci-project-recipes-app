@@ -6,7 +6,6 @@ import FavoriteIcon from '../images/whiteHeartIcon.svg';
 
 function DrinkInProgress() {
   const [drinkProgress, setDrinkProgress] = useState([]);
-  // const [buttonDisable, setButtonDisable] = useState(true);
   const { id } = useParams();
 
   // Fetch para detalhes de uma receita
@@ -77,6 +76,8 @@ function DrinkInProgress() {
                         type="checkbox"
                         name={ ingredient }
                         id={ ingredient }
+                        defaultChecked
+                        onClick={ ({ target }) => !target.checked }
                       />
                       { ingredient }
                       { ' - ' }
@@ -99,7 +100,7 @@ function DrinkInProgress() {
       <Link to="/receitas-feitas">
         <button
           type="button"
-          // disabled={ buttonDisable }
+          className="button"
           data-testid="finish-recipe-btn"
         >
           Finalizar Tarefa

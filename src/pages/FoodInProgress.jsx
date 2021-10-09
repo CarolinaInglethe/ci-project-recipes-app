@@ -6,7 +6,6 @@ import FavoriteIcon from '../images/whiteHeartIcon.svg';
 
 function FoodInProgress() {
   const [FoodProgress, setFoodProgress] = useState([]);
-  // const [buttonDisable, setButtonDisable] = useState(true);
   const { id } = useParams();
 
   const values = []; // usar na renderização de ingredientes
@@ -40,15 +39,6 @@ function FoodInProgress() {
       });
   }
 
-  // const handleClickCheckbox = ({ target }) => {
-  //   const atualLocalStorage = localStorage.getItem('inProgressRecipes').meals.[id];
-  //   localStorage.setItem('inProgressRecipes', {
-  //     meals: {
-  //       [id]: [...atualLocalStorage, target.id],
-  //     },
-  //   });
-  // };
-
   return (
     <div>
       <p>Food In Progress</p>
@@ -60,7 +50,6 @@ function FoodInProgress() {
       />
       <div>
         <h3 data-testid="recipe-title">{ FoodProgress[0].strMeal }</h3>
-
         <button type="button" data-testid="share-btn">
           <img src={ shareIcon } alt="botao compartilhar" />
         </button>
@@ -81,18 +70,18 @@ function FoodInProgress() {
                     key={ index }
                     data-testid={ `${index}-ingredient-step` }
                   >
-                    <label htmlFor={ ingredient }>
+                    <label htmlFor={ index }>
                       <input
                         type="checkbox"
                         name={ ingredient }
                         id={ index }
-                        // onClick={ handleClickCheckbox }
+                        defaultChecked
+                        onClick={ ({ target }) => !target.checked }
                       />
                       { ingredient }
                       { ' - ' }
                       { measures[index] }
                     </label>
-
                   </div>);
               }
               return null; // Pro lint não reclamar :(
@@ -109,7 +98,7 @@ function FoodInProgress() {
       <Link to="/receitas-feitas">
         <button
           type="button"
-          // disabled={ buttonDisable }
+          className="button"
           data-testid="finish-recipe-btn"
         >
           Finalizar Tarefa
@@ -119,4 +108,5 @@ function FoodInProgress() {
     </div>
   );
 }
+
 export default FoodInProgress;
