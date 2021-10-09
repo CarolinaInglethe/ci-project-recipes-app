@@ -19,12 +19,13 @@ function RecipesAppProvider({ children }) {
   const [drinkIngredients, setDrinkIngredients] = useState([]);
   const [selectedFoodIngredient, setSelectedFoodIngredient] = useState('');
   const [selectedDrinkIngredient, setSelectedDrinkIngredient] = useState('');
+  const doze = 12;
 
   function handleFetchFoodIngredients() {
     fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list')
       .then((response) => response.json())
       .then((result) => {
-        setFoodIngredients(result.meals);
+        setFoodIngredients(result.meals.slice(0, doze));
       });
   }
 
@@ -32,7 +33,7 @@ function RecipesAppProvider({ children }) {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list')
       .then((response) => response.json())
       .then((result) => {
-        setDrinkIngredients(result.drinks);
+        setDrinkIngredients(result.drinks.slice(0, doze));
       });
   }
 
