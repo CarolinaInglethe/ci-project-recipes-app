@@ -74,6 +74,7 @@ function FavoriteButton() {
         setClickOn(false);
       });
     }
+    window.location.reload();
   };
 
   return (
