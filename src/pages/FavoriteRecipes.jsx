@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Header from '../components/Header';
 import {
@@ -34,12 +35,14 @@ function FavoriteRecipes() {
           {
             foodsPlusDrinks.map((recipe, index) => (
               <div key={ index }>
-                <img
-                  src={ recipe.image }
-                  alt={ recipe.name }
-                  data-testid={ `${index}-horizontal-image` }
-                  height="150px"
-                />
+                <Link to={ `/${recipe.type}s/${recipe.id}` }>
+                  <img
+                    src={ recipe.image }
+                    alt={ recipe.name }
+                    data-testid={ `${index}-horizontal-image` }
+                    height="150px"
+                  />
+                </Link>
                 <h4
                   data-testid={ `${index}-horizontal-top-text` }
                 >
@@ -49,7 +52,9 @@ function FavoriteRecipes() {
                   { ' ' }
                   { recipe.alcoholicOrNot }
                 </h4>
-                <h4 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h4>
+                <Link to={ `/${recipe.type}s/${recipe.id}` }>
+                  <h4 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h4>
+                </Link>
                 <CopyButton recipe={ recipe } index={ index } />
                 <FavoriteButton
                   testIndex={ index }
@@ -67,18 +72,22 @@ function FavoriteRecipes() {
           {
             drinks.map((recipe, index) => (
               <div key={ recipe.name }>
-                <img
-                  src={ recipe.image }
-                  alt={ recipe.name }
-                  data-testid={ `${index}-horizontal-image` }
-                  height="150px"
-                />
+                <Link to={ `/${recipe.type}s/${recipe.id}` }>
+                  <img
+                    src={ recipe.image }
+                    alt={ recipe.name }
+                    data-testid={ `${index}-horizontal-image` }
+                    height="150px"
+                  />
+                </Link>
                 <h4
                   data-testid={ `${index}-horizontal-top-text` }
                 >
                   { recipe.category }
                 </h4>
-                <h4 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h4>
+                <Link to={ `/${recipe.type}s/${recipe.id}` }>
+                  <h4 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h4>
+                </Link>
                 <CopyButton recipe={ recipe } index={ index } />
                 <FavoriteButton recipe={ recipe } testIndex={ index } />
               </div>
@@ -92,18 +101,22 @@ function FavoriteRecipes() {
           {
             foods.map((recipe, index) => (
               <div key={ index }>
-                <img
-                  src={ recipe.image }
-                  alt={ recipe.name }
-                  data-testid={ `${index}-horizontal-image` }
-                  height="151px"
-                />
+                <Link to={ `/${recipe.type}s/${recipe.id}` }>
+                  <img
+                    src={ recipe.image }
+                    alt={ recipe.name }
+                    data-testid={ `${index}-horizontal-image` }
+                    height="151px"
+                  />
+                </Link>
                 <h4
                   data-testid={ `${index}-horizontal-top-text` }
                 >
                   { recipe.category }
                 </h4>
-                <h4 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h4>
+                <Link to={ `/${recipe.type}s/${recipe.id}` }>
+                  <h4 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h4>
+                </Link>
                 <CopyButton recipe={ recipe } index={ index } />
                 <FavoriteButton recipe={ recipe } testIndex={ index } />
               </div>
