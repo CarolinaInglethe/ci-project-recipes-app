@@ -1,10 +1,21 @@
 import React, { useMemo, useState } from 'react';
+
 import Header from '../components/Header';
-import { foodsPlusDrinks, localFavorite, drinks, foods } from '../services/utilities';
-import CopyButton from '../components/CopyButton';
+import {
+  foodsPlusDrinks,
+  localFavorite,
+  drinks,
+  foods,
+} from '../services/utilities';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
+import shareIcon from '../images/shareIcon.svg';
 
 function FavoriteRecipes() {
   const [filterButton, setFilterButton] = useState('All');
+  const [copiedUrl, setCopiedUrl] = useState(false);
+  const copiedUrlMessage = <p>Link copiado!</p>;
+  // No magic Numbers
+  const oneSecondDisplayCopiedLink = 1000;
 
   useMemo(() => {
     localFavorite.forEach((recipe) => {
@@ -19,6 +30,12 @@ function FavoriteRecipes() {
       }
     });
   }, []);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setCopiedUrl(true);
+    setTimeout(() => setCopiedUrl(false), oneSecondDisplayCopiedLink);
+  };
 
   function filterByButton() {
     if (filterButton === 'All') {
@@ -36,11 +53,33 @@ function FavoriteRecipes() {
                 <h4
                   data-testid={ `${index}-horizontal-top-text` }
                 >
+                  { recipe.area }
+                  { ' - ' }
                   { recipe.category }
+                  { ' ' }
+                  { recipe.alcoholicOrNot }
                 </h4>
                 <h4 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h4>
-                <div data-testid={ `${index}-horizontal-share-btn` }>
-                  <CopyButton />
+                <div>
+                  <button
+                    type="button"
+                    onClick={ handleCopy }
+                    data-testid={ `${index}-horizontal-share-btn` }
+                    src={ shareIcon }
+                  >
+                    <img src={ shareIcon } alt="share button" />
+                  </button>
+                  {copiedUrl && copiedUrlMessage}
+                </div>
+                <div
+                  data-testid={ `${index}-horizontal-favorite-btn` }
+                  src={ blackHeartIcon }
+                >
+                  <button
+                    type="button"
+                  >
+                    <img src={ blackHeartIcon } alt="Like button" />
+                  </button>
                 </div>
               </div>
             ))
@@ -65,8 +104,26 @@ function FavoriteRecipes() {
                   { recipe.category }
                 </h4>
                 <h4 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h4>
-                <div data-testid={ `${index}-horizontal-share-btn` }>
-                  <CopyButton />
+                <div>
+                  <button
+                    type="button"
+                    onClick={ handleCopy }
+                    data-testid={ `${index}-horizontal-share-btn` }
+                    src={ shareIcon }
+                  >
+                    <img src={ shareIcon } alt="share button" />
+                  </button>
+                  {copiedUrl && copiedUrlMessage}
+                </div>
+                <div
+                  data-testid={ `${index}-horizontal-favorite-btn` }
+                  src={ blackHeartIcon }
+                >
+                  <button
+                    type="button"
+                  >
+                    <img src={ blackHeartIcon } alt="Like button" />
+                  </button>
                 </div>
               </div>
             ))
@@ -91,8 +148,26 @@ function FavoriteRecipes() {
                   { recipe.category }
                 </h4>
                 <h4 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h4>
-                <div data-testid={ `${index}-horizontal-share-btn` }>
-                  <CopyButton />
+                <div>
+                  <button
+                    type="button"
+                    onClick={ handleCopy }
+                    data-testid={ `${index}-horizontal-share-btn` }
+                    src={ shareIcon }
+                  >
+                    <img src={ shareIcon } alt="share button" />
+                  </button>
+                  {copiedUrl && copiedUrlMessage}
+                </div>
+                <div
+                  data-testid={ `${index}-horizontal-favorite-btn` }
+                  src={ blackHeartIcon }
+                >
+                  <button
+                    type="button"
+                  >
+                    <img src={ blackHeartIcon } alt="Like button" />
+                  </button>
                 </div>
               </div>
             ))
@@ -119,7 +194,7 @@ function FavoriteRecipes() {
         data-testid="filter-by-food-btn"
         onClick={ () => setFilterButton('Foods') }
       >
-        Food
+        Foods
       </button>
 
       <button
@@ -127,7 +202,7 @@ function FavoriteRecipes() {
         data-testid="filter-by-drink-btn"
         onClick={ () => setFilterButton('Drinks') }
       >
-        drink
+        Drinks
       </button>
       { filterByButton() }
     </div>
