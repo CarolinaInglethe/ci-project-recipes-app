@@ -2,6 +2,9 @@ export const localFavorite = JSON.parse(localStorage.getItem('favoriteRecipes'))
   ? JSON.parse(localStorage.getItem('favoriteRecipes')) : [];
 
 let favoriteTable = [];
+export const drinks = []; // declared global variable
+export const foods = []; // declared global variable
+export const foodsPlusDrinks = []; // declared global variable
 
 export function getFavoritesList(recipeInfo) {
   favoriteTable = {
