@@ -7,7 +7,7 @@ import {
   drinks,
   foods,
 } from '../services/utilities';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import FavoriteButton from '../mini-components/FavScreenRemoveButton';
 import CopyButton from '../mini-components/FavScreenCopyButton';
 
 function FavoriteRecipes() {
@@ -26,14 +26,6 @@ function FavoriteRecipes() {
       }
     });
   }, []);
-
-  // const handleCopy = (recipe) => {
-  //   navigator
-  //     .clipboard
-  //     .writeText(`${window.location.origin}/${recipe.type}s/${recipe.id}`);
-  //   setCopiedUrl(true);
-  //   setTimeout(() => setCopiedUrl(false), oneSecondDisplayCopiedLink);
-  // };
 
   function filterByButton() {
     if (filterButton === 'All') {
@@ -59,16 +51,11 @@ function FavoriteRecipes() {
                 </h4>
                 <h4 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h4>
                 <CopyButton recipe={ recipe } index={ index } />
-                <div
-                  data-testid={ `${index}-horizontal-favorite-btn` }
-                  src={ blackHeartIcon }
-                >
-                  <button
-                    type="button"
-                  >
-                    <img src={ blackHeartIcon } alt="Like button" />
-                  </button>
-                </div>
+                <FavoriteButton
+                  testIndex={ index }
+                  id={ recipe.id }
+                  name={ recipe.name }
+                />
               </div>
             ))
           }
@@ -93,16 +80,7 @@ function FavoriteRecipes() {
                 </h4>
                 <h4 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h4>
                 <CopyButton recipe={ recipe } index={ index } />
-                <div
-                  data-testid={ `${index}-horizontal-favorite-btn` }
-                  src={ blackHeartIcon }
-                >
-                  <button
-                    type="button"
-                  >
-                    <img src={ blackHeartIcon } alt="Like button" />
-                  </button>
-                </div>
+                <FavoriteButton recipe={ recipe } testIndex={ index } />
               </div>
             ))
           }
@@ -127,16 +105,7 @@ function FavoriteRecipes() {
                 </h4>
                 <h4 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h4>
                 <CopyButton recipe={ recipe } index={ index } />
-                <div
-                  data-testid={ `${index}-horizontal-favorite-btn` }
-                  src={ blackHeartIcon }
-                >
-                  <button
-                    type="button"
-                  >
-                    <img src={ blackHeartIcon } alt="Like button" />
-                  </button>
-                </div>
+                <FavoriteButton recipe={ recipe } testIndex={ index } />
               </div>
             ))
           }
