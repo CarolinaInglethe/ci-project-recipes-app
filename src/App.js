@@ -21,23 +21,12 @@ import FavoriteRecipes from './pages/FavoriteRecipes';
 import NotFound from './pages/NotFound';
 
 import './App.css';
-// import rockGlass from './images/rockGlass.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <RecipesAppProvider>
       <BrowserRouter>
-        {/* <div className="meals">
-        <span className="logo">Recipe App</span>
-        <object
-          className="rocksGlass"
-          type="image/svg+xml"
-          data={ rockGlass }
-        >
-          Glass
-        </object>
-      </div> */}
         <Switch>
           <Route exact path="/" component={ Login } />
           <Route exact path="/comidas" component={ Food } />
