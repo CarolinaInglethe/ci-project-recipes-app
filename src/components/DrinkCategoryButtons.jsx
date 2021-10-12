@@ -1,5 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 
+import { Button, ButtonToolbar } from 'react-bootstrap';
+
 import RecipesAppContext from '../context/RecipesAppContext';
 
 function DrinkCategoryButtons() {
@@ -16,7 +18,7 @@ function DrinkCategoryButtons() {
       .then((resp) => {
         setDrinkCategories(resp.drinks);
       });
-  }, []);
+  }, [setDrinkCategories]);
 
   const handleClickCategory = (category) => {
     if (selecteDrinkCategory !== undefined) {
@@ -28,33 +30,35 @@ function DrinkCategoryButtons() {
   const five = 5;
 
   return (
-    <div>
+    <ButtonToolbar className="me-2">
       {/* // Botoes para escolher categoria : */}
-      <button
-        className="button-categories"
+      <Button
+        variant="secondary"
+        className="button-categories mb-3"
         type="button"
         onClick={ () => handleClickCategory(undefined) }
         data-testid="All-category-filter"
       >
         All
-      </button>
+      </Button>
       {
         drinkCategories.map((catego, index) => (
           index < five
             ? (
-              <button
-                className="button-categories"
+              <Button
+                variant="secondary"
+                className="button-categories mb-3"
                 data-testid={ `${catego.strCategory}-category-filter` }
                 key={ index }
                 type="button"
                 onClick={ () => handleClickCategory(catego.strCategory) }
               >
                 {catego.strCategory}
-              </button>
+              </Button>
             ) : null
         ))
       }
-    </div>
+    </ButtonToolbar>
   );
 }
 

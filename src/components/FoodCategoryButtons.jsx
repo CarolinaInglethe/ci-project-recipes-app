@@ -1,5 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 
+import { Button, ButtonToolbar } from 'react-bootstrap';
+
 import RecipesAppContext from '../context/RecipesAppContext';
 
 function FoodCategoryButtons() {
@@ -12,7 +14,7 @@ function FoodCategoryButtons() {
       .then((resp) => {
         setCategories(resp.meals);
       });
-  }, []);
+  }, [setCategories]);
 
   const handleClickCategories = (category) => {
     if (selectedCategory !== undefined) {
@@ -25,32 +27,36 @@ function FoodCategoryButtons() {
   const five = 5;
 
   return (
-    <div>
+    <ButtonToolbar className="me-2">
       { console.log('teste') }
       {/* // Botoes para escolher categoria : */}
-      <button
+      <Button
+        variant="secondary"
+        className="button-categories mb-3"
         type="button"
         onClick={ () => handleClickCategories(undefined) }
         data-testid="All-category-filter"
       >
         All
-      </button>
+      </Button>
       {
         categories.map((catego, index) => (
           index < five
             ? (
-              <button
+              <Button
+                variant="secondary"
+                className="button-categories mb-3"
                 data-testid={ `${catego.strCategory}-category-filter` }
                 key={ index }
                 type="button"
                 onClick={ () => handleClickCategories(catego.strCategory) }
               >
                 {catego.strCategory}
-              </button>
+              </Button>
             ) : null
         ))
       }
-    </div>
+    </ButtonToolbar>
   );
 }
 

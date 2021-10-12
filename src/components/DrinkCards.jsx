@@ -1,4 +1,7 @@
 import React, { useContext } from 'react';
+
+import { Card } from 'react-bootstrap';
+
 import RecipesAppContext from '../context/RecipesAppContext';
 
 function DrinkCards() {
@@ -9,19 +12,24 @@ function DrinkCards() {
     <div>
       {filteredDrinks.map((drink, index) => (
         (index < maxCardsLength) && (
-          <div key={ index }>
-            <div>
-              <span data-testid={ `${index}-card-name` }>{ drink.strDrink }</span>
-            </div>
-            <div data-testid={ `${index}-recipe-card` }>
-              <img
+          <Card key={ index }>
+            <Card.Body>
+              <Card.Title
+                data-testid={ `${index}-card-name` }
+              >
+                { drink.strDrink }
+              </Card.Title>
+            </Card.Body>
+            <Card.Header data-testid={ `${index}-recipe-card` }>
+              <Card.Img
+                variant="top"
                 src={ drink.strDrinkThumb }
                 alt={ drink.strDrink }
                 data-testid={ `${index}-card-img` }
                 width="100px"
               />
-            </div>
-          </div>
+            </Card.Header>
+          </Card>
         )
       ))}
     </div>
