@@ -32,7 +32,6 @@ function FoodFilteredByIngredient() {
         </Link>
         <Footer />
       </React.Fragment>
-
     )));
 }
 

@@ -19,24 +19,20 @@ function RecipesAppProvider({ children }) {
   const [drinkIngredients, setDrinkIngredients] = useState([]);
   const [selectedFoodIngredient, setSelectedFoodIngredient] = useState('');
   const [selectedDrinkIngredient, setSelectedDrinkIngredient] = useState('');
-  const doze = 12;
+  const [foodOrigins, setFoodOrigins] = useState([]);
+  const [selectedFoodOrigin, setSelectedFoodOrigin] = useState('American');
+  const [mealsByOrigin, setMealsByOrigin] = useState([]);
+
+  const MAX_INGREDIENTS = 12;
+  const MAX_ORIGINS = 27;
 
   function handleFetchFoodIngredients() {
     fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list')
       .then((response) => response.json())
       .then((result) => {
-        setFoodIngredients(result.meals.slice(0, doze));
+        setFoodIngredients(result.meals.slice(0, MAX_INGREDIENTS));
       });
   }
-
-  function handleFetchDrinkIngredients() {
-    fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list')
-      .then((response) => response.json())
-      .then((result) => {
-        setDrinkIngredients(result.drinks.slice(0, doze));
-      });
-  }
-
   const memoizedHandleFetchFoodIngredients = useCallback(
     () => {
       handleFetchFoodIngredients();
@@ -44,9 +40,31 @@ function RecipesAppProvider({ children }) {
     [],
   );
 
+  function handleFetchDrinkIngredients() {
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list')
+      .then((response) => response.json())
+      .then((result) => {
+        setDrinkIngredients(result.drinks.slice(0, MAX_INGREDIENTS));
+      });
+  }
   const memoizedHandleFetchDrinkIngredients = useCallback(
     () => {
       handleFetchDrinkIngredients();
+    },
+    [],
+  );
+
+  function handleFetchFoodOrigins() {
+    fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list')
+      .then((response) => response.json())
+      .then((result) => {
+        setFoodOrigins(result.meals.map((meal) => meal.strArea).slice(0, MAX_ORIGINS));
+        // setFoodOrigins(result.meals);
+      });
+  }
+  const memoizedHandleFetchFoodOrigins = useCallback(
+    () => {
+      handleFetchFoodOrigins();
     },
     [],
   );
@@ -86,7 +104,13 @@ function RecipesAppProvider({ children }) {
     setSelectedDrinkIngredient,
     memoizedHandleFetchFoodIngredients,
     memoizedHandleFetchDrinkIngredients,
-
+    foodOrigins,
+    setFoodOrigins,
+    selectedFoodOrigin,
+    setSelectedFoodOrigin,
+    memoizedHandleFetchFoodOrigins,
+    mealsByOrigin,
+    setMealsByOrigin,
   };
 
   return (
