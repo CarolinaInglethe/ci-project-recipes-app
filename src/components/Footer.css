@@ -1,7 +1,11 @@
 .footer {
-  background-color: blue;
   bottom: 0;
   display: flex;
   justify-content: center;
+  left: 25%;
   position: fixed;
+}
+
+.footer button {
+  margin: 1px;
 }

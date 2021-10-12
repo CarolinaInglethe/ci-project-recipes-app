@@ -9,7 +9,7 @@ function FoodCards() {
   const { filteredFoods } = useContext(RecipesAppContext);
 
   return (
-    <div>
+    <div className="bottom-space">
       {filteredFoods.map((meal, index) => (
         (index < maxCardsLength) && (
           <Card key={ index } style={ { width: '18rem' } }>
