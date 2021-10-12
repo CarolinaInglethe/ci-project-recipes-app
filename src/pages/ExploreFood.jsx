@@ -1,7 +1,12 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+
+import { Button, ButtonGroup } from 'react-bootstrap';
+
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+
+import './ExploreRecipes.css';
 
 function ExploreFood() {
   const history = useHistory();
@@ -16,29 +21,33 @@ function ExploreFood() {
   return (
     <div>
       <Header titlePage="Explorar Comidas" />
-      <div>
-        <p>ExploreFood</p>
-        <button
-          type="button"
-          data-testid="explore-by-ingredient"
-          onClick={ () => history.push('/explorar/comidas/ingredientes') }
-        >
-          Por Ingredientes
-        </button>
-        <button
-          type="button"
-          data-testid="explore-by-area"
-          onClick={ () => history.push('/explorar/comidas/area') }
-        >
-          Por Local de Origem
-        </button>
-        <button
-          type="button"
-          data-testid="explore-surprise"
-          onClick={ () => fetchRandomMeal() }
-        >
-          Me Surpreenda!
-        </button>
+      <div className="recipe-container">
+        <ButtonGroup vertical>
+          <Button
+            variant="secondary"
+            type="button"
+            data-testid="explore-by-ingredient"
+            onClick={ () => history.push('/explorar/comidas/ingredientes') }
+          >
+            Por Ingredientes
+          </Button>
+          <Button
+            variant="secondary"
+            type="button"
+            data-testid="explore-by-area"
+            onClick={ () => history.push('/explorar/comidas/area') }
+          >
+            Por Local de Origem
+          </Button>
+          <Button
+            variant="secondary"
+            type="button"
+            data-testid="explore-surprise"
+            onClick={ () => fetchRandomMeal() }
+          >
+            Me Surpreenda!
+          </Button>
+        </ButtonGroup>
       </div>
       <Footer />
     </div>

@@ -1,8 +1,13 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+
+import { Button, ButtonGroup } from 'react-bootstrap';
+
 import Header from '../components/Header';
 
 import Footer from '../components/Footer';
+
+import './ExploreRecipes.css';
 
 function ExploreDrink() {
   const history = useHistory();
@@ -17,22 +22,25 @@ function ExploreDrink() {
   return (
     <div>
       <Header titlePage="Explorar Bebidas" />
-      <div>
-        <p>ExploreDrink</p>
-        <button
-          type="button"
-          data-testid="explore-by-ingredient"
-          onClick={ () => history.push('/explorar/bebidas/ingredientes') }
-        >
-          Por Ingredientes
-        </button>
-        <button
-          type="button"
-          data-testid="explore-surprise"
-          onClick={ () => fetchRandomDrink() }
-        >
-          Me Surpreenda!
-        </button>
+      <div className="recipe-container">
+        <ButtonGroup vertical>
+          <Button
+            variant="secondary"
+            type="button"
+            data-testid="explore-by-ingredient"
+            onClick={ () => history.push('/explorar/bebidas/ingredientes') }
+          >
+            Por Ingredientes
+          </Button>
+          <Button
+            variant="secondary"
+            type="button"
+            data-testid="explore-surprise"
+            onClick={ () => fetchRandomDrink() }
+          >
+            Me Surpreenda!
+          </Button>
+        </ButtonGroup>
       </div>
       <Footer />
     </div>
