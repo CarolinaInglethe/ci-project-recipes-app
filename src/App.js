@@ -18,6 +18,7 @@ import ExploreFoodByOrigin from './pages/ExploreFoodByOrigin';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
+import NotFound from './pages/NotFound';
 
 import './App.css';
 // import rockGlass from './images/rockGlass.svg';
@@ -86,6 +87,11 @@ function App() {
             exact
             path="/perfil"
             component={ Profile }
+          />
+          <Route
+            exact
+            path="/explorar/bebidas/area"
+            component={ NotFound }
           />
         </Switch>
       </BrowserRouter>
