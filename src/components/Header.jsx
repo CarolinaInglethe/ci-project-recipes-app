@@ -11,18 +11,19 @@ function Header({ titlePage }) {
   const history = useHistory();
 
   return (
-    <header>
+    <div className="container">
+      <div>
+        <h2 data-testid="page-title">{ titlePage }</h2>
+      </div>
       <Button
+        style={ { padding: '10px' } }
         variant="secondary"
         type="button"
         onClick={ () => history.push('/perfil') }
       >
         <img src={ profileIcon } alt="Icone de Perfil" data-testid="profile-top-btn" />
       </Button>
-      <div className="header">
-        <h2 data-testid="page-title">{ titlePage }</h2>
-      </div>
-    </header>
+    </div>
   );
 }
 Header.propTypes = {

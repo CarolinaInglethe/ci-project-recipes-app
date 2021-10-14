@@ -29,7 +29,6 @@ function Food() {
       <div>
         <HeaderWithSearchFood titlePage="Comidas" />
         <div>
-          <p>Tela principal de Receitas:</p>
           <FoodCategoryButtons />
           <MainFoodCards />
           <Footer />
