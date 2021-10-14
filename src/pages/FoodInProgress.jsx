@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import shareIcon from '../images/shareIcon.svg';
-import FavoriteIcon from '../images/whiteHeartIcon.svg';
+import { Button } from 'react-bootstrap';
+
+import CopyButton from '../components/CopyButton';
+import FavoriteButton from '../components/FoodFavoriteButton';
+
+import './RecipeDetails.css';
 
 function FoodInProgress() {
   const [FoodProgress, setFoodProgress] = useState([]);
@@ -40,55 +44,48 @@ function FoodInProgress() {
   }
 
   return (
-    <div>
-      <p>Food In Progress</p>
+    <div className="details-container">
       <img
         src={ FoodProgress[0].strMealThumb }
         alt={ `Imagem de ${FoodProgress[0].strMeal}` }
-        height="250px"
+        height="400px"
         data-testid="recipe-photo"
       />
-      <div>
-        <h3 data-testid="recipe-title">{ FoodProgress[0].strMeal }</h3>
-        <button type="button" data-testid="share-btn">
-          <img src={ shareIcon } alt="botao compartilhar" />
-        </button>
-        <button type="button" data-testid="favorite-btn">
-          <img src={ FavoriteIcon } alt="Botao Favoritar" />
-        </button>
+      <h3 data-testid="recipe-title">{ FoodProgress[0].strMeal }</h3>
+      <div className="buttons-container">
+        <CopyButton />
+        <FavoriteButton />
       </div>
       <h5 data-testid="recipe-category">{ FoodProgress[0].strCategory }</h5>
 
-      <div>
-        <h4>Ingredients</h4>
-        <ul>
-          {
-            values.map((ingredient, index) => {
-              if (ingredient !== '' && ingredient !== null) {
-                return (
-                  <div
-                    key={ index }
-                    data-testid={ `${index}-ingredient-step` }
-                  >
-                    <label htmlFor={ index }>
-                      <input
-                        type="checkbox"
-                        name={ ingredient }
-                        id={ index }
-                        defaultChecked
-                        onClick={ ({ target }) => !target.checked }
-                      />
-                      { ingredient }
-                      { ' - ' }
-                      { measures[index] }
-                    </label>
-                  </div>);
-              }
-              return null; // Pro lint não reclamar :(
-            })
-          }
-        </ul>
-      </div>
+      <h4>Ingredients</h4>
+      <ul>
+        {
+          values.map((ingredient, index) => {
+            if (ingredient !== '' && ingredient !== null) {
+              return (
+                <div
+                  key={ index }
+                  data-testid={ `${index}-ingredient-step` }
+                >
+                  <label htmlFor={ index }>
+                    <input
+                      type="checkbox"
+                      name={ ingredient }
+                      id={ index }
+                      defaultChecked
+                      onClick={ ({ target }) => !target.checked }
+                    />
+                    { ingredient }
+                    { ' - ' }
+                    { measures[index] }
+                  </label>
+                </div>);
+            }
+            return null; // Pro lint não reclamar :(
+          })
+        }
+      </ul>
 
       <div>
         <h4>Instructions</h4>
@@ -96,15 +93,14 @@ function FoodInProgress() {
       </div>
 
       <Link to="/receitas-feitas">
-        <button
+        <Button
           type="button"
-          className="button"
+          variant="secondary"
           data-testid="finish-recipe-btn"
         >
           Finalizar Tarefa
-        </button>
+        </Button>
       </Link>
-
     </div>
   );
 }

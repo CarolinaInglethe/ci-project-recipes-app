@@ -1,5 +1,8 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
+
+import { Button } from 'react-bootstrap';
+
 import isLocalFavorite, {
   getFavoritesList,
   localFavorite,
@@ -79,7 +82,8 @@ function FavoriteButton() {
 
   return (
     <div>
-      <button
+      <Button
+        variant="outline-secondary"
         type="button"
         data-testid="favorite-btn"
         onClick={ handleFavorite }
@@ -94,7 +98,7 @@ function FavoriteButton() {
             ? <img src={ blackHeartIcon } alt="Like button" />
             : <img src={ whiteHeartIcon } alt="Like button" />
         }
-      </button>
+      </Button>
     </div>
   );
 }
