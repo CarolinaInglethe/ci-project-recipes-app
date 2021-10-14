@@ -1,0 +1,10 @@
+.profile-container {
+  margin: 3px;
+  padding: 2px;
+  text-align: center;
+}
+
+.profile-container button {
+  margin: 5px;
+  padding: 10px;
+}
