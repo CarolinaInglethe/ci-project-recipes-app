@@ -1,0 +1,12 @@
+.categories-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.categories-container button {
+  margin: 4px;
+  padding: 12px;
+}

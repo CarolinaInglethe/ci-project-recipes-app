@@ -4,6 +4,8 @@ import { Button, ButtonToolbar } from 'react-bootstrap';
 
 import RecipesAppContext from '../context/RecipesAppContext';
 
+import './CategoryButtons.css';
+
 function FoodCategoryButtons() {
   const { categories, setCategories } = useContext(RecipesAppContext);
   const { selectedCategory, setSelectedCategory } = useContext(RecipesAppContext);
@@ -27,7 +29,7 @@ function FoodCategoryButtons() {
   const five = 5;
 
   return (
-    <ButtonToolbar className="me-2">
+    <ButtonToolbar className="me-2 categories-container">
       { console.log('teste') }
       {/* // Botoes para escolher categoria : */}
       <Button
