@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+
+import { Button } from 'react-bootstrap';
+
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+
+import './Profile.css';
 
 function Profile() {
   const history = useHistory();
@@ -24,31 +29,34 @@ function Profile() {
   }
 
   return (
-    <div>
+    <div className="profile-container">
       <Header titlePage="Perfil" />
       <div>
         <h3 data-testid="profile-email">{ email }</h3>
-        <button
+        <Button
+          variant="secondary"
           type="button"
           data-testid="profile-done-btn"
           onClick={ () => history.push('/receitas-feitas') }
         >
           Receitas Feitas
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="secondary"
           type="button"
           data-testid="profile-favorite-btn"
           onClick={ () => history.push('/receitas-favoritas') }
         >
           Receitas Favoritas
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="secondary"
           type="button"
           data-testid="profile-logout-btn"
           onClick={ userLogout }
         >
           Sair
-        </button>
+        </Button>
       </div>
       <Footer />
     </div>

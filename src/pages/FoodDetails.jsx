@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
+import { Button } from 'react-bootstrap';
+
 import CopyButton from '../components/CopyButton';
 import FavoriteButton from '../components/FoodFavoriteButton';
 
@@ -60,17 +62,17 @@ function FoodDetails() {
   const youtubeUrl = foodDetails[0].strYoutube.replace('watch?v=', 'embed/');
 
   return (
-    <div>
+    <div className="details-container">
       <img
         src={ foodDetails[0].strMealThumb }
         alt={ foodDetails[0].strMeal }
         data-testid="recipe-photo"
-        height="250px"
+        height="400px"
       />
       <div>
         <h3 data-testid="recipe-title">{ foodDetails[0].strMeal }</h3>
       </div>
-      <div>
+      <div className="buttons-container">
         <CopyButton />
         <FavoriteButton />
       </div>
@@ -139,17 +141,18 @@ function FoodDetails() {
             </div>
           ))
         }
-        {/* <img src="" alt="" data-testid={ `${index}-recomendation-card` } /> */}
       </div>
-      <div className="align-center">
-        <Link
-          to={ `/comidas/${id}/in-progress` }
-          data-testid="start-recipe-btn"
-          className="button"
+      <Link
+        to={ `/comidas/${id}/in-progress` }
+        data-testid="start-recipe-btn"
+        className="details-button"
+      >
+        <Button
+          variant="success"
         >
           Iniciar Receita
-        </Link>
-      </div>
+        </Button>
+      </Link>
     </div>
   );
 }

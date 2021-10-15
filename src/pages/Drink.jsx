@@ -29,7 +29,6 @@ function Drink() {
     return (
       <div>
         <HeaderWithSearchDrink titlePage="Bebidas" />
-        <p>Tela principal de Receitas:</p>
         <DrinkCategoryButtons />
         <MainDrinkCards />
         <Footer />

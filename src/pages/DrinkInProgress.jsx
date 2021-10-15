@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import shareIcon from '../images/shareIcon.svg';
-import FavoriteIcon from '../images/whiteHeartIcon.svg';
+import { Button } from 'react-bootstrap';
+
+import CopyButton from '../components/CopyButton';
+import FavoriteButton from '../components/DrinkFavoriteButton';
 
 function DrinkInProgress() {
   const [drinkProgress, setDrinkProgress] = useState([]);
@@ -40,23 +42,20 @@ function DrinkInProgress() {
   }
 
   return (
-    <div>
-      <p>Drink In Progress</p>
+    <div className="details-container">
       <img
         src={ drinkProgress[0].strDrinkThumb }
         alt={ `Imagem de ${drinkProgress[0].strDrink}` }
-        height="250px"
+        height="400px"
         data-testid="recipe-photo"
       />
       <div>
         <h3 data-testid="recipe-title">{ drinkProgress[0].strDrink }</h3>
 
-        <button type="button" data-testid="share-btn">
-          <img src={ shareIcon } alt="botao compartilhar" />
-        </button>
-        <button type="button" data-testid="favorite-btn">
-          <img src={ FavoriteIcon } alt="Botao Favoritar" />
-        </button>
+        <div className="buttons-container">
+          <CopyButton />
+          <FavoriteButton />
+        </div>
       </div>
       <h5 data-testid="recipe-category">{ drinkProgress[0].strAlcoholic }</h5>
 
@@ -98,13 +97,14 @@ function DrinkInProgress() {
       </div>
 
       <Link to="/receitas-feitas">
-        <button
+        <Button
+          variant="secondary"
           type="button"
           className="button"
           data-testid="finish-recipe-btn"
         >
           Finalizar Tarefa
-        </button>
+        </Button>
       </Link>
 
     </div>

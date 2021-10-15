@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
+import { Button } from 'react-bootstrap';
+
 import CopyButton from '../components/CopyButton';
 import FavoriteButton from '../components/DrinkFavoriteButton';
 
-// import loading from '../images/loading.gif';
 import './RecipeDetails.css';
 
 function DrinkDetails() {
@@ -58,17 +59,17 @@ function DrinkDetails() {
   }
 
   return (
-    <div>
+    <div className="details-container">
       <div>
         <img
           src={ drinkDetails[0].strDrinkThumb }
           alt={ drinkDetails[0].strDrink }
           data-testid="recipe-photo"
-          height="250px"
+          height="400px"
         />
         <h3 data-testid="recipe-title">{ drinkDetails[0].strDrink }</h3>
       </div>
-      <div>
+      <div className="buttons-container">
         <CopyButton />
         <FavoriteButton />
       </div>
@@ -134,9 +135,13 @@ function DrinkDetails() {
       <Link
         to={ `/bebidas/${id}/in-progress` }
         data-testid="start-recipe-btn"
-        className="button"
+        className="details-button"
       >
-        Iniciar Receita
+        <Button
+          variant="success"
+        >
+          Iniciar Receita
+        </Button>
       </Link>
     </div>
   );

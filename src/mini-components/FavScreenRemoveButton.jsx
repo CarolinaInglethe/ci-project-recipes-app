@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Button } from 'react-bootstrap';
+
 import {
   localFavorite,
 } from '../services/utilities';
@@ -25,14 +27,15 @@ function FavoriteButton({ testIndex, id, name }) {
   };
 
   return (
-    <button
+    <Button
+      variant="outline-secondary"
       data-testid={ `${testIndex}-horizontal-favorite-btn` }
       src={ blackHeartIcon }
       onClick={ handleFavorite }
       type="button"
     >
       <img src={ blackHeartIcon } alt="Like button" />
-    </button>
+    </Button>
   );
 }
 

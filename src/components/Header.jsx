@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
+import { Button } from 'react-bootstrap';
+
 import profileIcon from '../images/profileIcon.svg';
 import './Header.css';
 
@@ -9,17 +11,19 @@ function Header({ titlePage }) {
   const history = useHistory();
 
   return (
-    <header>
-      <button
+    <div className="container">
+      <div>
+        <h2 data-testid="page-title">{ titlePage }</h2>
+      </div>
+      <Button
+        style={ { padding: '10px' } }
+        variant="secondary"
         type="button"
         onClick={ () => history.push('/perfil') }
       >
         <img src={ profileIcon } alt="Icone de Perfil" data-testid="profile-top-btn" />
-      </button>
-      <div className="header">
-        <h2 data-testid="page-title">{ titlePage }</h2>
-      </div>
-    </header>
+      </Button>
+    </div>
   );
 }
 Header.propTypes = {

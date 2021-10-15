@@ -1,6 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { Button } from 'react-bootstrap';
+
 import Header from '../components/Header';
 import {
   foodsPlusDrinks,
@@ -10,6 +12,8 @@ import {
 } from '../services/utilities';
 import FavoriteButton from '../mini-components/FavScreenRemoveButton';
 import CopyButton from '../mini-components/FavScreenCopyButton';
+
+import './RecipeDetails.css';
 
 function FavoriteRecipes() {
   const [filterButton, setFilterButton] = useState('All');
@@ -31,7 +35,7 @@ function FavoriteRecipes() {
   function filterByButton() {
     if (filterButton === 'All') {
       return (
-        <div>
+        <div className="details-container">
           {
             foodsPlusDrinks.map((recipe, index) => (
               <div key={ index }>
@@ -55,12 +59,14 @@ function FavoriteRecipes() {
                 <Link to={ `/${recipe.type}s/${recipe.id}` }>
                   <h4 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h4>
                 </Link>
-                <CopyButton recipe={ recipe } index={ index } />
-                <FavoriteButton
-                  testIndex={ index }
-                  id={ recipe.id }
-                  name={ recipe.name }
-                />
+                <div className="buttons-container">
+                  <CopyButton recipe={ recipe } index={ index } />
+                  <FavoriteButton
+                    testIndex={ index }
+                    id={ recipe.id }
+                    name={ recipe.name }
+                  />
+                </div>
               </div>
             ))
           }
@@ -68,7 +74,7 @@ function FavoriteRecipes() {
       );
     } if (filterButton === 'Drinks') {
       return (
-        <div>
+        <div className="details-container">
           {
             drinks.map((recipe, index) => (
               <div key={ recipe.name }>
@@ -88,8 +94,10 @@ function FavoriteRecipes() {
                 <Link to={ `/${recipe.type}s/${recipe.id}` }>
                   <h4 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h4>
                 </Link>
-                <CopyButton recipe={ recipe } index={ index } />
-                <FavoriteButton recipe={ recipe } testIndex={ index } />
+                <div className="buttons-container">
+                  <CopyButton recipe={ recipe } index={ index } />
+                  <FavoriteButton recipe={ recipe } testIndex={ index } />
+                </div>
               </div>
             ))
           }
@@ -97,7 +105,7 @@ function FavoriteRecipes() {
       );
     } if (filterButton === 'Foods') {
       return (
-        <div>
+        <div className="details-container">
           {
             foods.map((recipe, index) => (
               <div key={ index }>
@@ -117,8 +125,10 @@ function FavoriteRecipes() {
                 <Link to={ `/${recipe.type}s/${recipe.id}` }>
                   <h4 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h4>
                 </Link>
-                <CopyButton recipe={ recipe } index={ index } />
-                <FavoriteButton recipe={ recipe } testIndex={ index } />
+                <div className="buttons-container">
+                  <CopyButton recipe={ recipe } index={ index } />
+                  <FavoriteButton recipe={ recipe } testIndex={ index } />
+                </div>
               </div>
             ))
           }
@@ -128,32 +138,36 @@ function FavoriteRecipes() {
   }
 
   return (
-    <div>
+    <div className="favorite-container">
       <Header titlePage="Receitas Favoritas" />
+      <div className="fav-filterbuttons">
+        <Button
+          variant="secondary"
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ () => setFilterButton('All') }
+        >
+          All
+        </Button>
 
-      <button
-        type="button"
-        data-testid="filter-by-all-btn"
-        onClick={ () => setFilterButton('All') }
-      >
-        All
-      </button>
+        <Button
+          variant="secondary"
+          type="button"
+          data-testid="filter-by-food-btn"
+          onClick={ () => setFilterButton('Foods') }
+        >
+          Foods
+        </Button>
 
-      <button
-        type="button"
-        data-testid="filter-by-food-btn"
-        onClick={ () => setFilterButton('Foods') }
-      >
-        Foods
-      </button>
-
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ () => setFilterButton('Drinks') }
-      >
-        Drinks
-      </button>
+        <Button
+          variant="secondary"
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ () => setFilterButton('Drinks') }
+        >
+          Drinks
+        </Button>
+      </div>
       { filterByButton() }
     </div>
   );

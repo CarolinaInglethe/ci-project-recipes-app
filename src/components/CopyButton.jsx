@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { Button } from 'react-bootstrap';
+
 import shareIcon from '../images/shareIcon.svg';
 
 function CopyButton() {
@@ -18,13 +20,14 @@ function CopyButton() {
 
   return (
     <div>
-      <button
+      <Button
+        variant="outline-secondary"
         type="button"
         data-testid="share-btn"
         onClick={ handleCopy }
       >
         <img src={ shareIcon } alt="share button" />
-      </button>
+      </Button>
       {copiedUrl && copiedUrlMessage}
     </div>
   );

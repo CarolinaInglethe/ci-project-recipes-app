@@ -4,7 +4,12 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
 import LoginAction from '../Redux/Actions';
+
+import rockGlass from '../images/rockGlass.svg';
 
 function Login({ loginEmail }) {
   const [email, setNewEmail] = useState('');
@@ -47,36 +52,50 @@ function Login({ loginEmail }) {
 
   return (
     <div>
-      <h2>Login</h2>
+      <Form className="meals">
+        <div className="meals">
+          <h4 className="logo">App de receitas</h4>
+          <object
+            className="rocksGlass"
+            type="image/svg+xml"
+            data={ rockGlass }
+          >
+            Glass
+          </object>
+        </div>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Control
+            type="email"
+            id="login-input"
+            placeholder="Email"
+            data-testid="email-input"
+            value={ email }
+            onChange={ handleChangeOnEmail }
+          />
+        </Form.Group>
 
-      <form>
-        <input
-          type="text"
-          id="login-input"
-          placeholder="Email"
-          data-testid="email-input"
-          value={ email }
-          onChange={ handleChangeOnEmail }
-        />
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Control
+            type="password"
+            id="password-input"
+            value={ password }
+            onChange={ handleChangeOnPassWord }
+            placeholder="Password"
+            data-testid="password-input"
+          />
+        </Form.Group>
 
-        <input
-          type="password"
-          id="password-input"
-          value={ password }
-          onChange={ handleChangeOnPassWord }
-          placeholder="Password"
-          data-testid="password-input"
-        />
-
-        <button
+        <Button
           type="submit"
           data-testid="login-submit-btn"
           disabled={ disabled }
           onClick={ handleClick }
+          variant="primary"
+          className="mb-3"
         >
           Entrar
-        </button>
-      </form>
+        </Button>
+      </Form>
     </div>
   );
 }
