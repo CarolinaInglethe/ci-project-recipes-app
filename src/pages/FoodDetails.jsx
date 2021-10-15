@@ -141,7 +141,6 @@ function FoodDetails() {
             </div>
           ))
         }
-        {/* <img src="" alt="" data-testid={ `${index}-recomendation-card` } /> */}
       </div>
       <Link
         to={ `/comidas/${id}/in-progress` }

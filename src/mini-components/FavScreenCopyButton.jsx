@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 
+import { Button } from 'react-bootstrap';
+
 import shareIcon from '../images/shareIcon.svg';
 
 function CopyButton({ recipe, index }) {
@@ -13,7 +15,8 @@ function CopyButton({ recipe, index }) {
 
   return (
     <div>
-      <button
+      <Button
+        variant="outline-secondary"
         type="button"
         onClick={ () => {
           navigator
@@ -28,7 +31,7 @@ function CopyButton({ recipe, index }) {
         data-testid={ `${index}-horizontal-share-btn` }
       >
         <img src={ shareIcon } alt="share button" />
-      </button>
+      </Button>
       {copiedUrl && copiedUrlMessage}
     </div>
   );

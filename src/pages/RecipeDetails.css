@@ -28,6 +28,24 @@
   opacity: 0.5;
 }
 
+.favorite-cards {
+  display: flex;
+  margin: 10px;
+}
+
+.favorite-cards h4 {
+  font-size: medium;
+}
+
+.favorite-cards a {
+  text-decoration: none;
+}
+
+.favorite-container button {
+  margin: 4px;
+  padding: 12px;
+}
+
 .carousel {
   display: flex;
   flex-direction: row;
@@ -43,6 +61,12 @@
   margin: auto;
   position: fixed;
   z-index: 100;
+}
+
+.fav-filterbuttons {
+  margin: 10px;
+  margin-bottom: 50px;
+  text-align: center;
 }
 
 .buttons-container {
