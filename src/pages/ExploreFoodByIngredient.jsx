@@ -20,8 +20,7 @@ function ExploreFoodByIngredient() {
   }
 
   return (
-    <div data-testid="explore-by-ingredient">
-      <p>ExploreFoodByIngredient</p>
+    <div data-testid="explore-by-ingredient" className="list-ingredients page-main">
       {foodIngredients.slice(0, doze).map((ingredient, index) => (
         <Link
           to="/comidas"
@@ -29,6 +28,7 @@ function ExploreFoodByIngredient() {
           onClick={ () => setSelectedFoodIngredient(ingredient.strIngredient) }
         >
           <div
+            className="card-ingredients"
             data-testid={ `${index}-ingredient-card` }
             key={ ingredient.strIngredient }
           >

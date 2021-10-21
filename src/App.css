@@ -1,3 +1,7 @@
+.page-main {
+  background-color: #212121;
+}
+
 .logo-login {
   align-items: center;
   background: #212121;
@@ -77,6 +81,20 @@
 .footer button {
   background-color: #42798f;
   margin: 1px;
+}
+
+.list-ingredients {
+  display: flex;
+  flex-flow: column wrap;
+  margin: auto;
+  padding: 10px;
+}
+
+.card-ingredients {
+  background-color: rgba(240, 255, 255, 0.226);
+  color: #fffbfb;
+  margin: 5px;
+  text-align: center;
 }
 
 /*
