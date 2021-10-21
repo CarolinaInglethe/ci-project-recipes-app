@@ -62,7 +62,7 @@ function FoodDetails() {
   const youtubeUrl = foodDetails[0].strYoutube.replace('watch?v=', 'embed/');
 
   return (
-    <div className="details-container">
+    <div className="details-container page-main">
       <img
         src={ foodDetails[0].strMealThumb }
         alt={ foodDetails[0].strMeal }

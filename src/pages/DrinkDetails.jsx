@@ -59,7 +59,7 @@ function DrinkDetails() {
   }
 
   return (
-    <div className="details-container">
+    <div className="details-container page-main">
       <div>
         <img
           src={ drinkDetails[0].strDrinkThumb }
