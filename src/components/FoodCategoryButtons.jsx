@@ -4,7 +4,7 @@ import { Button, ButtonToolbar } from 'react-bootstrap';
 
 import RecipesAppContext from '../context/RecipesAppContext';
 
-import './CategoryButtons.css';
+// import './CategoryButtons.css';
 
 function FoodCategoryButtons() {
   const { categories, setCategories } = useContext(RecipesAppContext);

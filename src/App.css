@@ -32,7 +32,7 @@
 
 .page-main-food {
   background-color: #33313b;
-  color: #F6F5F5;
+  color: #f6f5f5;
   text-align: center;
 }
 
@@ -43,7 +43,17 @@
   padding: 5px;
 }
 
+.categories-container {
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  margin-top: 50px;
+}
 
+.categories-container button {
+  margin: 4px;
+  padding: 12px;
+}
 
 /*
 #iceLeft {
