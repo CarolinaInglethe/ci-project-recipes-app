@@ -79,7 +79,7 @@ function DrinkDetails() {
       >
         { drinkDetails[0].strAlcoholic }
       </h4>
-      <div>
+      <div className="details-ingredients">
         <div>
           <h3>Ingredients</h3>
           <ul>
@@ -101,7 +101,7 @@ function DrinkDetails() {
             }
           </ul>
         </div>
-        <div>
+        <div className="details-instruction">
           <h3>Instructions</h3>
           <p data-testid="instructions">{ drinkDetails[0].strInstructions }</p>
         </div>
@@ -138,7 +138,7 @@ function DrinkDetails() {
         className="details-button"
       >
         <Button
-          variant="success"
+          variant="primary"
         >
           Iniciar Receita
         </Button>

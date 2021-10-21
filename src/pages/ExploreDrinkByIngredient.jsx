@@ -21,10 +21,9 @@ function ExploreDrinkByIngredient() {
   }
 
   return (
-    <div>
+    <div className="page-main">
       <Header titlePage="Explorar Ingredientes" />
       <div data-testid="explore-by-ingredient">
-        <p>ExploreDrinkByIngredient</p>
         {
           drinkIngredients
             .slice(0, doze).map((ingredient, index) => (
@@ -34,6 +33,7 @@ function ExploreDrinkByIngredient() {
                 onClick={ () => setSelectedDrinkIngredient(ingredient.strIngredient1) }
               >
                 <div
+                  className="card-ingredients"
                   data-testid={ `${index}-ingredient-card` }
                   key={ ingredient.strIngredient1 }
                 >

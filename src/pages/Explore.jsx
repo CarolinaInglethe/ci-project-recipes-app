@@ -12,7 +12,7 @@ function Explore() {
   const history = useHistory();
 
   return (
-    <div>
+    <div className="page-main">
       <Header titlePage="Explorar" />
       <div className="container">
         <ButtonGroup vertical>

@@ -62,12 +62,14 @@
 
 .card-food {
   background-color: rgba(240, 255, 255, 0.103);
+  border-radius: 4px;
   color: #fffbfb;
   margin: 1px;
 }
 
 .card-drink {
   background-color: rgba(240, 255, 255, 0.103);
+  border-radius: 4px;
   color: #fffbfb;
   margin: 1px;
 }
@@ -94,8 +96,9 @@
 
 .card-ingredients {
   background-color: rgba(240, 255, 255, 0.226);
+  border-radius: 5px;
   color: #fffbfb;
-  margin: 5px;
+  margin: 5px 25px;
   text-align: center;
 }
 
@@ -114,6 +117,21 @@
   text-align: center;
 }
 
+.details-ingredients {
+  background-color: rgba(44, 44, 44, 0.733);
+  border-radius: 5px;
+  color: #fffbfb;
+  padding: 10px;
+}
+
+.details-instruction {
+  background-color: rgba(44, 44, 44, 0.37);
+  border-radius: 5px;
+  color: #242121;
+  margin: 15px;
+  padding: 10px;
+
+}
 
 
 /*

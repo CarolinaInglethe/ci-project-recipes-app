@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 import RecipesAppContext from '../context/RecipesAppContext';
 
@@ -21,6 +22,7 @@ function ExploreFoodByIngredient() {
 
   return (
     <div data-testid="explore-by-ingredient" className="list-ingredients page-main">
+      <Header titlePage="Explorar Ingredientes" />
       {foodIngredients.slice(0, doze).map((ingredient, index) => (
         <Link
           to="/comidas"
