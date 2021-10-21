@@ -98,9 +98,9 @@ function DrinkInProgress() {
 
       <Link to="/receitas-feitas">
         <Button
-          variant="secondary"
+          variant="primary"
           type="button"
-          className="button"
+          className="details-button"
           data-testid="finish-recipe-btn"
         >
           Finalizar Tarefa

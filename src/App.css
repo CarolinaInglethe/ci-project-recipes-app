@@ -58,7 +58,10 @@
 
 .list-recipes {
   display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }
+
 
 .card-food {
   background-color: rgba(240, 255, 255, 0.103);
@@ -133,7 +136,13 @@
 
 }
 
-
+.details-button {
+  border-radius: 10px;
+  bottom: 0;
+  margin: auto;
+  position: fixed;
+  z-index: 100;
+}
 
 /*
 #iceLeft {
@@ -179,8 +188,3 @@
   }
 }
 
-.list-recipes {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-}

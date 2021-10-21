@@ -97,7 +97,8 @@ function FoodInProgress() {
       <Link to="/receitas-feitas">
         <Button
           type="button"
-          variant="secondary"
+          className="details-button"
+          variant="primary"
           data-testid="finish-recipe-btn"
         >
           Finalizar Tarefa
