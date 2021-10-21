@@ -14,10 +14,8 @@ function HeaderWithSearchDrink({ titlePage }) {
   const history = useHistory();
 
   return (
-    <div className="container">
-      <div>
-        <h2 data-testid="page-title">{ titlePage }</h2>
-      </div>
+    <div className="container-header">
+
       <Button
         style={ { padding: '10px' } }
         variant="secondary"
@@ -26,6 +24,9 @@ function HeaderWithSearchDrink({ titlePage }) {
       >
         <img src={ profileIcon } alt="Icone de Perfil" data-testid="profile-top-btn" />
       </Button>
+      <div>
+        <h2 data-testid="page-title">{ titlePage }</h2>
+      </div>
       <div>
         {toggleInput && (
           <SearchBarDrink />
