@@ -44,7 +44,7 @@ function FoodInProgress() {
   }
 
   return (
-    <div className="details-container">
+    <div className="details-container page-main">
       <img
         src={ FoodProgress[0].strMealThumb }
         alt={ `Imagem de ${FoodProgress[0].strMeal}` }
@@ -58,36 +58,38 @@ function FoodInProgress() {
       </div>
       <h5 data-testid="recipe-category">{ FoodProgress[0].strCategory }</h5>
 
-      <h4>Ingredients</h4>
-      <ul>
-        {
-          values.map((ingredient, index) => {
-            if (ingredient !== '' && ingredient !== null) {
-              return (
-                <div
-                  key={ index }
-                  data-testid={ `${index}-ingredient-step` }
-                >
-                  <label htmlFor={ index }>
-                    <input
-                      type="checkbox"
-                      name={ ingredient }
-                      id={ index }
-                      defaultChecked
-                      onClick={ ({ target }) => !target.checked }
-                    />
-                    { ingredient }
-                    { ' - ' }
-                    { measures[index] }
-                  </label>
-                </div>);
-            }
-            return null; // Pro lint não reclamar :(
-          })
-        }
-      </ul>
+      <div className="details-ingredients">
+        <h4>Ingredients</h4>
+        <ul>
+          {
+            values.map((ingredient, index) => {
+              if (ingredient !== '' && ingredient !== null) {
+                return (
+                  <div
+                    key={ index }
+                    data-testid={ `${index}-ingredient-step` }
+                  >
+                    <label htmlFor={ index }>
+                      <input
+                        type="checkbox"
+                        name={ ingredient }
+                        id={ index }
+                        defaultChecked
+                        onClick={ ({ target }) => !target.checked }
+                      />
+                      { ingredient }
+                      { ' - ' }
+                      { measures[index] }
+                    </label>
+                  </div>);
+              }
+              return null; // Pro lint não reclamar :(
+            })
+          }
+        </ul>
+      </div>
 
-      <div>
+      <div className="details-instruction">
         <h4>Instructions</h4>
         <p data-testid="instructions">{ FoodProgress[0].strInstructions }</p>
       </div>
