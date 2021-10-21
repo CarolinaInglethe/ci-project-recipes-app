@@ -32,8 +32,18 @@
 
 .page-main-food {
   background-color: #33313b;
+  color: #F6F5F5;
   text-align: center;
 }
+
+.container-header {
+  background-color: #212121;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+
 
 /*
 #iceLeft {
