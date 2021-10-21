@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
-
 import RecipesAppContext from '../context/RecipesAppContext';
-
 import HeaderWithSearchFood from '../components/HeaderWithSearchFood';
 import Footer from '../components/Footer';
 import FoodCards from '../components/FoodCards';
@@ -26,7 +24,7 @@ function Food() {
   }
   if (selectedFoodIngredient === '' || filteredFoods.length > 1) {
     return (
-      <div>
+      <div className="page-main-food">
         <HeaderWithSearchFood titlePage="Comidas" />
         <div>
           <FoodCategoryButtons />
@@ -37,7 +35,7 @@ function Food() {
     );
   }
   return (
-    <div>
+    <div className="page-main-food">
       <HeaderWithSearchFood titlePage="Comidas" />
       <div>
         <p>Tela principal de Receitas:</p>

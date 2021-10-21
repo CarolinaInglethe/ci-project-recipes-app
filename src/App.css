@@ -1,6 +1,6 @@
-.meals {
+.logo-login {
   align-items: center;
-  background: #0fa36b;
+  background: #212121;
   color: #464646;
   display: flex;
   flex-direction: column;
@@ -10,9 +10,29 @@
   width: 100%;
 }
 
+.logo-login > .logo {
+  animation: shake 1.5s infinite ease;
+  color: aliceblue;
+  font-family: Montserrat , sans-serif;
+  font-size: 2em;
+  font-weight: 900;
+  margin: 50px 10px;
+  text-align: center;
+}
+
 .rocksGlass {
   animation: shake 1s infinite ease;
-  max-height: 80vh;
+  max-height: 30vh;
+}
+
+.inputs-login {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.page-main-food {
+  background-color: #33313b;
+  text-align: center;
 }
 
 /*
@@ -28,14 +48,6 @@
   transform-origin: 60px 78px;
 }
 */
-
-.meals > .logo {
-  animation: shake 1.5s infinite ease;
-  color: aliceblue;
-  font-family: Montserrat , sans-serif;
-  font-size: 3em;
-  font-weight: 900;
-}
 
 @keyframes shake {
 
