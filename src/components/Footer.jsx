@@ -4,16 +4,16 @@ import { Button } from 'react-bootstrap';
 import DrinkLogo from '../images/drinkIcon.svg';
 import ExploreLogo from '../images/exploreIcon.svg';
 import FoodLogo from '../images/mealIcon.svg';
-import './Footer.css';
+// import './Footer.css';
 
 function Footer() {
   const history = useHistory();
 
   return (
-    <footer>
+    <footer className="container-footer">
       <div data-testid="footer" className="footer d-flex justify-content-md-center">
         <Button
-          variant="success"
+          variant="dark"
           type="button"
           onClick={ () => history.push('/bebidas') }
         >
@@ -24,7 +24,7 @@ function Footer() {
           />
         </Button>
         <Button
-          variant="success"
+          variant="dark"
           type="button"
           onClick={ () => history.push('/explorar') }
         >
@@ -35,7 +35,7 @@ function Footer() {
           />
         </Button>
         <Button
-          variant="success"
+          variant="dark"
           type="button"
           onClick={ () => history.push('/comidas') }
         >

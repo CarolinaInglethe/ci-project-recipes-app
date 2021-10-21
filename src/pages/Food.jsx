@@ -38,7 +38,6 @@ function Food() {
     <div className="page-main-food">
       <HeaderWithSearchFood titlePage="Comidas" />
       <div>
-        <p>Tela principal de Receitas:</p>
         <FoodCategoryButtons />
         <FoodFilteredByIngredient />
         <Footer />
