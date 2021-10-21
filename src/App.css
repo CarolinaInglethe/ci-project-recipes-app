@@ -1,5 +1,5 @@
 .page-main {
-  background-color: #212121;
+  background-color: #3d3d3d;
 }
 
 .logo-login {
@@ -91,6 +91,21 @@
 }
 
 .card-ingredients {
+  background-color: rgba(240, 255, 255, 0.226);
+  color: #fffbfb;
+  margin: 5px;
+  text-align: center;
+}
+
+.list-origin {
+  color: #fffbfb;
+  display: flex;
+  flex-flow: column wrap;
+  margin: auto;
+  padding: 10px;
+}
+
+.card-origin {
   background-color: rgba(240, 255, 255, 0.226);
   color: #fffbfb;
   margin: 5px;

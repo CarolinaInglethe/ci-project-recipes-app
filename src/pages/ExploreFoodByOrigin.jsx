@@ -40,9 +40,7 @@ function ExploreFoodByOrigin() {
   return (
     <div>
       <HeaderWithSearchFood titlePage="Explorar Origem" />
-      <div>
-        <p>ExploreFoodByOrigin</p>
-
+      <div className="page-main">
         <select
           data-testid="explore-by-area-dropdown"
           onChange={ handleChangeSelectedArea }
@@ -65,25 +63,28 @@ function ExploreFoodByOrigin() {
           ))}
         </select>
 
-        {mealsByOrigin.map((meal, index) => (
-          <div
-            // data-testid={ `${meal}-option` }
-            data-testid={ `${index}-card-name` }
-            key={ meal.strMeal }
-          >
-            <img
-              data-testid={ `${index}-card-img` }
-              src={ meal.strMealThumb }
-              height="100px"
-              alt={ `Imagem de ${meal.strMeal}` }
-              key={ index }
-            />
-            <Link to={ `/comidas/${meal.idMeal}` }>
-              <p data-testid={ `${index}-recipe-card` }>{meal.strMeal}</p>
-            </Link>
-            {console.log(meal)}
-          </div>
-        )).slice(0, MAX_CARDS)}
+        <div className="list-origin">
+          {mealsByOrigin.map((meal, index) => (
+            <div
+              className="card-origin"
+              // data-testid={ `${meal}-option` }
+              data-testid={ `${index}-card-name` }
+              key={ meal.strMeal }
+            >
+              <img
+                data-testid={ `${index}-card-img` }
+                src={ meal.strMealThumb }
+                height="100px"
+                alt={ `Imagem de ${meal.strMeal}` }
+                key={ index }
+              />
+              <Link to={ `/comidas/${meal.idMeal}` }>
+                <p data-testid={ `${index}-recipe-card` }>{meal.strMeal}</p>
+              </Link>
+              {console.log(meal)}
+            </div>
+          )).slice(0, MAX_CARDS)}
+        </div>
 
         <Footer />
       </div>
