@@ -46,6 +46,7 @@ function MainDrinkCards() {
                 ? (
                   <Link to={ `/bebidas/${drink.idDrink}` }>
                     <div
+                      className="card-drink"
                       key={ drink.idDrink }
                       data-testid={ `${index}-recipe-card` }
                     >
@@ -74,6 +75,7 @@ function MainDrinkCards() {
               ? (
                 <Link to={ `/bebidas/${drink.idDrink}` }>
                   <div
+                    className="card-drink"
                     key={ drink.idDrink }
                     data-testid={ `${index}-recipe-card` }
                   >

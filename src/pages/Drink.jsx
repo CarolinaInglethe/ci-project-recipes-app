@@ -27,7 +27,7 @@ function Drink() {
 
   if (selectedDrinkIngredient === '' || filteredDrinks.length > 1) {
     return (
-      <div>
+      <div className="page-main">
         <HeaderWithSearchDrink titlePage="Bebidas" />
         <DrinkCategoryButtons />
         <MainDrinkCards />
@@ -36,7 +36,7 @@ function Drink() {
     );
   }
   return (
-    <div>
+    <div className="page-main">
       <HeaderWithSearchDrink titlePage="Bebidas" />
       <p>Tela principal de Receitas:</p>
       <DrinkCategoryButtons />

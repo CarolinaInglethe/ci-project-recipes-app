@@ -24,7 +24,7 @@ function Food() {
   }
   if (selectedFoodIngredient === '' || filteredFoods.length > 1) {
     return (
-      <div className="page-main-food">
+      <div className="page-main">
         <HeaderWithSearchFood titlePage="Comidas" />
         <div>
           <FoodCategoryButtons />
@@ -35,7 +35,7 @@ function Food() {
     );
   }
   return (
-    <div className="page-main-food">
+    <div className="page-main">
       <HeaderWithSearchFood titlePage="Comidas" />
       <div>
         <FoodCategoryButtons />
