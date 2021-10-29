@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import PropTypes from 'prop-types';
-
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-
 import LoginAction from '../Redux/Actions';
-
 import rockGlass from '../images/rockGlass.svg';
 
 function Login({ loginEmail }) {
@@ -52,8 +48,8 @@ function Login({ loginEmail }) {
 
   return (
     <div>
-      <Form className="meals">
-        <div className="meals">
+      <Form className="logo-login">
+        <div className="logo-login">
           <h4 className="logo">App de receitas</h4>
           <object
             className="rocksGlass"
@@ -63,38 +59,42 @@ function Login({ loginEmail }) {
             Glass
           </object>
         </div>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Control
-            type="email"
-            id="login-input"
-            placeholder="Email"
-            data-testid="email-input"
-            value={ email }
-            onChange={ handleChangeOnEmail }
-          />
-        </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Control
-            type="password"
-            id="password-input"
-            value={ password }
-            onChange={ handleChangeOnPassWord }
-            placeholder="Password"
-            data-testid="password-input"
-          />
-        </Form.Group>
+        <div className="inputs-login">
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Control
+              type="email"
+              id="login-input"
+              placeholder="Email"
+              data-testid="email-input"
+              value={ email }
+              onChange={ handleChangeOnEmail }
+            />
+          </Form.Group>
 
-        <Button
-          type="submit"
-          data-testid="login-submit-btn"
-          disabled={ disabled }
-          onClick={ handleClick }
-          variant="primary"
-          className="mb-3"
-        >
-          Entrar
-        </Button>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Control
+              type="password"
+              id="password-input"
+              value={ password }
+              onChange={ handleChangeOnPassWord }
+              placeholder="Password"
+              data-testid="password-input"
+            />
+          </Form.Group>
+
+          <Button
+            type="submit"
+            data-testid="login-submit-btn"
+            disabled={ disabled }
+            onClick={ handleClick }
+            variant="primary"
+            className="mb-3"
+          >
+            Entrar
+          </Button>
+        </div>
+
       </Form>
     </div>
   );

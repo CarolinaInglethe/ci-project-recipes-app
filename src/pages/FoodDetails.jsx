@@ -62,7 +62,7 @@ function FoodDetails() {
   const youtubeUrl = foodDetails[0].strYoutube.replace('watch?v=', 'embed/');
 
   return (
-    <div className="details-container">
+    <div className="details-container page-main">
       <img
         src={ foodDetails[0].strMealThumb }
         alt={ foodDetails[0].strMeal }
@@ -82,7 +82,7 @@ function FoodDetails() {
       >
         { foodDetails[0].strCategory }
       </h4>
-      <div>
+      <div className="details-ingredients">
         <h3>Ingredients</h3>
         <ul>
           {
@@ -103,7 +103,7 @@ function FoodDetails() {
           }
         </ul>
       </div>
-      <div>
+      <div className="details-instruction">
         <h3>Instructions</h3>
         <p data-testid="instructions">{ foodDetails[0].strInstructions }</p>
       </div>
@@ -148,7 +148,7 @@ function FoodDetails() {
         className="details-button"
       >
         <Button
-          variant="success"
+          variant="primary"
         >
           Iniciar Receita
         </Button>

@@ -48,6 +48,7 @@ function MainFoodCards() {
                 ? (
                   <Link to={ `/comidas/${currentFood.idMeal}` }>
                     <div
+                      className="card-food"
                       key={ currentFood.strMeal }
                       data-testid={ `${index}-recipe-card` }
                     >
@@ -72,7 +73,11 @@ function MainFoodCards() {
             index <= eleven
               ? (
                 <Link to={ `/comidas/${food.idMeal}` }>
-                  <div key={ index } data-testid={ `${index}-recipe-card` }>
+                  <div
+                    className="card-food"
+                    key={ index }
+                    data-testid={ `${index}-recipe-card` }
+                  >
                     <img
                       src={ food.strMealThumb }
                       alt="receita  "

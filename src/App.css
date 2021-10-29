@@ -1,6 +1,12 @@
-.meals {
+.page-main {
+  background-color: #33313b;
+  color: #f6f5f5;
+  text-align: center;
+}
+
+.logo-login {
   align-items: center;
-  background: #0fa36b;
+  background: #212121;
   color: #464646;
   display: flex;
   flex-direction: column;
@@ -10,9 +16,132 @@
   width: 100%;
 }
 
+.logo-login > .logo {
+  animation: shake 1.5s infinite ease;
+  color: aliceblue;
+  font-family: Montserrat , sans-serif;
+  font-size: 2em;
+  font-weight: 900;
+  margin: 50px 10px;
+  text-align: center;
+}
+
 .rocksGlass {
   animation: shake 1s infinite ease;
-  max-height: 80vh;
+  max-height: 30vh;
+}
+
+.inputs-login {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.container-header {
+  background-color: #212121;
+  color: #f6f5f5;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.categories-container {
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.categories-container button {
+  margin: 4px;
+  padding: 12px;
+}
+
+.list-recipes {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+
+.card-food {
+  background-color: rgba(240, 255, 255, 0.103);
+  border-radius: 4px;
+  color: #fffbfb;
+  margin: 1px;
+}
+
+.card-drink {
+  background-color: rgba(240, 255, 255, 0.103);
+  border-radius: 4px;
+  color: #fffbfb;
+  margin: 1px;
+}
+
+.footer {
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 25%;
+  position: fixed;
+}
+
+.footer button {
+  background-color: #9cbcca;
+  margin: 1px;
+}
+
+.list-ingredients {
+  display: flex;
+  flex-flow: column wrap;
+  margin: auto;
+  padding: 10px;
+}
+
+.card-ingredients {
+  background-color: rgba(240, 255, 255, 0.226);
+  border-radius: 5px;
+  color: #fffbfb;
+  margin: 5px 25px;
+  text-align: center;
+}
+
+.list-origin {
+  color: #fffbfb;
+  display: flex;
+  flex-flow: column wrap;
+  margin: auto;
+  padding: 10px;
+}
+
+.card-origin {
+  background-color: rgba(240, 255, 255, 0.226);
+  color: #fffbfb;
+  margin: 5px;
+  text-align: center;
+}
+
+.details-ingredients {
+  background-color: rgba(44, 44, 44, 0.733);
+  border-radius: 5px;
+  color: #fffbfb;
+  padding: 10px;
+}
+
+.details-instruction {
+  background-color: rgba(167, 167, 167, 0.37);
+  border-radius: 5px;
+  color: #f3f1f1;
+  margin: 15px;
+  padding: 10px;
+
+}
+
+.details-button {
+  border-radius: 10px;
+  bottom: 0;
+  margin: auto;
+  position: fixed;
+  z-index: 100;
 }
 
 /*
@@ -28,14 +157,6 @@
   transform-origin: 60px 78px;
 }
 */
-
-.meals > .logo {
-  animation: shake 1.5s infinite ease;
-  color: aliceblue;
-  font-family: Montserrat , sans-serif;
-  font-size: 3em;
-  font-weight: 900;
-}
 
 @keyframes shake {
 
@@ -67,8 +188,3 @@
   }
 }
 
-.list-recipes {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-}

@@ -19,6 +19,7 @@ function FoodFilteredByIngredient() {
       <React.Fragment key={ food.idMeal }>
         <Link to={ `/comidas/${food.idMeal}` }>
           <div
+            className="card-food"
             data-testid={ `${index}-recipe-card` }
           >
             <img

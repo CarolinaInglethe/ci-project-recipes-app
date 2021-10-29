@@ -11,7 +11,7 @@ function Header({ titlePage }) {
   const history = useHistory();
 
   return (
-    <div className="container">
+    <div className="container-header">
       <div>
         <h2 data-testid="page-title">{ titlePage }</h2>
       </div>

@@ -42,7 +42,7 @@ function DrinkInProgress() {
   }
 
   return (
-    <div className="details-container">
+    <div className="details-container page-main">
       <img
         src={ drinkProgress[0].strDrinkThumb }
         alt={ `Imagem de ${drinkProgress[0].strDrink}` }
@@ -59,7 +59,7 @@ function DrinkInProgress() {
       </div>
       <h5 data-testid="recipe-category">{ drinkProgress[0].strAlcoholic }</h5>
 
-      <div>
+      <div className="details-ingredients">
         <h4>Ingredients</h4>
         <ul>
           {
@@ -91,16 +91,16 @@ function DrinkInProgress() {
         </ul>
       </div>
 
-      <div>
+      <div className="details-instruction">
         <h4>Instructions</h4>
         <p data-testid="instructions">{ drinkProgress[0].strInstructions }</p>
       </div>
 
       <Link to="/receitas-feitas">
         <Button
-          variant="secondary"
+          variant="primary"
           type="button"
-          className="button"
+          className="details-button"
           data-testid="finish-recipe-btn"
         >
           Finalizar Tarefa

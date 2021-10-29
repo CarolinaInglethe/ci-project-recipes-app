@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-
 import { Button } from 'react-bootstrap';
-
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBarFood from './SearchBarFood';
@@ -14,10 +12,7 @@ function HeaderWithSearchFood({ titlePage }) {
   const history = useHistory();
 
   return (
-    <div className="container">
-      <div>
-        <h2 data-testid="page-title">{ titlePage }</h2>
-      </div>
+    <div className="container-header">
       <Button
         style={ { padding: '10px' } }
         variant="secondary"
@@ -26,6 +21,9 @@ function HeaderWithSearchFood({ titlePage }) {
       >
         <img src={ profileIcon } alt="Icone de Perfil" data-testid="profile-top-btn" />
       </Button>
+      <div>
+        <h2 data-testid="page-title">{ titlePage }</h2>
+      </div>
       <div>
         {toggleInput && (
           <SearchBarFood />
