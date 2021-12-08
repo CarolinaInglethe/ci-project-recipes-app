@@ -1,6 +1,7 @@
 {
   "name": "recipes-app-test",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@sheerun/mutationobserver-shim": "^0.3.3",

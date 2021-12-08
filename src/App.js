@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import RecipesAppProvider from './context/RecipesAppProvider';
 
 import Login from './pages/Login';
@@ -25,8 +25,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <RecipesAppProvider>
-      <BrowserRouter>
+    <Router basename={ process.env.PUBLIC_URL }>
+      <RecipesAppProvider>
         <Switch>
           <Route exact path="/" component={ Login } />
           <Route exact path="/comidas" component={ Food } />
@@ -83,8 +83,8 @@ function App() {
             component={ NotFound }
           />
         </Switch>
-      </BrowserRouter>
-    </RecipesAppProvider>
+      </RecipesAppProvider>
+    </Router>
   );
 }
 

@@ -1,34 +1,22 @@
+name: deploy
 on:
-  pull_request:
-    types: [opened, synchronize]
+  push:
+    branches:
+      - main-group-4
 jobs:
-  evaluator_job:
+  deploy:
     runs-on: ubuntu-18.04
-    name: Evaluator job
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1.4.4
+      - uses: actions/setup-node@v1
         with:
-          node-version: '12'
-      - name: Stylelint analysis step
-        uses: betrybe/stylelint-linter-action@v1
+          node-version: '14.x'
+      - name: Build web-app
+        run: |
+          npm ci
+          npm run build
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Static code analysis step
-        uses: betrybe/eslint-linter-action@v2.1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Evaluator step
-        id: evaluator
-        uses: betrybe/cypress-evaluator-action@v5
-        with:
-          repository-test-name: 'betrybe/sd-0x-recipes-app-n-tests'
-          repository-test-branch: 'master'
-          npm-start: true
-          browser: 'electron'
-      - name: Store evaluation step
-        uses: betrybe/store-evaluation-action@v2
-        with:
-          evaluation-data: ${{ steps.evaluator.outputs.result }}
-          environment: production
-          pr-number: ${{ steps.evaluator.outputs.pr-number }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
