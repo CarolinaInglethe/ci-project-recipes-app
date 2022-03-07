@@ -30,11 +30,11 @@ Assim que o projeto estiver em sua maquina você deve abrir e  :
 
 ## Como é o site ?
 
-#### Layout estilizado para mobile
+ - Layout estilizado para mobile;
 
-Ele irá conter uma pagina inicial de login , após ira conter uma listagem de receitas. Podera escolher receitas de bebidas e comidas, procurar por algo especifico 
+ - Ele irá conter uma pagina inicial de login , após ira conter uma listagem de receitas. Podera escolher receitas de bebidas e comidas, procurar por algo especifico 
 e ver o andamento de uma receita escolhida. 
-As receitas contém ingredientes, modo de preparo e video.
+ - As receitas contém ingredientes, modo de preparo e video.
 
 ####
 
