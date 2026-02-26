@@ -144,6 +144,10 @@
   z-index: 100;
 }
 
+.error {
+  color: rgba(255, 40, 12, 0.664)
+}
+
 /*
 #iceLeft {
   animation: clink .8s infinite ease;
