@@ -11,6 +11,8 @@ function Login({ loginEmail }) {
   const [email, setNewEmail] = useState('');
   const [password, setNewPassword] = useState('');
   const [disabled, setDisable] = useState(true);
+  const [textErrorEmail, setTextErrorEmail] = useState('');
+  const [textErrorPassword, setTextErrorPassword] = useState('');
   const history = useHistory();
 
   const handleChangeOnEmail = ({ target }) => {
@@ -37,6 +39,7 @@ function Login({ loginEmail }) {
       const testEmail = regex.test(email);
       const minLength = 6;
       const testPassword = (password.length > minLength);
+
       if (testEmail && testPassword) {
         setDisable(false);
       } else {
@@ -70,6 +73,7 @@ function Login({ loginEmail }) {
               value={ email }
               onChange={ handleChangeOnEmail }
             />
+            { email === '' || email.includes('@') && email.includes('.com') ? null : <span className='error'> Email invalido </span>  }
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -81,6 +85,7 @@ function Login({ loginEmail }) {
               placeholder="Password"
               data-testid="password-input"
             />
+            { password === '' || password.length >= 6 ? null : <span className='error'> A senha deve ter pelo <br /> menos 6 caracteres </span>  }
           </Form.Group>
 
           <Button
