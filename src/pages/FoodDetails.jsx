@@ -126,7 +126,7 @@ function FoodDetails() {
           Array.isArray(recommendedDrinks) && recommendedDrinks.map((recommendations, index) => (
             <div
               key={ recommendations.idDrink }
-              data-testid={ `${index}-recomendation-card` }
+              data-testid={ `${index}-recommendation-card` }
               className="recipe-card"
             >
               <img
@@ -136,7 +136,7 @@ function FoodDetails() {
               />
               <p className="category-text">{ recommendations.strCategory }</p>
               <p
-                data-testid={ `${index}-recomendation-title` }
+                data-testid={ `${index}-recommendation-title` }
               >
                 { recommendations.strDrink }
               </p>
