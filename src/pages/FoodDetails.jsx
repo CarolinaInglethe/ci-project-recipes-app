@@ -35,9 +35,11 @@ function FoodDetails() {
   useEffect(() => {
     const fetchRecommended = async () => {
       const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
-      const { drinks } = await response.json();
+      const data = await response.json();
 
+      const drinks = data.drinks || [];
       setRecommendedDrinks(drinks.slice(0, firstSixRecommendedCards));
+      
     };
     fetchRecommended();
   }, []);
@@ -121,10 +123,10 @@ function FoodDetails() {
       <h3>Recomendations</h3>
       <div className="flex carousel">
         {
-          recommendedDrinks.map((recommendations, index) => (
+          Array.isArray(recommendedDrinks) && recommendedDrinks.map((recommendations, index) => (
             <div
               key={ recommendations.idDrink }
-              data-testid={ `${index}-recomendation-card` }
+              data-testid={ `${index}-recommendation-card` }
               className="recipe-card"
             >
               <img
@@ -134,7 +136,7 @@ function FoodDetails() {
               />
               <p className="category-text">{ recommendations.strCategory }</p>
               <p
-                data-testid={ `${index}-recomendation-title` }
+                data-testid={ `${index}-recommendation-title` }
               >
                 { recommendations.strDrink }
               </p>

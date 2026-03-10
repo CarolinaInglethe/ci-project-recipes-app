@@ -46,7 +46,7 @@ function MainFoodCards() {
             .map((currentFood, index) => (
               index <= eleven
                 ? (
-                  <Link to={ `/comidas/${currentFood.idMeal}` }>
+                  <Link key={ index } to={ `/comidas/${currentFood.idMeal}` }>
                     <div
                       className="card-food"
                       key={ currentFood.strMeal }
@@ -72,10 +72,9 @@ function MainFoodCards() {
           : foods.map((food, index) => (
             index <= eleven
               ? (
-                <Link to={ `/comidas/${food.idMeal}` }>
+                <Link key={ index } to={ `/comidas/${food.idMeal}` }>
                   <div
                     className="card-food"
-                    key={ index }
                     data-testid={ `${index}-recipe-card` }
                   >
                     <img
